@@ -1,0 +1,43 @@
+<div class='container-fluid' style='padding: 2%'>
+    <div class='row'>
+        <div class='col-md-2 col-2'>
+            <span class='subcat'>SUB CATEGORIES</span><br />
+            <ul>
+                <li><button class='sub'>-- All --</button></li>
+                <li *ngFor='let sub of sub_categories'><button class='sub'>{{sub.name}}</button></li>
+            </ul>
+
+        </div>
+        <div class='col-md-9 col-9' style='padding-left:5px; border-left: 1px solid rgb(185, 184, 184);'>
+            <div class='row'>
+                <div class='col'>
+                    <span class='title'>{{ category?.name}}</span> - 
+                    <span class='items'>{{ products.length }} items</span>
+                </div>
+                <div class='col' style='text-align: right;'>
+                    <p class='drop_block'>
+                        <span class='sort'>Sort By</span>
+                        <span>
+                            <select>
+                                <option>Price: High to Low</option>
+                                <option>Price: Low to High</option>
+                                <option>Name: A2Z</option>
+                                <option>Name: Z2A</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <hr />
+            <p style='text-align: center'>
+                <img src='http://localhost:8000{{ category?.banner }}' alt='...' class='cat_banner' />
+            </p>
+            <div class='row'>
+                <div class='col' *ngFor='let product of products'>
+                    <app-product-template [product]='product'></app-product-template>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

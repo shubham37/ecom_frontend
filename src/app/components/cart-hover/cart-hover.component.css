@@ -1,0 +1,39 @@
+.go_cart {
+    color: gray;
+    font-size: medium;
+    font-weight: bold;
+    text-decoration: underline;
+    padding:2% 0;
+}
+
+.go_cart:hover {
+    color: #ff5e00;
+}
+
+td {
+    font-size: small;
+}
+
+.price {
+    font-size: small;
+    font-weight: bold;
+    color: black;
+    padding: 0 2%;
+
+}
+
+.price_title {
+    font-size: small;
+    font-weight: bolder;
+    color: gray;
+}
+
+@media  screen and (max-width: 425px) {
+    td > img {display: none}
+    td {font-size: 10px;}
+}
+
+.increment, .decrement {
+    border: none;
+    background-color: white;
+}

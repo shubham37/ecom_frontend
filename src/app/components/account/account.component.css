@@ -1,0 +1,82 @@
+.account {
+    padding: 1%;
+    margin: 5% 0;
+}
+
+.login {
+    padding: 1% 2%;
+    margin-top: 10px;
+}
+.register_form {
+    padding: 1%;
+    margin-top: 10px;
+}
+
+.text_content {
+    margin-top: -3%;
+    font-size: 14px;
+    font-weight: lighter;
+    color: grey;   
+}
+
+.profile_img {
+    border: 2px solid #ff5e00;
+    border-radius: 50%;
+}
+
+.msg {
+    font-size: small;
+    font-weight: lighter;
+    color: gray;
+    font-family: serif;
+}
+
+.name {
+    font-size: large;
+    font-weight: bold;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
+.details, .orders, .addresses, .payments, .wislist {
+    background-color: white;
+    padding: 10px 0;
+    width: 99%;
+    margin: 3% 2px;
+    border: 1px solid rgb(177, 174, 174);
+    color: rgb(95, 94, 94); 
+    font-weight: bolder;
+    -moz-box-shadow: 0px 3px 8px rgb(152, 169, 162);
+    -webkit-box-shadow: 0px 3px 8px rgb(152, 169, 162);
+    box-shadow: 0px 3px 8px rgb(152, 169, 162);
+
+}
+
+.details:hover, .orders:hover, .addresses:hover, .payments:hover, .wislist:hover {
+    color: #ff5e00;
+    border: 1px solid #ff5e00;
+    -moz-box-shadow: 0px 3px 8px #ff5e00;
+    -webkit-box-shadow: 0px 3px 8px #ff5e00;
+    box-shadow: 0px 3px 8px #ff5e00;
+}
+
+.logout {
+    margin-top: 2%;
+    color: #ff5e00;
+    font-weight: bold;
+    font-size: small;
+    padding: 5px 25px;
+    border: 1px solid #ff5e00;
+    background-color: white;
+}
+.logout:hover {
+    color: white;
+    border: 1px solid #ff5e00;
+    background-color: #ff5e00;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+}

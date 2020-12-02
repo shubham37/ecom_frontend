@@ -1,0 +1,51 @@
+.title {
+    color: black;
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.normal {
+    color: rgb(27, 27, 27);
+    font-weight: lighter;
+    font-size: 10px;
+}
+
+.content {
+    color: rgb(27, 27, 27);
+    font-weight: lighter;
+    font-size: 12px;
+
+}
+
+.search  {
+    width: 75%;
+    padding: 2%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: rgb(53, 53, 53);
+    border: 1px solid  rgb(168, 168, 168);
+}
+
+
+.latest_news {
+    color: black;
+    font-weight: bolder;
+    font-size: small;
+    font-family: sans-serif;
+}
+
+
+.text_widget {
+    color: black;
+    font-weight: bolder;
+    font-size: small;
+    font-family: sans-serif;
+}
+
+.tag_widget {
+    color: black;
+    font-weight: bolder;
+    font-size: small;
+    font-family: sans-serif;
+}

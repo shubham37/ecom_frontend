@@ -1,0 +1,72 @@
+.bs_header {
+    background-color: rgba(187, 185, 185,0.1);
+    padding:0;
+}
+
+.language {
+    margin: 0;
+    margin-top: 8px;
+    background-color: rgba(187, 185, 185,0.02);
+    color: black;
+    font-size: medium;
+    border: none;
+    font-weight: lighter;
+}
+
+.register, .login, .buyer, .seller, .compare {
+    margin: 0 1%;
+    background-color: rgba(187, 185, 185,0.02);
+    color: black;
+    font-size: 14px;
+    border: none;
+    border-right: 1px solid black;
+    padding-right: 2%;
+    font-weight: lighter;
+}
+
+.buyer {
+    border: none;
+}
+
+a, .login_text, .buyer_regis {
+    font-size: small;
+    color: rgb(35, 35, 35);
+    text-decoration: none;
+}
+
+@media screen and (max-width:400px) {
+    .wishlist, .compare, .account, .currency, .language {font-size: 10px}
+    .currency { width: 45px;}
+    .language { width: 70px;}
+}
+
+.user_input, .otp {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 14px;
+    font-weight: bolder;
+    padding: 1%;
+    margin-bottom: 7%;
+}
+
+.register_button, .login_button, .verify_otp {
+    border-radius: 0;
+    padding: 1% 10%;
+    font-weight: bold;
+    font-size: small;
+    background-color: #ff5e00;
+    color:white;
+}
+
+.email_input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 14px;
+    font-weight: bolder;
+    padding: 1%;
+    margin-bottom: 7%;
+}
+
+

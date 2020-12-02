@@ -1,0 +1,289 @@
+<div class='container'>
+    <div class='row'>
+        <div class="offset-md-1 col-md-10">
+            <!-- Seller Registration -->
+            <div class='row' style='margin: 1% 0;'>
+                <div class='col'>
+                    <p class='title'>Seller Registration</p>
+                    <div class='card-body'>
+                        <!-- Login Info -->
+                        <form *ngIf="isInfoShow" [formGroup]="infoFormGroup" (ngSubmit)="onInfoSubmit(infoFormGroup.value)">
+                            <legend class='login_info'>Login Info</legend>
+                            <!-- User Id -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='userid'>
+                                        <span>User ID(write your email ID)</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='email' id='userid' placeholder='example@xyz.com' formControlName="userid" />
+                                </div>
+                            </div>
+
+                            <!-- Mobile Number -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='mobile'>
+                                        <span>Phone</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='mobile' placeholder='98823 92734' formControlName="phone" />
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='password'>
+                                        <span>Password</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='password' id='password' placeholder='Password' formControlName="password" />
+                                </div>
+                            </div>
+
+                            <!-- Confirm Password -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='cnf_password'>
+                                        <span>Confirm Password</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='email' id='cnf_password' placeholder='example@xyz.com' formControlName="cnf_password" />
+                                </div>
+                            </div>
+
+                            <!-- Address1  Detail -->
+                            <div class='row'>
+                                <div class='col' style='width:100%;'>
+                                    <label for='address'>
+                                        <span>Address</span>
+                                    </label><br />
+                                    <input type='text' id='address' placeholder='Shop Address' formControlName="address" />
+                                </div>
+                                <div class='col' style='width:100%;'>
+                                    <label for='city'>
+                                        <span>City</span>
+                                    </label><br />
+                                    <input type='text' id='city' placeholder='City' formControlName="city" />
+                                </div>
+                            </div>
+
+                            <!-- Address2  Detail -->
+                            <div class='row'>
+                                <div class='col' style='width:100%;'>
+                                    <label for='zipcode'>
+                                        <span>Zip Code</span>
+                                    </label><br />
+                                    <input type='text' id='zipcode' placeholder='ZipCode' formControlName="zip_code" />
+                                </div>
+                                <div class='col' style='width:100%;'>
+                                    <label for='country'>
+                                        <span>Country</span>
+                                    </label><br />
+                                    <select formControlName="country">
+                                        <option selected>Select Country</option>
+                                        <option>India</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <p style='text-align: center; margin-top:3%;'>
+                                <input class='setup' type='submit' value='Setup My Store' /> 
+                                <!-- <button class='setup'>Setup My Store</button> -->
+                            </p>
+                        </form>
+
+                        <!-- Business Details -->
+                        <form *ngIf="isBusinessShow" [formGroup]="businessFormGroup" (ngSubmit)="onBusinessSubmit(businessFormGroup.value)">
+                            <legend class='business'>BUSINESS DETAIL</legend>
+                            <!-- GST Number -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='gst'>
+                                        <span>GST Number</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='gst' placeholder='Enter GST Number' formControlName="gst" />
+                                </div>
+                            </div>
+
+
+                            <!-- Pan card and Adhar Card -->
+                            <div class='row'>
+                                <div class='col-6 col-md-6' style='width:100%;'>
+                                    <label for='pancard'>
+                                        <span>Pan Card</span>
+                                    </label><br />
+                                    <input type='file' id='pancard' formControlName="pancard" class='form-control' (change)='onPanChange($event)' />
+                                </div>
+                                <div class='col-6 col-md-6' style='width:100%;'>
+                                    <label for='adharcard'>
+                                        <span>Adhar Card</span>
+                                    </label><br />
+                                    <input type='file' id='adharcard' formControlName="adharcard" />
+                                </div>
+                            </div>
+
+                            <!-- Logo and Shop Board -->
+                            <div class='row'>
+                                <div class='col-6 col-md-6' style='width:100%;'>
+                                    <label for='logo'>
+                                        <span>Logo</span>
+                                    </label><br />
+                                    <input type='file' id='logo' formControlName="logo" />
+                                </div>
+                                <div class='col-6 col-md-6' style='width:100%;'>
+                                    <label for='board'>
+                                        <span>Shop Board Picture</span>
+                                    </label><br />
+                                    <input type='file' id='board' formControlName="board" />
+                                </div>
+                            </div>
+
+
+                            <!-- Desired Role -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='role'>
+                                        <span>Desired Role</span>
+                                    </label><br />
+                                    <select id='role' formControlName="role">
+                                        <option selected></option>
+                                        <option>Role 1</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Minimum Value -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='min'>
+                                        <span>Minimum Home delivery Order Value</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='min' placeholder='Minimum amount to process home delivery' formControlName="minimum_order" />
+                                </div>
+                            </div>
+
+                            <!-- Choose Category -->
+                            <div class='row'>
+                                <div class='col' style='width:100%;'>
+                                    <label for='cat'>
+                                        <span>Choose Category</span>
+                                    </label><br />
+                                    <select id='cat' formControlName="category">
+                                        <option selected>Home Delivery</option>
+                                        <option>Only Pick Up</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <p style='text-align: center; margin-top:3%;'>
+                                <button class='setup'>Start With Business</button>
+                            </p>
+                        </form>
+
+                        <!-- Bank Detail -->
+                        <form *ngIf="isBankShow" [formGroup]="bankingFormGroup" (ngSubmit)="onBankSubmit(bankingFormGroup.value)">
+                            <legend class='bank_detail'>BANK DETAILS</legend>
+                            <!-- IFSC -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='ifsc'>
+                                        <span>IFSC Code</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='ifsc' placeholder='' formControlName='ifsc' />
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div class='row'>                               
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='city'>
+                                        <span>City</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='city' placeholder='City' formControlName='city' />
+                                </div>
+                            </div>
+
+                            <!-- Branch -->
+                            <div class='row'>                               
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='branch'>
+                                        <span>Branch</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='branch' placeholder='' formControlName='branch' />
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div class='row'>                               
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='ahn'>
+                                        <span>Account Holder Name</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='ahn' placeholder='' formControlName='account_holder' />
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div class='row'>                               
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='an'>
+                                        <span>Account Number</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='an' placeholder='' formControlName='account_number' />
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div class='row'>                               
+                                <div class='col-12' style='width:100%;'>
+                                    <label for='bn'>
+                                        <span>Bank Name</span>
+                                    </label>
+                                </div>
+                                <div class='col-12' style='width:100%;'>
+                                    <input type='text' id='bn' placeholder='' formControlName='bank' />
+                                </div>
+                            </div>
+
+                            <!-- City -->
+                            <div class='row'>
+                                <div class='col-12' style='width:100%;'>
+                                    <label>
+                                        Bank Proof Upload (cancelled cheque or Bank statement or Passbook with clear Account holder name, Account number and IFSC code)
+                                    </label>
+                                    <input type='file' id='proof' placeholder='Upload Bank Document' formControlName='proof' />
+                                </div>
+                            </div>
+                            
+                            <p style='text-align: center; margin-top:3%;'>
+                                <button class='store'>Open Store</button>
+                            </p>
+                        </form>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

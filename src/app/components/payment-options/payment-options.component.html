@@ -1,0 +1,56 @@
+<div class='row'>
+  <div class='col'>
+      <img src='assets/images/walleticon.png' alt='pai' class='pai' />
+  </div>
+</div>
+
+<hr />
+<div class="row">
+    <div class='col-md-6'>
+        <h6 style='font-weight:bold;'>Manage Saved Cards</h6>
+        <br />
+        <button class='add_card' data-toggle='modal' data-target='#newCard'>ADD A NEW CARD</button>
+        <br />
+        <p class='card-text' *ngFor='let card of cards'>
+            <span class='card_holder'>{{ card.card_name }}</span>
+            <sppan>( {{card.month}}/ {{card.year}} )</sppan>
+            <span class='delete'>
+              <button style='border: none; background-color: white;' (click)='onDelete(card.id)'>
+                <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
+              </button>
+            </span>
+            <br />
+            <span>
+                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-credit-card-2-back-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5H0V4zm11.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2z"/>
+                    <path d="M0 11v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1H0z"/>
+                </svg>
+            </span>
+            <span class='number'> {{ card.number }}</span>
+        </p>
+        <br />
+        <br />
+    </div>
+</div>
+
+<div class="modal fade" id="newCard" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-wallet" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"/>
+            </svg>
+            <b style='margin-left:5px;'>New Card</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <card-template></card-template>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class='row'>
+    <div class='col'>
+        <p>
+            <img src='assets/images/location.png' alt='ai' class='ai' />
+            <button class=' float-right add_address' data-toggle='modal' data-target='#newAddress'>ADD ADDRESS</button>
+        </p>
+
+        <br />
+        <div class='row' *ngFor='let address of addresses'>
+            <div class='col-6' class="add">
+                <span class='tag' *ngIf='address.add_type != 1'>HOME</span> 
+                <span class='tag' *ngIf='address.add_type == 1'>Work</span> 
+                <span class='float-right delete'>
+                    <button style='border: none; background-color: white;' (click)='onDelete(address.id)'>
+                          <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                          </svg>
+                    </button>
+                </span>      
+                <span class='float-right edit'>
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                </span>
+                <br />
+                <p style='margin-top:1%;'>
+                    <span class='name'>{{ address.full_name}}</span> <span class='number'>{{ address.mobile }}</span>
+                    <br />
+                    <span class='address'>{{ address.locality }}, {{ address.address }}, {{ address.landmark }}, {{ address.pincode.city.city_name }}, {{ address.pincode.city.state.state_name }} - <b>{{ address.pincode.pincode }}</b></span>
+                </p>
+            </div>
+        </div>
+        <br />
+    </div>
+</div>
+
+<div class="modal fade" id="newAddress" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+            <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-geo-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
+            </svg>
+            <b style='margin-left:5px;'>New Address</b></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <address-template></address-template>
+        </div>
+      </div>
+    </div>
+</div>

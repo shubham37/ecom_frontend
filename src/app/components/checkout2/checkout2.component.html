@@ -1,0 +1,38 @@
+<div class='container'>
+    <div class='row'>
+        <div class="offset-md-1 col-md-10">            
+            <div class='row' style='margin: 1% 0;'>
+                <div class='col-md' style='padding:2% 1%;'>
+                    <h6 style='font-weight:bolder; margin-bottom: 3%;'>Choose Delivery Options :</h6>
+                    <div class='row' style='margin:2% 0; border-bottom: 1px solid silver;' *ngFor='let i of numbers'>
+                        <div class='col-12 col-md-8'>
+                            <p>
+                                <span class='title'>Shipping from Hauch</span> <br />
+                                <span class='address'>Delivery to: Home, H. No. 101, Street 13, Raj Nagar, Ghaziabad - 201002</span>
+                            </p>
+                            <ul>
+                                <li>
+                                    <h6><b>Apple</b></h6>
+                                    <p>
+                                        <span class='actual_price'><s>$ 234.89</s></span>
+                                        <span class='final_price'><b>$ 234.89</b></span>
+                                        <span class='quantity'>Quantity : 1</span>
+                                    </p>
+                                </li>
+                            </ul>                                
+                        </div>
+                        <div class='col-12 col-md-4'>
+                            <p>
+                                <span class='title'>Shipping method</span> <br />
+                                <input type='radio' name='ship_method' value='0' /> <span class='hauch_option'>Hauch Service</span> <span class='ship_add'>- at $10.0</span><br />
+                                <input type='radio' name='ship_method' value='1' /> <span class='std_option'>Standard shipping</span> <span class='ship_add'>- at $10.0</span><br />
+                                <input type='radio' name='ship_method' value='2' /> <span class='pick_option'>Pick at Store</span><br />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

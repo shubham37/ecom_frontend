@@ -1,0 +1,93 @@
+<div class="row main">
+
+    <!-- Heading Section -->
+    <div class='col-12'>
+        <p class='result_title'>Showing 1 – 24 of 162 results for "realme 7"</p>
+        <hr style='height: 2px; width: 100px; background-color: #ff5e00; margin-left: 0; margin-top: -5px;'>
+    </div>
+ 
+    <!-- Filter and Sorting Section -->
+    <div class='col-md-3'>
+        <p class='filter_title'>FILTERS</p>
+        <select class='foods form-control'>
+            <option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+            </option>
+        </select>
+        <select class='foods form-control'>
+            <option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+            </option>
+        </select>
+        <select class='foods form-control'>
+            <option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+            </option>
+        </select>
+        <select class='foods form-control'>
+            <option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+            </option>
+        </select>
+        <select class='foods form-control'>
+            <option *ngFor="let food of foods" [value]="food.value">
+            {{food.viewValue}}
+            </option>
+        </select>
+    </div>
+
+    <div class='col-md-8 col-12'>
+        <div class='row'>
+            <div class='offset-md-10 col-md-2' style='text-align: right;'>
+                <sup class='sort_title'>SORT BY</sup>
+                <select class='sort'>
+                    <option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <!-- Search result Product  -->
+        <div class='row'>
+            <div class='col-md-3 product' *ngFor='let i of products'>
+                <a [routerLink]="['/product/1']">
+                    <img src='assets/images/product.png' style='width:100%; height:60%; background-color: ghostwhite;' />
+                </a>
+                <span class='float-right add_wishlist_block'>
+                    <button class='add_wishlist_btn'>
+                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bookmark-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                            <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
+                        </svg>
+                    </button>
+                </span>
+
+                <p>
+                    <span class='category_text'>Headphones</span>
+                    <br />
+                    <span class="product_title">
+                        <a [routerLink]="['/product/1']">
+                            ONTEC E Headset
+                        </a>
+                    </span>
+                    <br />
+                    <svg *ngFor='let i of products' width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <br />
+                    <span class='float-left price_product'>$175.00</span>
+                    <span class='float-right'>
+                        <button class='cart'>
+                            <svg width="0.7em" height="0.7em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                            </svg>
+                        </button>
+                    </span>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>

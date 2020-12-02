@@ -1,0 +1,61 @@
+<form [formGroup]="addressFormGroup">
+    <div class='row'>
+        <div class='col'>
+            <input type='text' placeholder='Full Name' class='first_name' required formControlName='full_name' />
+        </div>
+        <div class='col'>
+            <input type='text' placeholder='10-digit-number' class='mobile_number' formControlName='mobile' />
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col'>
+            <input type='text' placeholder='Pincode' class='pincode' required formControlName='pincode' (change)='onPincodeChange($event)' />
+        </div>
+        <div class='col'>
+            <input type='text' placeholder='Locality' class='locality' formControlName='locality' />
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col' style='width:100%;'>
+            <textarea placeholder='Address (Area and Street)' class='address' formControlName='address'></textarea>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col'>
+            <input type='text' class='city' placeholder='City' value='{{selectedCity}}' />
+            <!-- <select class='city' formControlName='city' (change)="onCityChange($event)">
+                <option [value]=0>City</option>
+                <option *ngFor="let city of cities" [Value]="city.id">{{city.city_name}}</option>
+              </select> -->
+        </div>
+        <div class='col'>
+            <input type='text' class='state' placeholder='State' value='{{selectedState}}' />
+            <!-- <select class='state' formControlName='state' (change)="onStateChange($event)">
+                <option [value]=0>State</option>
+                <option *ngFor='let state of states' [value]='state.id'>{{ state.state_name }}</option>
+            </select> -->
+        </div>
+    </div>
+
+    <div class='row'>
+        <div class='col'>
+            <input type='text' placeholder='Landmark' class='landmark' required formControlName='landmark' />
+        </div>
+        <div class='col'>
+            <input type='text' placeholder='Alternative Phone' class='alternative' formControlName='alternative_mobile' />
+        </div>
+    </div>
+    <br />
+    <div class='row'>
+        <div class='col'>
+            <span style='font-size: small; font-weight: lighter; color:gray;'>Address Type : </span>
+            <span style='font-size: small; margin-left: 1%;'><input type='radio' name='add_type' value='0' checked formControlName='add_type' />  Home</span>
+            <span style='font-size: small; margin-left: 1%;'><input type='radio' name='add_type' value='1' formControlName='add_type' />  Work</span>
+        </div>
+    </div>
+    <br />
+    <button type='button' class='btn btn-warning submit_review' (click)='onAddressSubmit(addressFormGroup.value)'>
+        <span *ngIf='!processing'>SUBMIT</span>
+        <span class="spinner-border text-light" role="status" *ngIf='processing'></span>
+    </button>
+</form>

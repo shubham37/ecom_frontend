@@ -1,0 +1,36 @@
+{
+    "HEADER" : {
+        "COMPARE": "Compare",
+        "LOGIN": "Login",
+        "SELLER_REGISTRATION": "Seller Registration",
+        "BUYER_REGISTRATION": "Buyer Registration",
+        "WELCOME": "Welcome"
+    },
+
+    "NAVBAR" : {
+        "SEARCH_BY_PRODDUCTS": "Search by Products",
+        "SEARCH": "SEARCH",
+        "MY_ACCOUNT": "My Account",
+        "CART": "CART",
+        "CHECKOUT": "CHECKOUT",
+        "SUB_TOTAL": "Sub Total"
+    },
+
+    "HEADER_MENU": {
+
+    },
+
+    "DEFAULT": {
+        "WISHLIST": "Your Products Choice",
+        "DISCOUNTED": "Discounted Category",
+        "NEAR_BY_SHOP": "Your Favorite Shop",
+
+        "SERVICE" : {
+            "BONUS_PLUS_TITLE": "",
+            "BONUS_PLUS_TEXT": "",
+
+            "FREE_SHIPPING_TITLE": "",
+            "FREE_SHIPPING_TEXT": ""
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "HEADER" : {
+        "COMPARE": "তুলনা করা",
+        "LOGIN": "প্রবেশ করুন",
+        "SELLER_REGISTRATION": "বিক্রেতা নিবন্ধকরণ",
+        "BUYER_REGISTRATION": "ক্রেতা নিবন্ধন",
+        "WELCOME": "স্বাগত"
+    },
+
+    "NAVBAR" : {
+        "SEARCH_BY_PRODDUCTS": "পণ্য দ্বারা অনুসন্ধান করুন",
+        "SEARCH": "অনুসন্ধান করুন",
+        "MY_ACCOUNT": "আমার অ্যাকাউন্ট",
+        "CART": "কার্ট",
+        "CHECKOUT": "চেকআউট করুন",
+        "SUB_TOTAL": "সাব টোটাল"
+    },
+
+    "HEADER_MENU": {
+
+    },
+
+    "DEFAULT": {
+        "WISHLIST": "Your Products Choice",
+        "DISCOUNTED": "Discounted Category",
+        "NEAR_BY_SHOP": "Your Favorite Shop",
+
+        "SERVICE" : {
+            "BONUS_PLUS_TITLE": "",
+            "BONUS_PLUS_TEXT": "",
+
+            "FREE_SHIPPING_TITLE": "",
+            "FREE_SHIPPING_TEXT": ""
+        }
+    }
+}

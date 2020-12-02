@@ -1,0 +1,36 @@
+{
+    "HEADER" : {
+        "COMPARE": "तुलना",
+        "LOGIN": "लॉग इन करें",
+        "SELLER_REGISTRATION": "विक्रेता पंजीकरण",
+        "BUYER_REGISTRATION": "क्रेता पंजीकरण",
+        "WELCOME": "स्वागत हे"
+    },
+
+    "NAVBAR" : {
+        "SEARCH_BY_PRODDUCTS": "उत्पादों द्वारा खोजें",
+        "SEARCH": "खोज",
+        "MY_ACCOUNT": "मेरा खाता",
+        "CART": "गाड़ी",
+        "CHECKOUT": "चेक आउट",
+        "SUB_TOTAL": "उप कुल"
+    },
+
+    "HEADER_MENU": {
+
+    },
+
+    "DEFAULT": {
+        "WISHLIST": "Your Products Choice",
+        "DISCOUNTED": "Discounted Category",
+        "NEAR_BY_SHOP": "Your Favorite Shop",
+
+        "SERVICE" : {
+            "BONUS_PLUS_TITLE": "",
+            "BONUS_PLUS_TEXT": "",
+
+            "FREE_SHIPPING_TITLE": "",
+            "FREE_SHIPPING_TEXT": ""
+        }
+    }
+}

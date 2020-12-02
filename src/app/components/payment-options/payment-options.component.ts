@@ -1,0 +1,45 @@
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+import { BlogService } from '../../services/blog.service';
+import { BuyerService } from '../../services/buyer.service';
+import { OrderService } from '../../services/order.service';
+import { SellerService } from '../../services/seller.service';
+import { ProductService } from '../../services/product.service';
+
+
+@Component({
+  selector: 'app-payment-options',
+  templateUrl: './payment-options.component.html',
+  styleUrls: ['./payment-options.component.css']
+})
+export class PaymentOptionsComponent implements OnInit {
+  cards : Object[] = [];
+
+  constructor(private buyerApi: BuyerService) { 
+  }
+
+  ngOnInit(): void {
+    this.buyerApi.fetchcards().subscribe(
+      data => {
+        this.cards = data;
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  onDelete(id) {
+    this.buyerApi.deletecard(id).subscribe(
+      data => {
+        console.log(data);
+        window.location.reload(true);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+}

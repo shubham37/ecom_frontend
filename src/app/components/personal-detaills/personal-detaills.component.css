@@ -1,0 +1,47 @@
+.first_name, .last_name {
+    width: 100%;
+    margin-top: 5%;
+    color: black;
+    font-weight: lighter;
+    font-size: small;
+    font-family: sans-serif;
+    border: none;
+    padding: 2%;
+    border-bottom: 1px solid rgb(156, 155, 155);
+    background-color: white;
+
+}
+
+.title {
+    color: black;
+    font-weight: bolder;
+    font-size: large;
+}
+
+
+.pd_edit, .email_edit, .mobile_edit, .pd_cancel, .email_cancel, .mobile_cancel, .pd_save, .email_save, .mobile_save {
+    border: none;
+    margin-left: 5px;
+    background-color: white;
+    font-weight: bolder;
+    font-size: small;
+    color: #ff5e00;
+}
+.email, .mobile {
+    padding: 8px 10px;
+    width: 250px;
+    margin: 2% 0;
+    font-size: small;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.email_section, .mobile_section {
+    margin-top: 2%;
+}
+
+.pi {
+    width: 64px;
+    height: 64px;
+    margin-left: 5%;
+}

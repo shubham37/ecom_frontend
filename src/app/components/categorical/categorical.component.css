@@ -1,0 +1,65 @@
+.title {
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.items {
+    color: gray;
+    font-weight: bolder;
+    font-size: medium;
+}
+
+.cat_banner {
+    width: 45%;
+    height: 200px;
+    border: 1px solid grey;
+}
+
+select {
+    border: none;
+    background-color: white;
+    padding: 5px;
+    color: rgb(53, 53, 53);
+}
+
+option {
+    padding: 1% 2%;
+}
+.drop_block {
+    float: right;
+    width: fit-content;
+    padding: 1% 2%;
+    border: 1px solid gray;
+}
+
+.sort {
+    font-weight: lighter;
+    font-size: small;
+    color: gray;
+}
+
+ul {
+    list-style-type: circle;
+}
+
+li {
+    background-color: white;
+    padding: 1% 2%;
+    margin: 1% 0;
+}
+
+.subcat {
+    font-size: medium;
+    font-family: 'Times New Roman', Times, serif;
+    color: gray;
+    font-weight: bolder;
+}
+
+.sub {
+    border: none; 
+    background-color: white;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+}

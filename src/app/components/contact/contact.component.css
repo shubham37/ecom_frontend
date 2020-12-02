@@ -1,0 +1,71 @@
+.contact {
+    padding: 2%;
+    margin: 7% 0;
+    box-shadow: 2px 2px 2px 2px rgb(196, 195, 195);
+}
+
+.get_on_touch {
+    padding: 1%;
+    margin-top: 10px;
+}
+.contact_form {
+    padding: 1%;
+    margin-top: 10px;
+}
+
+.text_content {
+    margin-top: -3%;
+    font-size: 14px;
+    font-weight: lighter;
+    color: grey;   
+}
+
+
+.name_input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 1%;
+    margin-bottom: 7%;
+}
+
+.email_input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 1%;
+    margin-bottom: 7%;
+}
+
+.subject_input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 1%;
+    margin-bottom: 7%;
+}
+
+textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 14px;
+    font-weight: lighter;
+    padding: 1%;
+    margin-bottom: 7%;
+}
+
+.submit_button {
+    padding: 2% 7%;
+    font-weight: bolder;
+    font-size: 14px;
+    border-radius: 1px;
+    color: white;
+    background-color: #ff5e00;
+}

@@ -1,0 +1,42 @@
+.empty_text {
+    background-color: red; 
+    color: white; 
+    font-weight: bold; 
+    padding: 1% 2%; 
+    border-radius:15px; 
+    font-size: small;
+}
+
+.shop_button {
+    border-radius: 0;
+    padding: 1% 3%;
+    font-weight: bold;
+    font-size: small;
+}
+
+.continue_button {
+    border-radius: 0;
+    padding: 1% 3%;
+    font-weight: bold;
+    font-size: small;
+    margin: 1%;
+    margin-top: -2%;
+    color: white;
+    background-color: #ff5e00;
+
+}
+th {
+    text-align: center;
+    color: rgb(90, 88, 88);
+    font-weight: bold;
+}
+
+td {
+    text-align: center;
+}
+
+
+.di, .ci {
+    width: 24px;
+    height: 24px;
+}

@@ -1,0 +1,43 @@
+.add_card {
+    width: 100%;
+    padding: 10px 0;
+    color: gray;
+    background-color: white;
+    font-weight: bold;
+    font-size: medium;
+    border: 1px solid gray;
+}
+
+.card_holder {
+    color: rgb(63, 62, 62);
+    font-size: medium;
+    font-weight: lighter;
+}
+
+.delete {
+    float: right;
+    color: gray
+}
+
+.delete:hover {
+    color: red;
+}
+
+.number {
+    font-variant: small-caps;
+    font-style: monospace;
+    letter-spacing: 3px;
+}
+
+p {
+    padding: 2%;
+    margin: 3% 0;
+    border-bottom: 1px solid rgb(168, 167, 167);
+}
+
+.pai {
+    width: 64px;
+    height: 64px;
+    float: right;
+    margin-right: 6%;
+}

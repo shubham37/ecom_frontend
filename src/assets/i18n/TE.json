@@ -1,0 +1,36 @@
+{
+    "HEADER" : {
+        "COMPARE": "స్వాగతం",
+        "LOGIN": "ప్రవేశించండి",
+        "SELLER_REGISTRATION": "విక్రేత నమోదు",
+        "BUYER_REGISTRATION": "కొనుగోలుదారు నమోదు",
+        "WELCOME": "స్వాగతం"
+    },
+
+    "NAVBAR" : {
+        "SEARCH_BY_PRODDUCTS": "ఉత్పత్తుల ద్వారా శోధించండి",
+        "SEARCH": "వెతకండి",
+        "MY_ACCOUNT": "నా ఖాతా",
+        "CART": "బండి",
+        "CHECKOUT": "చెక్అవుట్",
+        "SUB_TOTAL": "ఉప మొత్తం"
+    },
+
+    "HEADER_MENU": {
+
+    },
+
+    "DEFAULT": {
+        "WISHLIST": "Your Products Choice",
+        "DISCOUNTED": "Discounted Category",
+        "NEAR_BY_SHOP": "Your Favorite Shop",
+
+        "SERVICE" : {
+            "BONUS_PLUS_TITLE": "",
+            "BONUS_PLUS_TEXT": "",
+
+            "FREE_SHIPPING_TITLE": "",
+            "FREE_SHIPPING_TEXT": ""
+        }
+    }
+}

@@ -1,0 +1,53 @@
+<div class='row' *ngIf="wishlists?.length == 0">
+    <div class='col' style=' width:100%; text-align:center;'>
+        <br />
+        <br />
+        <span class='empty_text'>YOU HAVE NO ITEMS IN YOUR WISHLIST.</span>
+        <br />
+        <br />
+        <a href='/'><button class='btn btn-warning shop_button'>Continue Shopping</button></a>
+        <br />
+        <br />
+    </div>
+</div>
+
+<div class='row' *ngIf="wishlists?.length != 0">
+    <div class='col' style=' width:100%; margin:5%;'>
+        <div class='card'>
+            <div class='card-body'>
+                <table class="table table-responsive-sm">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Stock</th>
+                            <th scope="col">MRP</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of wishlists">
+                            <td><img src='http://localhost:8000{{product.thumbnail.image}}' style='width:50px; height:50px' class='img-responsive' /></td>
+                            <td>{{ product.title }}</td>
+                            <td>In Stock</td>
+                            <td>{{ product.mrp | currency:"&#8377;"}}</td>
+                            <td>
+                                <span style='width:50%;'>
+                                    <button style='background-color: white; border: none;' (click)='addToCart(product)'>
+                                        <img src='assets/images/cart.png' alt='cart' class='ci' />
+                                    </button>
+                                </span>
+                                <span style='width:50%; margin-left: 2%;'>
+                                    <button style='background-color: white; border: none;' (click)='removeFromWishlist(product.id)'>
+                                        <img src='assets/images/delete.png' alt='delete' class='di' />
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href='/'><button class='btn continue_button float-right'>More Shopping</button></a>
+        </div>
+    </div>
+</div>

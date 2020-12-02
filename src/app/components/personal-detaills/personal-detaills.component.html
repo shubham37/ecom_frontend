@@ -1,0 +1,74 @@
+<div class='row'>
+    <div class='col'>
+        <p>
+            <img src='assets/images/personaldetails.png' alt='pi' class='pi' />
+        </p>
+        <div class='card-body'>
+            <form [formGroup]="infoFormGroup">
+                <div class='details'>
+                    <span class='title'>Personal Information</span>
+                    <span *ngIf='!isPdEdit'><button class='pd_edit' (click)='pdEdit()'>Edit</button></span>
+                    <span *ngIf='isPdEdit'><button class='pd_cancel' (click)='pdCancel()'>Cancel</button></span>
+                    <span *ngIf='isPdEdit'><button type='submit' class='pd_save' (click)='onInfoSubmit(infoFormGroup.value)'>Save</button></span>
+                    <br />
+
+                    <div class='row'>
+                        <div class='col'>
+                            <input type='text' placeholder='First Name' class='first_name' formControlName="first_name" value='pd?.first_name' />
+                        </div>
+                        <div class='col'>
+                            <input type='text' placeholder='Last Name' class='last_name' formControlName="last_name" value='pd?.last_name' />
+                        </div>
+                    </div>
+                    <br />
+                    <div class='row'>
+                        <div class='col'>
+                            <span style='font-size:medium; font-weight:lighter; color: rgb(102, 102, 102);'>Gender : </span>
+                            <span style='margin:0 15px;'><label>
+                                <input type='radio' name='gender' value='0' formControlName="gender" />  Male
+                                </label>
+                            </span>
+                            <span><label>
+                                <input type='radio' name='gender' value='1' formControlName="gender" /> Female
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form [formGroup]="emailFormGroup">
+                <div class='email_section'>
+                    <span class='title'>Email Address</span>
+                    <span *ngIf='!isEmailEdit'><button class='email_edit' (click)='emailEdit()'>Edit</button></span>
+                    <span *ngIf='isEmailEdit'><button class='email_cancel' (click)='emailCancel()'>Cancel</button></span>
+                    <span *ngIf='isEmailEdit'><button type='submit' class='email_save' (click)='onEmailSubmit(emailFormGroup.value)'>Save</button></span>
+                    <br />
+
+                    <div class='row'>
+                        <div class='col'>
+                            <input type='email' placeholder='Your Email Address' class='email' formControlName='email' />
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <form [formGroup]="mobileFormGroup">
+                <div class='mobile_section'>
+                    <span class='title'>Mobile Number</span>
+                    <span *ngIf='!isNumberEdit'><button class='mobile_edit' (click)='numberEdit()'>Edit</button></span>
+                    <span *ngIf='isNumberEdit'><button class='mobile_cancel' (click)='numberCancel()'>Cancel</button></span>
+                    <span *ngIf='isNumberEdit'><button type='submit' class='mobile_save' (click)='onMobileSubmit(mobileFormGroup.value)'>Save</button></span>
+                    <br />
+
+                    <div class='row'>
+                        <div class='col'>
+                            <input type='text' maxlength='10' placeholder='10-digit-number' class='mobile' formControlName='mobile' />
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </form>
+        </div>
+    </div>
+</div>

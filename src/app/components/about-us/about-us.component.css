@@ -1,0 +1,77 @@
+.head_img {
+    width: 350px;
+    height: 375px;
+}
+
+.heading {
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+    font-variant: normal;
+}
+
+.text_content {
+    color: rgb(75, 74, 74);
+    font-weight: lighter;
+    font-size: small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.experts_img {
+    width: 100%;
+    height: 250px;
+}
+
+.info {
+    width: 100%;
+    box-shadow: 1px 1px 1px 1px rgb(158, 157, 157);
+    margin-top: 2%;
+    margin-left: 2%;
+    color: black;
+    font-size: small;
+    text-align: center;
+    padding: 2%;
+    text-indent: 2%;
+}
+
+.service {
+    background-color: white;
+    padding:2% 4%;
+    margin:2% 0;
+    margin-left: 6%;
+    text-align: center;
+    -moz-box-shadow: 0px 1px 3px rgb(190, 189, 186);
+    -webkit-box-shadow: 0px 1px 3px rgb(190, 189, 186);
+    box-shadow: 0px 1px 3px rgb(190, 189, 186);
+}
+
+.service_text {
+    font-weight: lighter;
+    font-size: small;
+}
+
+.service_block {
+    background-color: rgb(247, 247, 247);
+    padding: 2% 0;
+}
+
+@media only screen and (max-width: 500px) {
+    .person {
+        padding:2%  5%;
+    }
+    .head_img {
+        width: 325px;
+    }
+    .service_block {
+        background-color: white;
+        padding: 1%;
+        margin: 0;
+    }
+    .service {
+        margin-left: 1%;
+    }
+    .expert_img {
+        margin-left: 3%;
+        width: 95%;
+    }
+}

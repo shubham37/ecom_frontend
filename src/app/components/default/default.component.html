@@ -1,0 +1,276 @@
+<!-- Banner Block -->
+<div class='row'>
+    <div class='col banner' style='width:100%;'>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">Your Products Choice
+                </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1">Discounted Category
+                    <!-- <button>FIRST</button> -->
+                </li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2">Your Favorite Shop
+                    <!-- <button>FIRST</button> -->
+                </li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <a href='/wishlist'>
+                      <img src="assets/images/your_product_choice.jpg" class="d-block w-100 banner_img"  alt="assets/images/banner.jpg" />
+                  </a>
+              </div>
+              <div class="carousel-item">
+                  <a [routerLink]="['/']">
+                      <img src="assets/images/discounted_section.jpg" class="d-block w-100 banner_img"  alt="assets/images/banner.jpg" />
+                  </a>
+              </div>
+              <div class="carousel-item">
+                  <a [routerLink]="['/']">
+                      <img src="assets/images/your_favourite_shop.jpg" class="d-block w-100 banner_img"  alt="assets/images/banner.jpg" />
+                  </a>
+              </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br />
+
+<!-- Searvice Block -->
+<div class='row'>
+    <div class="offset-md-1 col-md-10" style='width:100%;'>
+        <p style='font-size:large; font-weight: bold; font-family: Times New Roman;'>
+            Top Category
+        </p>
+        <hr />
+        <div class='row' *ngIf='topCategories.length != 0'>
+            <div class='col-md-2 col-4 col-s-3' *ngFor='let cat of topCategories'>
+                <p style='text-align: center;'>
+                    <button style='border: 2% solid black; border-radius: 5%; background-color: rgb(242, 242, 242);' (click)='chooseCategory(cat.name)'><img src='http://localhost:8000{{cat.banner}}' alt='...' style='width:100%; height: 100%;' /></button><br /><br />
+                    <span style='font-size: medium; font-weight: bold;'>{{cat.name}}</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+
+<!-- Third Party Integration -->
+<div class='row'>
+    <div class="offset-md-1 col-md-10" style='width:100%;'>
+        <div class='row'>
+            <div class='col-2 pay_block'>
+                <a href='/'><img src='assets/images/postpaid_icon.png' alt='...' style='width:50%; height:70%;' /><br />
+                <span>Pay Bills</span></a>
+            </div>
+            <div class='col-2 dth_block' >
+                <a href='/'><img src='assets/images/d2h_icon.png' alt='...' style='width:50%; height:70%;' /><br />
+                <span>DTH Recharges</span></a>
+            </div>
+            <div class='col-2 recharge_block' >
+                <a href='/'><img src='assets/images/recharge_icon.png' alt='...' style='width:50%; height:70%;' /><br />
+                <span>Mobile Recharges</span></a>
+            </div>
+            <div class='col-2 loan_block' >
+                <a href='/'><img src='assets/images/loan_icon.png' alt='...' style='width:50%; height:70%;' /><br />
+                <span>Loans</span></a>
+            </div>
+            <div class='col-2 insurance_block' >
+                <a href='/'><img src='assets/images/Insurance_icon.png' alt='...' style='width:50%; height:70%;' /><br />
+                <span>Insurance</span></a>
+            </div>
+            <div class='col-2 wallet_block' >
+                <a href='/'><img src='assets/images/wallet_icon.png' alt='...' style='width:50%; height:70%;' /><br />
+                <span>Wallet</span></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Popular Items Block -->
+<div class='row'>
+    <div class='col' style=' width: 100%; background-color: white; margin: 2% 0;'>
+        <div class='row'>
+            <div class="container-fluid" style='width:100%;'>
+                <div class='row'>
+                    <div class='col' style='width:100%; text-align:center'>
+                        <h6 style='font-weight:bold;'>
+                            POPULAR ITEMS
+                            <hr style='width:50%; '>
+                        </h6>
+                        <hr style='width:50px; height:2px;  margin-top: -20px; background-color: #ff5e00;' />
+                    </div>
+                </div>
+                <br />
+                <div class='row'>
+                    <div class='col' style='width:100%; text-align:center'>
+                        <div class="pull-left mt-sm">
+                            <button (click)="scrollLeft()" class='left_arrow'>
+                                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                </svg>
+                            </button>
+                      </div>
+                      <div #widgetsContent class="custom-slider-main">
+                        <div class="info-box" *ngFor='let pro of popularProducts'>
+                            <app-product-template [product]='pro'></app-product-template>
+                        </div>
+                      </div>
+                      <div class="pull-right mt-sm">
+                        <button (click)="scrollRight()" class='right_arrow'>
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                        </div>
+                    </div>
+                    <!-- <div *ngFor='popularProducts.length ==0'>
+                        <p>No Data</p>
+                    </div> -->
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+
+<!-- Browser Popular -->
+<p class='popular_cat'>
+    Browse Our Popular Categories
+</p>
+<hr style='width:50%;'>
+<hr style='width:50px; height:2px;  margin-top: -20px; background-color: #ff5e00;' />
+
+<div class='row' style='margin:0; padding:0px 2%;' *ngIf='popularCategories.length >0'>
+    <div class='col-md-3' style='position: relative; margin: 1%;' *ngFor='let cat of popularCategories'>
+        <a href='https://google.com'>
+            <img src='http://localhost:8000{{cat.banner}}' alt='...' class='cat1' />
+            <p class='centered'>
+                <span class='cat_title'>{{ cat.cat.name }}</span><br />
+                <span class='cat_sub_title'>{{ cat.sub_title }}</span>
+            </p>
+        </a>
+    </div>
+    <!-- <div class='col-md-4'>
+        <div style='position: relative;'>
+            <img src='assets/images/grocery.jpg' alt='...' class='cat21' />
+            <p class='centered'>
+                <span class='cat_title'>CAT 1</span><br />
+                <span class='cat_sub_title'>Sub Title</span>
+            </p>
+        </div>
+        <div style='position: relative;'>
+            <img src='assets/images/grocery.jpg' alt='...' class='cat22' />
+            <p class='centered'>
+                <span class='cat_title'>CAT 1</span><br />
+                <span class='cat_sub_title'>Sub Title</span>
+            </p>
+        </div>
+    </div>
+    <div class='col-md-4' style='position: relative;'>
+        <img src='assets/images/grocery.jpg' alt='...' class='cat3' />
+        <p class='centered'>
+            <span class='cat_title'>CAT 1</span><br />
+            <span class='cat_sub_title'>Sub Title</span>
+        </p>
+    </div> -->
+</div>
+<br />
+
+<!-- Featured Items Block -->
+<div class='row'>
+    <div class='col' style=' width: 100%; background-color: white; margin: 2% 0;'>
+        <div class='row'>
+            <div class="container-fluid" style='width:100%;'>
+                <div class='row'>
+                    <div class='col' style='width:100%; text-align:center'>
+                        <h6 style='font-weight:bold;'>
+                            MOST VIEWED ITEMS
+                            <hr style='width:50%; '>
+                        </h6>
+                        <hr style='width:50px; height:2px;  margin-top: -20px; background-color: #ff5e00;' />
+                    </div>
+                </div>
+                <br />
+                <div class='row'>
+                    <div class='col' style='width:100%; text-align:center'>
+                        <div class="pull-left mt-sm">
+                            <button (click)="scrollLeft()" class='left_arrow'>
+                                <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                                </svg>
+                            </button>
+                      </div>
+                      <div #widgetsContent class="custom-slider-main">
+                        <div class="info-box" *ngFor='let pro of viewedProducts'>
+                            <app-product-template [product]='pro'></app-product-template>
+                        </div>
+                      </div>
+                      <div class="pull-right mt-sm">
+                        <button (click)="scrollRight()" class='right_arrow'>
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Blog Block -->
+<div class='row' style='margin: 2% 0;'>
+    <div class="offset-md-1 col-md-10">
+        <div class='row'>
+            <div class='col' style='width:100%; text-align:center;'>
+                <h5 style='font-weight: bold; color:rgb(43, 40, 40);'>Customer Stories
+                <hr style='width:50%; '>
+                </h5>
+                <hr style='width:50px; height:2px;  margin-top: -20px; background-color: #ff5e00;' />
+    <!-- <span style='font-weight:bold; font-size: small; color: gray;'>
+                    Business Analysis (BA) is the practice of iterative, methodical exploration of an organization data with emphasis on statistical analysis.
+                </span> -->
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class='row'>
+            <div class='col-md-4' *ngFor='let blog of blogs'>
+                <div class='container blog'>
+                    <img src='http://localhost:8000{{blog.images.image}}' alt='...' style='width: 100%; height:60%;' />
+                    <div class='row' style='margin: 10px 0;'>
+                        <div class='col' style='width:100%; padding: 0; margin: 0; overflow: hidden;'>
+                            <span class='blog_title'>
+                                {{ blog.title }}
+                            </span>
+                            <br />
+                            <span class='blog_text'>
+                                {{ blog.description }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class='col'>
+                            <span style='font-size: small; color: gray; font-weight: lighter;'>{{ blog.author }}</span><br />
+                            <span style='font-size: small; color: gray; font-weight: lighter;'>{{ blog.date_create | date }}</span>
+                        </div>
+                        <div class='col' style='text-align:right;'>
+                            <a [routerLink]="['./blogs/', blog.id]">
+                                <button style='border: none; background-color: #ff5e00; color: white; font-weight: bold; font-size: larger; padding: 5px 10px;'>Read More</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+

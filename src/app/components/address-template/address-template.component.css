@@ -1,0 +1,31 @@
+.first_name, .mobile_number, .pincode, .locality, .address, .city, .state, .alternative, .landmark {
+    width: 100%;
+    margin-top: 5%;
+    color: black;
+    font-weight: lighter;
+    font-size: small;
+    font-family: sans-serif;
+    border: none;
+    padding: 2%;
+    border-bottom: 1px solid rgb(156, 155, 155);
+    background-color: white;
+}
+
+.submit_review {
+    margin: 0.5% 0;
+    color: white;
+    background-color: #ff5e00;
+    font-weight: bolder;
+    font-size: small;
+    width: 100%;
+    padding: 2% 0;
+    border: none ;
+    border-radius: 1px;
+}
+
+
+.submit_review:hover {
+    -moz-box-shadow: 0px 3px 8px #ff5e00;
+    -webkit-box-shadow: 0px 3px 8px #ff5e00;
+    box-shadow: 0px 3px 8px #ff5e00;
+}

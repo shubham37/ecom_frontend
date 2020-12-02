@@ -1,0 +1,29 @@
+<form [formGroup]="cardFormGroup">
+    <div class='row'>
+        <div class='col'>
+            <input type='text' placeholder='Enter Card Number' class='card_number' required formControlName='number' />
+        </div>
+        <div class='col'>
+            <sub style='color: gray; font-size: small;' class='align-middle'>Valid
+                <select style='margin-left:1%; font-size: small;' formControlName='month' >
+                    <option>MM</option>
+                    <option *ngFor='let i of monthCounter' value='{{i}}'>{{i}}</option>
+                </select>
+                <select style='margin-left:1%; font-size: small;' formControlName='year'>
+                    <option>YY</option>
+                    <option *ngFor='let i of yearCounter' value='{{i}}'>{{i}}</option>
+                </select>
+            </sub>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col'>
+            <input type='text' placeholder='Name on Card' class='name' required formControlName='card_name' />
+        </div>
+    </div>
+    <br />
+    <button type='button' class='btn btn-warning submit_review' (click)='onCardSubmit(cardFormGroup.value)'>
+        <span *ngIf='!processing'>SUBMIT</span>
+        <span class="spinner-border text-light" role="status" *ngIf='processing'></span>
+    </button>
+</form>

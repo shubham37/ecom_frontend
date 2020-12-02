@@ -1,0 +1,57 @@
+<!-- <div class='row'>
+    <div class="offset-md-1 col-md-10 content" *ngIf=isLoggedIn">
+        <p class='checkout_header'>CHECKOUT</p>
+        <ul class='progressbar'>
+            <li class='active'>Step 1</li>
+            <li>Step 2</li>
+            <li>Step 3</li>
+        </ul>
+        <hr />
+        <router-outlet></router-outlet>
+    </div>
+    <div class='col' *ngIf="!isLoggedIn">
+        <p style='text-align:center; font-size: larger; font-weight: bold; color: gray; padding: 2%;'>
+            You are not logged In. Please Login or Register if not yet.
+        </p>
+    </div>
+</div> -->
+
+<div class='row'>
+    <div class="offset-md-1 col-md-10 content" *ngIf="isLoggedIn">
+        <p class='checkout_header'>CHECKOUT</p>
+        <!-- <div class="progress">
+            <div class="progress_track"></div>
+            <div id="step1" class="progress-step">
+              Step One
+            </div>
+            <div id="step2" class="progress-step">
+              Step Two
+            </div>
+            <div id="step3" class="progress-step">
+              Step Three
+            </div>
+            <div id="step4" class="progress-step">
+              Complete
+            </div>
+        </div> -->
+        
+        <hr />
+        <router-outlet></router-outlet>
+        <br />
+        <p class='container-fluid'>
+            <span class='float-left' *ngIf='hasPrev'>
+                <button class='btn float-right btn-lg' style='background-color: #ff5e00; color:white; font-size:small; font-weight: bolder; margin: 2% 0; padding: 5px 10px;' (click)='onNavigatePrev()'>Previos</button>
+            </span>
+            <span class='float-right' *ngIf='hasFwd'>
+                <button class='btn float-right btn-lg' style='background-color: #ff5e00; color:white; font-size:small; font-weight: bolder; margin: 2% 0; padding: 5px 10px;' (click)='onNavigateFwd()'>Continue</button>
+            </span>
+        </p>
+        <br />
+        <br />
+    </div>
+    <div class='col' *ngIf="!isLoggedIn">
+        <p style='text-align:center; font-size: larger; font-weight: bold; color: gray; padding: 2%;'>
+            You are not logged In. Please Login or Register if not yet.
+        </p>
+    </div>
+</div>

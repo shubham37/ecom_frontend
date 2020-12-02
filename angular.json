@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "he-web"
+    }
+  },
+  "defaultProject": "he-web",
+  "cli": {
+    "analytics": "bee71c27-72a3-4de8-8e41-876116d9883e"
+  }
 }

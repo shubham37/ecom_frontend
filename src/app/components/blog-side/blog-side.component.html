@@ -1,0 +1,56 @@
+<br />
+<form [formGroup]="formGroup" (ngSubmit)="onSearch(formGroup.value)">
+    <div class='input-group'>
+        <input type="text" class="search" placeholder="Search by Topic" formControlName="blog_query" />
+        <button class='btn' style='background-color:#ff5e00; border-radius: 1px;'>
+            <svg width="0.8em" height="0.8em" viewBox="0 0 16 16" class="bi bi-search" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+            </svg>
+        </button>
+    </div>
+</form>
+<br />
+<p>
+    <span class='latest_news'>
+        LATEST NEWS
+        <hr>
+        <hr style='width:50px; height:2px;  margin-top: -20px; margin-left: 0%; background-color: rgb(49, 49, 49);' />
+    </span>
+</p>
+<div *ngFor='let i of numbers' class='row' style='margin:3% 0;'>
+    <div class='col-3'>
+        <img src='assets/images/blog.jpg' alt='ry' style='width:70px; height:60px; border: 1px solid rgb(119, 118, 118); border-radius:5%;' />
+    </div>
+    <div class='col-9' style='width:100%; margin-top: -2px; padding-left: -2px;'>
+        <span class='title'>How To Reduce Financial Stress<br /></span>
+        <span class='date'>02 Dec 2015.</span>
+    </div>
+</div>
+<br>
+<p>
+    <span class='text_widget'>
+        TEXT WIDGET
+        <hr>
+        <hr style='width:50px; height:2px;  margin-top: -20px; margin-left: 0%; background-color: rgb(56, 56, 56);' />
+    </span>
+    <span style=' font-size: small;'>
+        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.
+    </span>
+</p>
+<br />
+<p>
+    <span class='tag_widget'>
+        TAGS WIDGET
+        <hr>
+        <hr style='width:50px; height:2px;  margin-top: -20px; margin-left: 0%; background-color: rgb(65, 64, 63);' />
+    </span>
+    <span>
+        <button class='tags' (click)="onTagClick($event)">INSURANCE</button>
+        <button class='tags'>INVESTMENT</button>
+        <button class='tags'>TAX PLANS</button>
+        <button class='tags'>MUTUAL FUNDS</button>
+        <button class='tags'>BUSINESS PLANS</button>
+        <button class='tags'>RETIREMENT PLANS</button>
+    </span>
+</p>

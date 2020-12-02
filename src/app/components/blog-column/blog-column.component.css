@@ -1,0 +1,68 @@
+.title {
+    color: black;
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.normal {
+    color: rgb(27, 27, 27);
+    font-weight: lighter;
+    font-size: 10px;
+}
+
+.content {
+    color: rgb(27, 27, 27);
+    font-weight: lighter;
+    font-size: 12px;
+    font-family: sans-serif;
+}
+
+#carouselExampleFade {
+    padding: 5%;
+    background-color: rgb(250, 250, 250);
+}
+
+
+
+svg {
+    margin-right: 1%;
+}
+
+.comment_title {
+    color: black;
+    font-weight: bolder;
+    font-size: larger;
+    font-family: sans-serif;
+}
+
+
+.first_name, .last_name, .email, .post {
+    width: 100%;
+    margin-top: 5%;
+    color: black;
+    font-weight: lighter;
+    font-size: small;
+    font-family: sans-serif;
+    border: none;
+    padding: 2%;
+    border-bottom: 1px solid gray;
+}
+
+.submit_review {
+    margin-top: 5%;
+    color: white;
+    background-color: #ff5e00;
+    font-weight: bold;
+    font-size: small;
+    border-radius: 1px;
+    padding: 2% 5%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.review {
+    color: rgb(158, 156, 156);
+    font-weight: lighter;
+    font-size: smaller;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

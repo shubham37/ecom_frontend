@@ -1,0 +1,36 @@
+{
+    "HEADER" : {
+        "COMPARE": "ஒப்பிடுக",
+        "LOGIN": "உள்நுழைய",
+        "SELLER_REGISTRATION": "விற்பனையாளர் பதிவு",
+        "BUYER_REGISTRATION": "வாங்குபவர் பதிவு",
+        "WELCOME": "வரவேற்பு"
+    },
+
+    "NAVBAR" : {
+        "SEARCH_BY_PRODDUCTS": "தயாரிப்புகள் மூலம் தேடுங்கள்",
+        "SEARCH": "தேடல்",
+        "MY_ACCOUNT": "என் கணக்கு",
+        "CART": "வண்டி",
+        "CHECKOUT": "சரிபார்",
+        "SUB_TOTAL": "கூட்டுத்தொகை"
+    },
+
+    "HEADER_MENU": {
+
+    },
+
+    "DEFAULT": {
+        "WISHLIST": "Your Products Choice",
+        "DISCOUNTED": "Discounted Category",
+        "NEAR_BY_SHOP": "Your Favorite Shop",
+
+        "SERVICE" : {
+            "BONUS_PLUS_TITLE": "",
+            "BONUS_PLUS_TEXT": "",
+
+            "FREE_SHIPPING_TITLE": "",
+            "FREE_SHIPPING_TEXT": ""
+        }
+    }
+}

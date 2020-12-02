@@ -1,0 +1,114 @@
+.bs_navbar {
+    color: rgb(114, 113, 113);
+    padding: 2% 0;
+}
+
+.brand {
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.brand:hover {
+    text-decoration: none;
+}
+
+.search {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 37px;
+    margin-top: 7px;
+    border: 1px solid rgb(173, 171, 171);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: white;
+    color: black;
+    text-indent: 10px;
+    font-size: small;
+    font-weight: lighter;
+}
+ 
+.search_button {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 37px;
+    margin-top: 7px;
+    background-color: #ff5e00;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    border: none;
+    font-style: oblique;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;    
+}
+
+.account {
+    text-align: center;
+    margin-top: 9px;
+    font-size:medium;
+    font-weight:lighter;
+    font-family: sans-serif;
+    border-right: 1px solid gray ;
+}
+
+a {
+    color: rgb(83, 81, 81);
+}
+
+
+.dropdown {
+    text-align: center;
+    margin-top: 9px;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    padding: 1% 2%;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown_content {display: block;}
+
+
+@media only screen and (min-width: 768px) {
+    .dropdown_content { width: 400px; margin-left: -300px;}
+}
+
+@media  screen and (max-width: 425px) {
+    .dropdown_content { width: 300px; margin-left: -170px;}
+    .brand { 
+        margin-left: 5px;
+        font-size: medium;
+    }
+    .search {
+        margin: 0;
+        width:100%;
+        height: 28px;
+    }
+    .search_button {
+        margin: 0;
+        height: 28px;
+        text-align: center;
+        padding: 1.5% 2%;
+    }
+    .searc_button_block {
+        margin-top: 0;
+        text-align: right;
+    }
+    .cart {
+        margin-right: 5%;
+    }
+
+}
+

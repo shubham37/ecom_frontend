@@ -1,0 +1,62 @@
+.add_address {
+    width: 20%;
+    padding: 15px 0;
+    color: white;
+    background-color: #ff5e00;
+    font-weight: bold;
+    font-size: small;
+    border: none;
+    /* border-top-left-radius: 50%; */
+    border-radius: 5%;
+}
+
+.ai {
+    width: 64px;
+    height: 64px;
+    margin-left: 27%;
+}
+.tag {
+    color: gray;
+    background-color: rgb(221, 221, 221);
+    padding: 5px 10px;
+    font-size: small;
+    font-weight: bold;
+}
+
+.edit {
+    margin: 0 1%;
+}
+
+.edit:hover {
+    color: rgb(260, 160, 0);
+}
+
+.delete:hover{
+    color: red;
+}
+
+.name {
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+}  
+
+.number {
+    margin-left: 2%;
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.address {
+    color: rgb(77, 76, 76);
+    font-weight: lighter;
+    font-size: small;
+}
+
+.add {
+    width: 100%;
+    padding: 2%;
+    margin: 0 15px;
+    border: 1px solid rgb(182, 179, 179);
+}

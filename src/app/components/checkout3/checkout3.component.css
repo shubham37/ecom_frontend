@@ -1,0 +1,18 @@
+.order_place_btn {
+    margin: 1.5% 0;
+    color: white;
+    background-color: #ff5e00;
+    font-weight: bolder;
+    font-size: small;
+    width: 200px;
+    padding: 10px 0;
+    border: none;
+    border-radius: 1px;
+}
+
+
+.order_place_btn:hover {
+    -moz-box-shadow: 0px 3px 8px #ff5e00;
+    -webkit-box-shadow: 0px 3px 8px #ff5e00;
+    box-shadow: 0px 3px 8px #ff5e00;
+}

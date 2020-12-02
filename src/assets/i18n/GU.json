@@ -1,0 +1,36 @@
+{
+    "HEADER" : {
+        "COMPARE": "તુલના",
+        "LOGIN": "પ્રવેશ કરો",
+        "SELLER_REGISTRATION": "વિક્રેતા નોંધણી",
+        "BUYER_REGISTRATION": "ખરીદનાર નોંધણી",
+        "WELCOME": "સ્વાગત છે"
+    },
+
+    "NAVBAR" : {
+        "SEARCH_BY_PRODDUCTS": "ઉત્પાદનો દ્વારા શોધો",
+        "SEARCH": "શોધો",
+        "MY_ACCOUNT": "મારું ખાતું",
+        "CART": "કાર્ટ",
+        "CHECKOUT": "તપાસો",
+        "SUB_TOTAL": "પેટા કુલ"
+    },
+
+    "HEADER_MENU": {
+
+    },
+
+    "DEFAULT": {
+        "WISHLIST": "Your Products Choice",
+        "DISCOUNTED": "Discounted Category",
+        "NEAR_BY_SHOP": "Your Favorite Shop",
+
+        "SERVICE" : {
+            "BONUS_PLUS_TITLE": "",
+            "BONUS_PLUS_TEXT": "",
+
+            "FREE_SHIPPING_TITLE": "",
+            "FREE_SHIPPING_TEXT": ""
+        }
+    }
+}

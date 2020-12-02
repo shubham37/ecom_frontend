@@ -1,0 +1,53 @@
+.title {
+    color: gray;
+    font-weight: lighter;
+    font-size: medium;
+    font-family: sans-serif;
+}
+
+.address {
+    color: rgb(97, 96, 96);
+    font-weight: lighter;
+    font-size: small;
+}
+
+.actual_price, .quantity {
+    margin-right: 2%;
+    color: rgb(97, 96, 96);
+    font-weight: lighter;
+    font-size: small;
+}
+.final_price {
+    margin-right: 2%;
+    color: rgb(78, 78, 78);
+    font-weight: bolder;
+    font-size: small;
+}
+
+.hauch_option {
+    color: gray;
+    font-weight: bolder;
+    font-size: medium;
+    margin: 0 2%;
+}
+
+.std_option {
+    color: rgb(75, 74, 74);
+    font-weight: bolder;
+    font-size: small;
+    margin: 0 2%;
+
+}
+.pick_option {
+    color: black;
+    font-weight: bolder;
+    font-size: small;
+    margin: 0 2%;
+}
+
+.ship_add {
+    color: gray;
+    font-weight: bolder;
+    font-size: small;
+    margin: 0 1%;
+}

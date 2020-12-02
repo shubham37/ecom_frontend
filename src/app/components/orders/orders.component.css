@@ -1,0 +1,99 @@
+.title {
+    color: rgb(53, 53, 53);
+    font-weight: bold;
+    font-size: small;
+}
+
+.seller {
+    color: gray;
+    font-weight: lighter;
+    font-size: small;
+}
+
+.price {
+    color: black;
+    font-weight: lighter;
+    font-size: medium;
+}
+
+.status {
+    color: black;
+    font-weight: bold;
+    font-size: small;
+}
+
+.rate {
+    border: 1px solid grey;
+    background-color: white;
+    color: gray;
+    font-size: 10px;
+    font-weight: bold;
+    margin: 0;
+    padding: 2% 6%;
+}
+
+.rate:hover {
+    color: #ff5e00;
+    border: 1px solid #ff5e00;
+    -moz-box-shadow: 0px 3px 8px #ff5e00;
+    -webkit-box-shadow: 0px 3px 8px #ff5e00;
+    box-shadow: 0px 3px 8px #ff5e00;
+}
+
+.card-body {
+    margin: 3% 0;
+    padding: 2% 0;
+    -moz-box-shadow: 0px 1px 1px gray;
+    -webkit-box-shadow: 0px 1px 1px gray;
+    box-shadow: 0px 1px 1px gray;
+}
+
+.card-body:hover {
+    -moz-box-shadow: 0px 1px 4px gray;
+    -webkit-box-shadow: 0px 1px 4px gray;
+    box-shadow: 0px 1px 4px gray;
+}
+
+.sub_title {
+    color: black;
+    font-weight: bold;
+    font-size: medium;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+textarea {
+    width: 100%;
+    padding: 2%;
+    color: black;
+    font-size: small;
+    font-weight: lighter;
+    margin: 2% 0;
+}
+
+.submit {
+    color: white;
+    background-color: #ff5e00;
+    font-size: medium;
+    font-weight: bolder;
+    border: none;
+    padding: 2% 0;
+    width: 100%;
+    margin: 2% 0;
+}
+
+.submit:hover {
+    border: 1px solid #ff5e00;
+    -moz-box-shadow: 0px 3px 8px #ff5e00;
+    -webkit-box-shadow: 0px 3px 8px #ff5e00;
+    box-shadow: 0px 3px 8px #ff5e00;   
+}
+
+
+
+.oi {
+    width: 64px;
+    height: 64px;
+    float: right;
+    margin-right: 27%;
+}

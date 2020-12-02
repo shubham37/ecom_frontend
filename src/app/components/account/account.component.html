@@ -1,0 +1,91 @@
+<div class='row'>
+    <div class="offset-md-1 col-md-10">
+        <div *ngIf='isLoggedIn'>
+            <br />
+            <div class='row'>
+                <div class='col-3 col-md-1 col-sm-2'>
+                    <img src='assets/images/my.jpg' alt='profile_img' style='width:100%; height:100%; margin:0; padding:0; display: none;' class='profile_img img-circle' />
+                </div>
+                <!-- <div class='col'>
+                    <span class='msg'> Hello,</span><br />
+                    <span class='name'>Shubham</span>
+                </div> -->
+                <div class='col' style='text-align:right;'>
+                    <button class='logout' (click)='onlogout()'>LogOut</button>
+                </div>
+            </div>
+            <hr>
+            <div class='row'>
+                <div class='col-6 col-md'>
+                    <a [routerLink]="['./']">
+                        <button class='details'>
+                            <!-- <svg style='margin-right:3px;' width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg> -->
+                            My Details
+                        </button>
+                    </a>
+                </div>
+
+                <div class='col-6 col-md'>
+                    <a [routerLink]="['./addresses']">
+                        <button class='addresses'>
+                            <!-- <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-geo-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
+                            </svg> -->
+                            My Addresses
+                        </button>
+                    </a>
+                </div>
+
+                <div class='col-6 col-md'>
+                    <a [routerLink]="['./wishlist-user']">
+                        <button class='wislist'>
+                            <!-- <svg style='margin-right:3px;' width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-file-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/>
+                                <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                            </svg> -->
+                            My Wishlist
+                        </button>
+                    </a>
+                </div>
+
+                <div class='col-6 col-md'>
+                    <a [routerLink]="['./orders']">
+                        <button class='orders'>
+                            <!-- <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-hourglass-split" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13s-.866-1.299-3-1.48V8.35z"/>
+                            </svg> -->
+                            My Orders
+                        </button>
+                    </a>
+                </div>
+                <div class='col-6 col-md'>
+                    <a [routerLink]="['./my_payments']">
+                        <button class='payments'>
+                            <!-- <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-wallet" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M0 3a2 2 0 0 1 2-2h13.5a.5.5 0 0 1 0 1H15v2a1 1 0 0 1 1 1v8.5a1.5 1.5 0 0 1-1.5 1.5h-12A2.5 2.5 0 0 1 0 12.5V3zm1 1.732V12.5A1.5 1.5 0 0 0 2.5 14h12a.5.5 0 0 0 .5-.5V5H2a1.99 1.99 0 0 1-1-.268zM1 3a1 1 0 0 0 1 1h12V2H2a1 1 0 0 0-1 1z"/>
+                            </svg> -->
+                            My Payments
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <router-outlet></router-outlet>
+            <p style='width:100%'>
+                <img src='assets/images/pd.png' alt='banner' class='banner' />
+            </p>        
+        </div>
+        <div *ngIf=!isLoggedIn>
+            <div class='row'>
+                <div class='col'>
+                    <p style='text-align:center; font-size: larger; font-weight: bold; color: gray; padding: 2%;'>
+                        You are not logged In. Please Login or Register if not yet.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
