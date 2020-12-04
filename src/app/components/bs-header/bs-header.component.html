@@ -53,18 +53,12 @@
                             <input type='submit' value='Register' class='btn register_button' *ngIf='!isROTPsend' />
                             <span class="spinner-border text-danger" role="status" *ngIf='isROTPsend'></span>
                         </form>
-                        <p *ngIf='loginMessage'>
-                            <span>{{registerMessage}}</span>
-                        </p>
                     </div>
                     <div class='col' style='width:100%' *ngIf='!isRegisterBlockToggle'>
                         <form [formGroup]="registerOtpFormGroup" (ngSubmit)="varifyRegisterOtp(registerOtpFormGroup.value)">
                             <input type='text' class='otp' placeholder='Enter OTP' required formControlName='register_otp' /><br />
                             <input type='submit' value='Verify OTP' class='btn verify_otp' />
                         </form>
-                        <p *ngIf='loginOtpMessage'>
-                            <span>{{registerOtpMessage}}</span>
-                        </p>
                     </div>
                 </div>
             </div>
@@ -98,18 +92,12 @@
                             </div>
                         </div>
                     </form>
-                    <p *ngIf='loginMessage'>
-                        <span>{{loginMessage}}</span>
-                    </p>
                 </div>
                 <div class='col' style='width:100%' *ngIf='!isLoginBlockToggle'>
                     <form [formGroup]="loginOtpFormGroup" (ngSubmit)="varifyLoginOtp(loginOtpFormGroup.value)">
                         <input type='text' class='otp' placeholder='Enter OTP' formControlName='login_otp' required /><br />
                         <input type='submit' value='Verify OTP' class='btn verify_otp' />
                     </form>
-                    <p *ngIf='loginOtpMessage'>
-                        <span>{{loginOtpMessage}}</span>
-                    </p>
                 </div>
             </div>
         </div>

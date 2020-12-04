@@ -19,145 +19,147 @@ export class ShopComponent implements OnInit {
   public isBankShow: boolean=false;
   public formData = new FormData();
 
+  isPorceessing : boolean = false;
 
-  infoFormGroup = new FormGroup(
-    {
-      userid: new FormControl(''),
-      phone: new FormControl(''),
-      password: new FormControl(''),
-      cnf_password: new FormControl(''),
-      address: new FormControl(''),
-      city: new FormControl(''),
-      zip_code: new FormControl(''),
-      country: new FormControl('')
-    }
-  );
-
-  businessFormGroup = new FormGroup({
-    gst: new FormControl(''),
-    pancard: new FormControl(''),
-    adharcard: new FormControl(''),
-    logo: new FormControl(''),
-    board: new FormControl(''),
-    role: new FormControl(''),
-    minimum_order: new FormControl(''),
-    category: new FormControl(''),
-    pancardSOurce: new FormControl(''),
-    adharcardSOurce: new FormControl(''),
-    logoSOurce: new FormControl(''),
-    boardSOurce: new FormControl(''),
-  });
-
-  bankingFormGroup = new FormGroup({
-    ifsc: new FormControl(''),
-    city: new FormControl(''),
-    branch: new FormControl(''),
-    account_holder: new FormControl(''),
-    account_number: new FormControl(''),
-    bank: new FormControl(''),
-    proof: new FormControl(''),
-    proofSource: new FormControl('')
-  });
+  formGroup : FormGroup;
 
   constructor(private route: Router, private formBuilder: FormBuilder, private sellerApi: SellerService) { 
-    console.log("Inside Constructor");
-
   }
 
   ngOnInit(): void {
+    this.formGroup = this.formBuilder.group({
+      userid: '',
+      shop_name: '',
+      phone: '',
+      password: '',
+      cnf_password: '',
+      address: '',
+      city: '',
+      zip_code: '',
+      country: 1,
+      gst: '',
+      pancard: [null],
+      adharcard: [null],
+      logo: [null],
+      board: [null],
+      role: 1,
+      minimum_order: 0,
+      category: 1,
+      ifsc: '',
+      bank_city: '',
+      branch: '',
+      account_holder: '',
+      account_number: '',
+      bank: '',
+      proof: [null]      
+    })
     this.isInfoShow = true;
     this.isBusinessShow = false;
     this.isBankShow  = false;
-
   }
 
-  onInfoSubmit(infoData) {
-    // var userid = infoData['userid'];
-    // var phone = infoData['phone'];
-    // var password = infoData['password'];
-    // var cnf_password = infoData['cnf_password'];
-    // var address = infoData['address'];
-    // var city = infoData['city'];
-    // var zip_code = infoData['zip_code'];
-    // var country = infoData['country'];
-    console.log(infoData);
+  onInfoSubmit() {
     this.isInfoShow = false;
     this.isBusinessShow = true;
     this.isBankShow = false;
   }
 
-  onBusinessSubmit(businessData) {
-    // var gst = businessData['gst'];
-    // var role = businessData['role'];
-    // var minimum_order = businessData['minimum_order'];
-    // var category = businessData['category'];
-    console.log(businessData);
-
+  onBusinessSubmit() {
     this.isInfoShow = false;
     this.isBusinessShow = false;
     this.isBankShow = true;
   }
 
   onPanChange(event) {
-    const file= event.target.files[0];
-    this.formData.append('pan', file, file.name);
-    this.businessFormGroup.patchValue({pancardSOurce: file});
+    const file= (event.target as HTMLInputElement).files[0];
+    this.formGroup.patchValue({
+      pancard: file
+    });
+    console.log(this.formGroup.value.pancard)
+    this.formGroup.get('pancard').updateValueAndValidity();
   }
+
   onAdharChange(event) {
-    const file= event.target.files[0];
-    this.formData.append('shar', file, file.name);
-    this.businessFormGroup.patchValue({adharcardSOurce: file});
+    const file= (event.target as HTMLInputElement).files[0];
+    this.formGroup.patchValue({
+      pancard: file
+    });
+    this.formGroup.get('adharcard').updateValueAndValidity();
   }
+
   onLogoChange(event) {
-    const file= event.target.files[0];
-    this.formData.append('lo', file, file.name);
-    this.businessFormGroup.patchValue({logoSOurce: file});
+    const file= (event.target as HTMLInputElement).files[0];
+    this.formGroup.patchValue({
+      pancard: file
+    });
+    this.formGroup.get('logo').updateValueAndValidity();
   }
+
   onBoardChange(event) {
-    const file= event.target.files[0];
-    this.formData.append('boas', file, file.name);
-    this.businessFormGroup.patchValue({boardSOurce: file});
+    const file= (event.target as HTMLInputElement).files[0];
+    this.formGroup.patchValue({
+      pancard: file
+    });
+    this.formGroup.get('board').updateValueAndValidity();
   }
+
   onProofChange(event) {
-    const file= event.target.files[0];
-    this.formData.append('pro', file, file.name);
-    this.infoFormGroup.patchValue({proofSource: file});
+    const file= (event.target as HTMLInputElement).files[0];
+    this.formGroup.patchValue({
+      pancard: file
+    });
+    this.formGroup.get('proof').updateValueAndValidity();
   }
 
-  onBankSubmit(bankingData) {
-    console.log(bankingData);
-    this.isInfoShow = false;
-    this.isBusinessShow = true;
-    this.isBankShow = true;
-    
-    // formData.append('pan', this.businessFormGroup.get('pancardSOurce').value);
-    // formData.append('adhar', this.businessFormGroup.get('adharcardSOurce').value);
-    // formData.append('log', this.businessFormGroup.get('logoSOurce').value);
-    // formData.append('boar', this.businessFormGroup.get('boardSOurce').value);
-    // formData.append('prof', this.bankingFormGroup.get('proofSource').value);
-    console.log(this.formData);
+  onBankSubmit() {
+    this.isPorceessing = true;
+    const formData = new FormData();
+    // formData.append('userid', this.formGroup.value.userid)
+    // formData.append('phone', this.formGroup.value.phone)
+    // formData.append('password', this.formGroup.value.password)
+    // formData.append('cnf_password', this.formGroup.value.cnf_password)
+    // formData.append('address', this.formGroup.value.address)
+    // formData.append('city', this.formGroup.value.city)
+    // formData.append('zip_code', this.formGroup.value.zip_code)
+    // formData.append('country', this.formGroup.value.country)
+    // formData.append('gst', this.formGroup.value.gst)
+    // formData.append('pancard', this.formGroup.value.pancard)
+    // formData.append('adharcard', this.formGroup.value.adharcard)
+    // formData.append('logo', this.formGroup.value.logo)
+    // formData.append('board', this.formGroup.value.board)
+    // formData.append('role', this.formGroup.value.role)
+    // formData.append('minimum_order', this.formGroup.value.minimum_order)
+    // formData.append('category', this.formGroup.value.category)
+    // formData.append('ifsc', this.formGroup.value.ifsc)
+    // formData.append('bank_city', this.formGroup.value.bank_city)
+    // formData.append('branch', this.formGroup.value.branch)
+    // formData.append('account_holder', this.formGroup.value.account_holder)
+    // formData.append('account_number', this.formGroup.value.account_number)
+    // formData.append('bank', this.formGroup.value.bank)
+    // formData.append('proof', this.formGroup.value.proof)
 
-    localStorage.setItem("shop_registered", "Yes");
-    this.sellerApi.sellerRegistration(this.infoFormGroup.value, this.businessFormGroup.value, this.bankingFormGroup.value, this.formData).subscribe(
+    console.log(formData);
+    var x = document.getElementById("snackbar");
+    this.sellerApi.sellerRegistration(this.formGroup.value).subscribe(
       data => {
-        console.log(data);
+        this.isPorceessing = false;
+        x.innerText = "Your Shop Registered Successfully"
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        localStorage.setItem("shop_registered", "Yes");
         localStorage.setItem('token', data.token);
+        this.isInfoShow = true;
+        this.isBusinessShow = false;
+        this.isBankShow = false;
+        window.location.href = '/';
       },
       error => {
+        this.isPorceessing = false;
+        x.innerText = error.message;
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
         console.log(error);
       }
     )
-    // window.location.href = '/';
   }
-
-  // onSubmit(contactData) {
-  //   var name = contactData['name'];
-  //   var email = contactData['email'];
-  //   var subject = contactData['subject'];
-  //   var comment = contactData['comment'];
-
-  //   console.log(name);
-  //   // this.route.navigate(['/search'], { queryParams: { value: 'popular' } });
-  // }
-
 }

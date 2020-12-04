@@ -20,9 +20,9 @@ export class SellerService {
   }
 
   // Call on submit Seller Registration Form
-  sellerRegistration(info, business, bank, formData) : Observable<any> {
+  sellerRegistration(formData) : Observable<any> {
     return this.httpClient.post<any>(this.url + '/register/',{
-      'info':info, "business":business, "bank":bank, "form": formData
+      formData
     })
   }
 

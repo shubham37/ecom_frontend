@@ -29,34 +29,6 @@
                             <option>Mobile</option>
                         </select>
                         <br />
-                        <br />
-                        <br />
-                        <span style='font-weight:bold;'>POPULAR PRODUCTS</span>
-                        <hr>
-                        <hr style='width:50px; height:2px;  margin-top: -20px; margin-left: 0%; background-color: #ff5e00;' />
-                        <div class='row pp' *ngFor='let i of numbers'>
-                            <div class='col-4' style='padding:0 4%; margin:8px 2px;'>
-                                <a [routerLink]="['/product/1']">
-                                    <img src='assets/images/product.png' style='width:100%; height:60px; background-color: ghostwhite;' />
-                                </a>
-                            </div>
-                            <div class='col' style='padding:2% 1%;'>
-                                <p>
-                                    <span class='fea_title'>
-                                        <a [routerLink]="['/product/1']">
-                                            ONTEC E Headset
-                                        </a>
-                                    </span>
-                                    <br />
-                                    <svg *ngFor='let i of numbers' width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                    </svg>
-                                    <br />
-                                    <span class='fea_price'>$ 175.00</span>
-                                </p>
-                            </div>
-                        </div>
-
                     </div>
                     <div class='col' style='width:100%;'>
                         <div class='options'>
@@ -64,73 +36,20 @@
                             <span><button class='rating_filter'>Price - High to Low</button></span>
                             <span><button class='price_filter'>Price - Low to High</button></span>
                             <span><button class='price_filter'>Newest First</button></span>
-                            <!-- <span class='float-right'>
-                                <button class='griding'>
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-grid-3x3-gap-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V2zM1 7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V7zM1 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2zm5 0a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2z"/>
-                                    </svg>
-                                </button>
-                            </span>
-                            <span class='float-right'>
-                                <button class='listing'>
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list" fill="gray" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-                                    </svg>
-                                </button>
-                            </span> -->
                         </div>
                         <br />
 
                         <!-- Products Ordering -->
                         <div class='row' style='margin: 2.5% 0;'>
-                            <div class='col-md-3 col-xs-6' *ngFor='let product of products' style='padding: 2px;'>
-                                <div class="card" style='width: 100%; '>
-                                    <a [routerLink]="['/product/',product.id]">
-                                        <img src="http://localhost:8000{{product.thumbnail.image}}" class="card-img-top" alt="..." style='background-color: rgba(226, 223, 223, 0.2); height: 100%; width: 100%; '>
-                                    </a>
-                                    <div class="card-body" style='text-align:left; padding:1% 3%; margin: 2% 0;'>
-                                        <span class='float-right add_wishlist_block'>
-                                            <button class='add_wishlist_btn'>
-                                                <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bookmark-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                                    <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"/>
-                                                </svg>
-                                            </button>
-                                        </span>
-                                        <span class='category_text'>Headphones</span>
-                                        <br />
-                                        <span class="product_title">
-                                            <a [routerLink]="['/product/',product.id]">
-                                                {{product.title}}
-                                            </a>
-                                        </span>
-                                        <br />
-                                        <svg *ngFor='let i of numbers' width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                                        </svg>
-                                        <br />
-                                        <span class='float-left price_product'>{{ product.mrp | currency:"&#8377;"}}</span>
-                                        <span class='float-right'>
-                                            <button class='cart' (click)='addToCart(product)'>
-                                                <svg width="0.7em" height="0.7em" viewBox="0 0 16 16" class="bi bi-cart-fill" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                                </svg>
-                                            </button>
-                                        </span>
-                                    </div>
-                                </div>
+                            <div class='col-md-3 col-xs-6' *ngFor="let product of products | paginate: config" style='padding: 2px;'>
+                                <app-product-template [product]='product'></app-product-template>
                             </div>
                         </div>
                         <br />
 
-
                         <!-- Pagination  -->
-                        <div class="pagination">
-                            <a href="#">&laquo;</a>
-                            <a href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">&raquo;</a>
+                        <div>
+                            <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
                         </div>
                     </div>
                 </div>

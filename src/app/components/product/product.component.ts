@@ -36,4 +36,16 @@ export class ProductComponent implements OnInit {
     )
   }
 
+  showModal(image) {
+    var imageBlock = document.getElementById('productImage');
+    if (imageBlock.childNodes.length > 0) {
+      imageBlock.removeChild(imageBlock.childNodes[0]);
+    }
+    var img = document.createElement('img'); 
+    img.src =  'http://localhost:8000' + image;
+    img.style.height = '100%';
+    img.style.width = '100%';
+    imageBlock.appendChild(img);
+  }
+
 }

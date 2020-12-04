@@ -17,17 +17,19 @@ export class BsFooterComponent implements OnInit {
   formGroup;
   public isShowLoader: boolean = false;
   public subscribedMessage: String= '';
-
+  snackbar: any;
+  
   constructor(private formBuilder: FormBuilder, private api: ApiService) { 
     this.formGroup = this.formBuilder.group({
       email: '',
     });
   }
-
+  
   ngOnInit(): void {
   }
-
+  
   onSubscribe(subscribeData) {
+    this.snackbar = document.getElementById("snackbar");
     this.subscribedMessage = '';
     this.isShowLoader = true;
     var email = subscribeData['email'];
@@ -35,17 +37,17 @@ export class BsFooterComponent implements OnInit {
     this.api.SubscribeNewsletter(email).subscribe(
       data => {
         this.isShowLoader = false;
-        this.subscribedMessage = "You subscribed successfully."
-        console.log(data);
+        this.snackbar.innerText = "You subscribed successfully."
+        this.snackbar.className = "show";
+        setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
       },
       error => {
         this.isShowLoader = false;
-        this.subscribedMessage = "Please Try Again"
-        console.log(error);
+        this.snackbar.innerText = error.message
+        this.snackbar.className = "show";
+        setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
       }
     );
-
-    // this.route.navigate(['/search'], { queryParams: { value: 'popular' } });
   }
 
 

@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core'
 export class BsNavbarComponent implements OnInit {
   formGroup;
   cart = 0;
+  dataRefresher : any;
 
   constructor(private route: Router, private formBuilder: FormBuilder) { 
     this.formGroup = this.formBuilder.group({
@@ -20,11 +21,22 @@ export class BsNavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getData();
+    this.refreshData();
+  }
+
+  getData() {
     let cart = JSON.parse(localStorage.getItem('cart'))
     if (cart && cart != null && cart !=undefined) {
       this.cart = cart.length;
     }
+  }
 
+  refreshData(){
+    this.dataRefresher =
+      setInterval(() => {
+        this.getData();
+      }, 3000);
   }
 
   onSearch(searchData) {

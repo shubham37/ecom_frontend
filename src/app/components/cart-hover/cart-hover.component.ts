@@ -8,17 +8,33 @@ import { Router, ActivatedRoute } from '@angular/router'
 })
 export class CartHoverComponent implements OnInit {
   public products : Object[] = [];
+  dataRefresher: any;
+  snackbar: any;
 
   constructor(private router: Router) { 
+    this.snackbar = document.getElementById('snackbar');
   }
 
   ngOnInit(): void {
+    this.getData();
+    this.refreshData();
+  }
+
+  getData() {
     let cart = JSON.parse(localStorage.getItem('cart'))
     if (cart && cart != null && cart !=undefined) {
       this.products = cart
     } else {
       this.products = []
     }
+  }
+
+  refreshData(){
+    this.dataRefresher =
+      setInterval(() => {
+        this.getData();
+        //Passing the false flag would prevent page reset to 1 and hinder user interaction
+      }, 2000);
   }
 
   removeFromCart(proId) {
@@ -32,7 +48,9 @@ export class CartHoverComponent implements OnInit {
       })
       localStorage.setItem('cart', JSON.stringify(newCart));
     }
-    console.log(proId)
+    this.snackbar.innerText = "Item removed from Cart."
+    this.snackbar.className = "show";
+    setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
   }
 
   incrementQuantity(proId) {

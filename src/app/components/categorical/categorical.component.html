@@ -33,7 +33,7 @@
                 <img src='http://localhost:8000{{ category?.banner }}' alt='...' class='cat_banner' />
             </p>
             <div class='row'>
-                <div class='col' *ngFor='let product of products'>
+                <div class='col-md-3 col-6 col-s-4' *ngFor='let product of products'>
                     <app-product-template [product]='product'></app-product-template>
                 </div>
             </div>

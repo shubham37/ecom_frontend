@@ -9,7 +9,7 @@
             </div>
             <div class='col-12 col-md-2 cat'>
                 <ul>
-                    <h5 style='font-weight:bold;'>Other</h5>
+                    <h5 class="title">Other</h5>
                     <li><a [routerLink]="['/blogs']" class='category'>Story</a></li>
                     <li><a [routerLink]="['/contact']" class='category'>Contact</a></li>
                     <li><a [routerLink]="['/about_us']" class='category'>About</a></li>
@@ -18,8 +18,8 @@
                 </ul>
             </div>
             <div class='col-12 col-md-4' style='margin: 2% 0;  text-align: left;'>
-                <h6 style='font-weight:bold;'>Subscribe Newsletter</h6>
-                <p style='font-size:12px; font-weight:bold;'>Get latest updates and offers.</p>
+                <h6 class="title">Subscribe Newsletter</h6>
+                <p style='font-size:12px; font-weight:bold; color: rgb(95, 93, 93)'>Get latest updates and offers.</p>
                 <form [formGroup]="formGroup" (ngSubmit)="onSubscribe(formGroup.value)">
                     <input type='email' placeholder='Enter your email address' class='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valaid url" formControlName="email" />
                     <br /><br />
@@ -31,7 +31,7 @@
                 </p>
             </div>
             <div class='col-12 col-md-3' style='margin: 2% 0;  text-align: left;'>
-                <h6 style='font-weight:bold;'>Contact Us</h6>
+                <h6 class="title">Contact Us</h6>
                 <div class='row'>
                     <div class='col-1'>
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-alt" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">

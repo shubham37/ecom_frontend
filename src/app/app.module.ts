@@ -6,6 +6,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service'
 import { BarRatingModule } from "ngx-bar-rating";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -113,6 +114,7 @@ export const createTransalteLoader = (http: HttpClient) => {
     MatSliderModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgxPaginationModule,
     MatSnackBarModule,
     ReactiveFormsModule,
     HttpClientModule,

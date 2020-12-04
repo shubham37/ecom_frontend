@@ -84,3 +84,8 @@ li {
     .cat { margin-left: -10%;}
     .social {margin-top: 2%;}
 }
+
+.title {
+    color: rgb(83, 81, 81);
+    font-weight: bold;
+}

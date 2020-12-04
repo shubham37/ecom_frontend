@@ -196,7 +196,6 @@ li {
     font-size: medium;
     text-indent: 1%;
     border: 1px solid #ff5e00;
-    border-radius: 3%;
     font-family: serif;
 }
 .other_option, .address_input, .map_frame {
@@ -228,7 +227,6 @@ li {
     font-weight: bold;
 }
 
-
 .disc_text {
     padding: 3px 3%;
     font-weight: lighter;
@@ -247,8 +245,12 @@ li {
     }
 }
 
-
 a {
     color: black;
     text-decoration: none;
+}
+
+
+#productImage {
+    border: 1px solid gray;
 }

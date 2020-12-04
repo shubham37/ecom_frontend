@@ -187,22 +187,8 @@ a {
     border: none;
 }
 
-.pay_block>a:hover {
-    color: #ff5e00;
-}
- .dth_block>a:hover {
-    color: #ff5e00;
-}
- .recharge_block>a:hover {
-    color: #ff5e00;
-}
- .loan_block>a:hover {
-    color: #ff5e00;
-}
- .insurance_block>a:hover {
-    color: #ff5e00;
-}
- .wallet_block >a:hover {
+.pay_block>a:hover, .dth_block>a:hover, .recharge_block>a:hover, .loan_block>a:hover, .insurance_block>a:hover,
+.wallet_block >a:hover {
     color: #ff5e00;
 }
 
@@ -280,6 +266,8 @@ a {
     top: 35%;
     position: absolute; 
     z-index: 1;
+    border-radius: 2%;
+    opacity: 0.5;
 }
 
 .pull-right {
@@ -288,15 +276,19 @@ a {
     right: 3%;
     top: 35%;
     position: absolute; 
+    border-radius: 2%;
+    opacity: 0.5;
 }
 
 
 .left_arrow {
     padding: 25px 10px;
-    background-color: white;   
+    background-color: white;
+    border: 2px solid white;
 }
 
 .right_arrow {
     padding: 25px 10px;
-    background-color: white;   
+    background-color: white;
+    border: 2px solid white;
 }

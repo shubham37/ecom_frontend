@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BuyerService } from '../../services/buyer.service'
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @Component({
@@ -12,11 +13,20 @@ import { BuyerService } from '../../services/buyer.service'
 export class ProductsComponent implements OnInit {
   numbers : Object[];
   products : Object[] = [];
+  collection = [];
+  config: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private productApi: ProductService, private buyerApi: BuyerService) {
     this.numbers = [
       1,2,3
-    ]
+    ];
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 1,
+      totalItems:0
+      };
+      route.queryParams.subscribe(
+        params => this.config.currentPage= params['page']?params['page']:1 );
   }
 
   ngOnInit(): void {
@@ -29,27 +39,41 @@ export class ProductsComponent implements OnInit {
         console.log(error);
       }
     )
-  }
-
-  addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart'))
-    if (cart && cart != null && cart !=undefined) {
-      cart.push(product)
-    } else {
-      cart = []
-      cart.push(product)
+    for(let i=1;i<=100;i++){
+      let Obj = {'name': `Employee Name ${i}`,'code': `EMP00 ${i}`}
+      this.collection.push(Obj);
     }
-    localStorage.setItem('cart', JSON.stringify(cart))
+  
   }
 
-  addToWishlist(id) {
-    this.buyerApi.addWishlist(id).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+  pageChange(newPage: number) {
+    const urlParameters = Object.assign({}, this.route.snapshot.queryParams); 
+    urlParameters.page = newPage;
+    this.router.navigate(['/products'], { queryParams: urlParameters }).then(
+      () => console.log('in')
+    );
   }
+
+  // addToCart(product) {
+  //   let cart = JSON.parse(localStorage.getItem('cart'))
+  //   if (cart && cart != null && cart !=undefined) {
+  //     cart.push(product)
+  //   } else {
+  //     cart = []
+  //     cart.push(product)
+  //   }
+  //   localStorage.setItem('cart', JSON.stringify(cart))
+  // }
+
+  // addToWishlist(id) {
+  //   this.buyerApi.addWishlist(id).subscribe(
+  //     data => {
+  //       console.log(data);
+  //     },
+  //     error => {
+  //       console.log(error);
+  //     }
+  //   )
+  // }
+
 }
