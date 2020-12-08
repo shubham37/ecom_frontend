@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
-import { ApiService } from '../../services/api.service';
-import { BlogService } from '../../services/blog.service';
-import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
-import { SellerService } from '../../services/seller.service';
 import { ProductService } from '../../services/product.service';
 
 

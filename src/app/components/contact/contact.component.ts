@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -12,20 +12,26 @@ export class ContactComponent implements OnInit {
   formGroup;
   public isShowLoader: boolean = false;
   public subscribedMessage: String= '';
+  submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private api: ApiService) { 
+  constructor(private formBuilder: FormBuilder, private api: ApiService) { }
+  
+  ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      name: '',
-      email: '',
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       subject: '',
       comment: '',
     });
   }
 
-  ngOnInit(): void {
-  }
+  get f() { return this.formGroup.controls; }
 
   onSubmit(contactData) {
+    this.submitted = true;
+    if (this.formGroup.invalid) {
+      return;
+    }
     this.subscribedMessage = '';
     this.isShowLoader = true;
     this.api.customerQuery(contactData).subscribe(

@@ -21,8 +21,11 @@
                 <h6 class="title">Subscribe Newsletter</h6>
                 <p style='font-size:12px; font-weight:bold; color: rgb(95, 93, 93)'>Get latest updates and offers.</p>
                 <form [formGroup]="formGroup" (ngSubmit)="onSubscribe(formGroup.value)">
-                    <input type='email' placeholder='Enter your email address' class='email' pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Please enter a valaid url" formControlName="email" />
-                    <br /><br />
+                    <input type='email' id='email' placeholder='Enter your email address' class='email' formControlName="email" required >
+                    <br />
+                    <span *ngIf='submitted && f.email.errors.required'>Email Should not be Blanked</span>
+                    <span *ngIf='submitted && f.email.errors.pattern'>Email Should be in format</span>
+                    <br />
                     <input type='submit' value='SUBSCRIBE US' class='subscribe_button' *ngIf='!isShowLoader' />
                 </form>
                 <p style='text-align: center;'>

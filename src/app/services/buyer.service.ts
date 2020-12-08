@@ -73,7 +73,7 @@ export class BuyerService {
 
   // Call on submit address template compnent if No data
   updateAddress(id,address): Observable<any> {
-    return this.httpClient.post<any>(this.url+'/buyer_address/'+ id, {
+    return this.httpClient.put<any>(this.url+'/buyer_address/'+ id+ '/', {
       address
     }, this.httpOptions)
   }

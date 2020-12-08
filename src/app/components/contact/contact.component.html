@@ -61,7 +61,13 @@
                         <div class='col' style='width:100%'>
                             <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
                                 <input type='text' class='name_input form-control' placeholder='Your Name (required)' formControlName="name" required />
+                                <p *ngIf='submitted && f.name.errors.required'>
+                                    Name should be compolsoury
+                                </p>
                                 <input type='email' class='email_input form-control' placeholder='Your Email (required)' formControlName="email" required />
+                                <p *ngIf='submitted && f.email.errors.required'>
+                                    Name should be compolsoury
+                                </p>
                                 <input type='text' class='subject_input form-control' placeholder='Subject' formControlName="subject" />
                                 <textarea class='form-control' placeholder='Post Content' formControlName="comment"></textarea>
                                 <p style='text-align: center;'>

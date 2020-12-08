@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BuyerService } from '../../services/buyer.service'
-import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @Component({
@@ -53,27 +52,5 @@ export class ProductsComponent implements OnInit {
       () => console.log('in')
     );
   }
-
-  // addToCart(product) {
-  //   let cart = JSON.parse(localStorage.getItem('cart'))
-  //   if (cart && cart != null && cart !=undefined) {
-  //     cart.push(product)
-  //   } else {
-  //     cart = []
-  //     cart.push(product)
-  //   }
-  //   localStorage.setItem('cart', JSON.stringify(cart))
-  // }
-
-  // addToWishlist(id) {
-  //   this.buyerApi.addWishlist(id).subscribe(
-  //     data => {
-  //       console.log(data);
-  //     },
-  //     error => {
-  //       console.log(error);
-  //     }
-  //   )
-  // }
 
 }

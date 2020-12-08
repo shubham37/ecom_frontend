@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
-import { BlogService } from '../../services/blog.service';
-import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
-import { SellerService } from '../../services/seller.service';
-import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -14,21 +9,29 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./bs-footer.component.css']
 })
 export class BsFooterComponent implements OnInit {
-  formGroup;
+  formGroup: FormGroup;
   public isShowLoader: boolean = false;
   public subscribedMessage: String= '';
   snackbar: any;
-  
+  submitted = false;
   constructor(private formBuilder: FormBuilder, private api: ApiService) { 
-    this.formGroup = this.formBuilder.group({
-      email: '',
-    });
+    this.formGroup = new FormGroup({
+      email: new FormControl('',[
+        Validators.required, Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)
+      ])
+    })
   }
   
   ngOnInit(): void {
   }
   
+  get f() { return this.formGroup.controls; }
+
   onSubscribe(subscribeData) {
+    this.submitted = true;
+    if (this.formGroup.invalid) {
+      return;
+    }
     this.snackbar = document.getElementById("snackbar");
     this.subscribedMessage = '';
     this.isShowLoader = true;

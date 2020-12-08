@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BuyerService } from '../../services/buyer.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ConfigService } from '../../services/config.service'
 
 @Component({
   selector: 'app-product-template',
@@ -10,39 +10,59 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProductTemplateComponent implements OnInit {
   numbers: Object[] = [1,2,3];
   @Input() product: any;
+  snackbar: any;
 
 
-  constructor(private buyerApi: BuyerService, private snackbar: MatSnackBar) { }
+  constructor(private buyerApi: BuyerService, private configApi: ConfigService) { }
 
   ngOnInit(): void {
-    console.log(this.product)
+    this.snackbar = document.getElementById("snackbar");
   }
 
   addToCart(product) {
-    var x = document.getElementById("snackbar");
-    let cart = JSON.parse(localStorage.getItem('cart'))
-    if (cart && cart != null && cart !=undefined) {
-      cart.push(product)
+    if (this.configApi.isLoggedIn()) {
+      this.configApi.addToCart(product)
+      this.snackbar.innerText = "Added Successfully."  
+      setTimeout(
+        function()
+        {
+          this.snackbar.className = this.snackbar.className.replace("show", ""); 
+        }, 2000);
     } else {
-      cart = []
-      cart.push(product)
+      this.snackbar.innerText = "Please Log In or Register To Add in Cart."
+      setTimeout(
+        function()
+        {
+          this.snackbar.className = this.snackbar.className.replace("show", ""); 
+        }, 2000);
     }
-    localStorage.setItem('cart', JSON.stringify(cart))
-    x.className = "show";
-    x.innerText = "Added Successfully."
-  
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    this.snackbar.className = "show";
   }
 
   addToWishlist(id) {
-    this.buyerApi.addWishlist(id).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      }
-    )
+    if (this.configApi.isLoggedIn()) {
+      this.buyerApi.addWishlist(id).subscribe(
+        data => {
+          this.snackbar.innerText = "Added Successfully."  
+          setTimeout(
+            function()
+            {
+              this.snackbar.className = this.snackbar.className.replace("show", "");
+            }, 2000);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    } else {
+      this.snackbar.innerText = "Please Log In or Register To Add in Wishlist."
+      setTimeout(
+        function()
+        {
+          this.snackbar.className = this.snackbar.className.replace("show", ""); 
+        }, 2000);
+    }
+    this.snackbar.className = "show";
   }
 
 }

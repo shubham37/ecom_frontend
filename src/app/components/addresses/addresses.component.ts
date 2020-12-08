@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { BlogService } from '../../services/blog.service';
 import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
-import { SellerService } from '../../services/seller.service';
-import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -14,6 +9,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class AddressesComponent implements OnInit {
   addresses : Object[] = [];
+  current: Object={};
 
   constructor(private buyerApi: BuyerService) { 
   }
@@ -22,7 +18,6 @@ export class AddressesComponent implements OnInit {
     this.buyerApi.fetchAddresses().subscribe(
       data => {
         this.addresses = data;
-        console.log(data);
       },
       error => {
         console.log(error.message);
@@ -39,6 +34,10 @@ export class AddressesComponent implements OnInit {
         console.log(error.message);
       }
     )
+  }
+
+  onEdit(address) {
+    this.current = address;
   }
 
 }

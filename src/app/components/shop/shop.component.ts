@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
-import { BlogService } from '../../services/blog.service';
-import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
 import { SellerService } from '../../services/seller.service';
-import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-shop',

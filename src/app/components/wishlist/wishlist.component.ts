@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
-import { BlogService } from '../../services/blog.service';
+import { ConfigService } from '../../services/config.service';
 import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
-import { SellerService } from '../../services/seller.service';
-import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -13,18 +9,19 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./wishlist.component.css']
 })
 export class WishlistComponent implements OnInit {
-  numbers : Object[];
   wishlists : Object[] = [];
 
-  constructor(private buyerApi: BuyerService) { 
-    this.numbers = [1,2,3,4]
+  constructor(private buyerApi: BuyerService, private configApi: ConfigService) { 
   }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
     this.buyerApi.fetchWishlist().subscribe(
       data => {
         this.wishlists = data.products;
-        // debugger
         console.log(data);
       },
       error => {
@@ -33,15 +30,10 @@ export class WishlistComponent implements OnInit {
     )
   }
 
-  addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem('cart'))
-    if (cart && cart != null && cart !=undefined) {      
-      cart.push(product)
-    } else {
-      cart = []
-      cart.push(product)
-    }
-    localStorage.setItem('cart', JSON.stringify(cart))
+  wishlistToCart(product) {
+    this.configApi.addToCart(product);
+    this.removeFromWishlist(product.id);
+    this.getData();
   }
 
   removeFromWishlist(proId) {

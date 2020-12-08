@@ -1,10 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service'
-import { ApiService } from '../../services/api.service';
 import { BlogService } from '../../services/blog.service';
-import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
-import { SellerService } from '../../services/seller.service';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router'
 

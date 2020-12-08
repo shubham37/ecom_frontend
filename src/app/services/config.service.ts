@@ -27,4 +27,27 @@ export class ConfigService {
     return this._languages;
   }
 
+  addToCart(product) {
+    // Check is already in cart
+    // Add if Not
+    let cart = JSON.parse(localStorage.getItem('cart'))
+    if (cart && cart != null && cart !=undefined) {      
+      cart.push(product)
+    } else {
+      cart = []
+      cart.push(product)
+    }
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
+
+  isLoggedIn() {
+    let token = localStorage.getItem('token');
+    if (token && token != null && token != undefined) {
+      return true;
+    } else {
+      localStorage.removeItem('token');
+      return false;
+    }
+  }
+
 }

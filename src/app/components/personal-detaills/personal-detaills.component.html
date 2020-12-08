@@ -14,10 +14,10 @@
 
                     <div class='row'>
                         <div class='col'>
-                            <input type='text' placeholder='First Name' class='first_name' formControlName="first_name" value='pd?.first_name' />
+                            <input [readonly]="!isPdEdit" type='text' placeholder='First Name' class='first_name' formControlName="first_name" value='pd?.first_name' />
                         </div>
                         <div class='col'>
-                            <input type='text' placeholder='Last Name' class='last_name' formControlName="last_name" value='pd?.last_name' />
+                            <input type='text' placeholder='Last Name' class='last_name' formControlName="last_name" value='pd?.last_name' [readonly]="!isPdEdit" />
                         </div>
                     </div>
                     <br />
@@ -25,11 +25,11 @@
                         <div class='col'>
                             <span style='font-size:medium; font-weight:lighter; color: rgb(102, 102, 102);'>Gender : </span>
                             <span style='margin:0 15px;'><label>
-                                <input type='radio' name='gender' value='0' formControlName="gender" />  Male
+                                <input type='radio' name='gender' [value]='1' formControlName="gender" />  Male
                                 </label>
                             </span>
                             <span><label>
-                                <input type='radio' name='gender' value='1' formControlName="gender" /> Female
+                                <input type='radio' name='gender' [value]='2' formControlName="gender" /> Female
                                 </label>
                             </span>
                         </div>
@@ -47,7 +47,7 @@
 
                     <div class='row'>
                         <div class='col'>
-                            <input type='email' placeholder='Your Email Address' class='email' formControlName='email' />
+                            <input type='email' placeholder='Your Email Address' class='email' formControlName='email' [readonly]="!isEmailEdit" />
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
 
                     <div class='row'>
                         <div class='col'>
-                            <input type='text' maxlength='10' placeholder='10-digit-number' class='mobile' formControlName='mobile' />
+                            <input type='text' maxlength='10' placeholder='10-digit-number' class='mobile' formControlName='mobile' [readonly]="!isNumberEdit" />
                         </div>
                     </div>
                 </div>

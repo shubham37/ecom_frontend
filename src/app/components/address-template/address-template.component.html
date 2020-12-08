@@ -49,13 +49,17 @@
     <div class='row'>
         <div class='col'>
             <span style='font-size: small; font-weight: lighter; color:gray;'>Address Type : </span>
-            <span style='font-size: small; margin-left: 1%;'><input type='radio' name='add_type' value='0' checked formControlName='add_type' />  Home</span>
-            <span style='font-size: small; margin-left: 1%;'><input type='radio' name='add_type' value='1' formControlName='add_type' />  Work</span>
+            <span style='font-size: small; margin-left: 1%;'><input type='radio' name='add_type' [value]='1' formControlName='add_type' />  Home</span>
+            <span style='font-size: small; margin-left: 1%;'><input type='radio' name='add_type' [value]='2' formControlName='add_type' />  Work</span>
         </div>
     </div>
     <br />
-    <button type='button' class='btn btn-warning submit_review' (click)='onAddressSubmit(addressFormGroup.value)'>
+    <button *ngIf='create' type='button' class='btn btn-warning submit_review' (click)='onAddressSubmit(addressFormGroup.value)'>
         <span *ngIf='!processing'>SUBMIT</span>
+        <span class="spinner-border text-light" role="status" *ngIf='processing'></span>
+    </button>
+    <button *ngIf='!create' type='button' class='btn btn-warning submit_review' (click)='onAddressUpdate()'>
+        <span *ngIf='!processing'>Update</span>
         <span class="spinner-border text-light" role="status" *ngIf='processing'></span>
     </button>
 </form>

@@ -209,7 +209,28 @@
                                         </select>
                                     </div>
                                 </div>
-                                
+
+                                <div class='row'>
+                                    <div class='col' style='width:100%;' *ngIf='formGroup.value.category != 2'>
+                                        <label for='service_pincode'>
+                                            <span>Servicable Pincode</span>
+                                        </label><br />
+
+                                        <div class='row'>
+                                            <div class='col-md-7 col-12 col-s-5'>
+                                                <input type='text' id='inputField' placeholder='Pincode Seprated by Comma. eg. 102011,123243,423545' />
+                                            </div>
+                                            <div class='col-md-1 col-12 col-s-5'>
+                                                <p style='color:gray; text-align: center;'>or</p>
+                                            </div>
+                                            <div class='col-md-4 col-12 col-s-5'>
+                                                <input type='file' id='inputField' name="service_pincode" class='form-control' />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <p style='text-align: center; margin-top:3%;'>
                                     <button class='setup' (click)='onBusinessSubmit()'>Start With Business</button>
                                 </p>

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ApiService } from '../../services/api.service';
-import { BlogService } from '../../services/blog.service';
 import { BuyerService } from '../../services/buyer.service';
-import { OrderService } from '../../services/order.service';
-import { SellerService } from '../../services/seller.service';
-import { ProductService } from '../../services/product.service';
 
 
 @Component({
@@ -22,6 +17,7 @@ export class PersonalDetaillsComponent implements OnInit {
   isPdEdit: boolean = false;
   isEmailEdit: boolean = false;
   isNumberEdit: boolean = false;
+  snackbar: any;
 
 
   constructor(private formBuilder: FormBuilder, private buyerApi: BuyerService) { 
@@ -39,6 +35,7 @@ export class PersonalDetaillsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.snackbar = document.getElementById("snackbar");
     this.buyerApi.fetchUserDetail().subscribe(
       data => {
         this.infoFormGroup.patchValue({'first_name': data?.first_name, 'last_name': data?.last_name, 'gender': data.gender})
@@ -83,8 +80,10 @@ export class PersonalDetaillsComponent implements OnInit {
 
     this.buyerApi.updatePD(first_name, last_name, gender).subscribe(
       data => {
-        console.log(data);
-        window.location.reload(true);
+        this.isPdEdit = false;
+        this.snackbar.innerText = "Info Updated."
+        this.snackbar.className = "show";
+        setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
       },
       error => {
         console.log(error);
@@ -96,8 +95,10 @@ export class PersonalDetaillsComponent implements OnInit {
     var email = emailData['email'];
     this.buyerApi.updateEmail(email).subscribe(
       data => {
-        console.log(data);
-        window.location.reload(true);
+        this.isEmailEdit = false;
+        this.snackbar.innerText = "Email Updated."
+        this.snackbar.className = "show";
+        setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
       },
       error => {
         console.log(error);
@@ -108,8 +109,10 @@ export class PersonalDetaillsComponent implements OnInit {
     var mobile = mobileData['mobile'];
     this.buyerApi.updateMobile(mobile).subscribe(
       data => {
-        console.log(data);
-        window.location.reload(true);
+        this.isNumberEdit = false;
+        this.snackbar.innerText = "Number Updated."
+        this.snackbar.className = "show";
+        setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
       },
       error => {
         console.log(error);
