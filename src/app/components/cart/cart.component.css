@@ -11,6 +11,10 @@
     font-size: small;
 }
 
+thead {
+    background-color: rgba(189, 188, 188, 0.2);
+    color: rgb(90, 89, 89)
+}
 th {
     text-align: center; 
 }
@@ -18,3 +22,71 @@ th {
 td {
     text-align: center; 
 }
+
+.cart_summary {
+    color: rgb(83, 83, 83);
+    font-weight: bold;
+    font-size: large;
+    padding: 1% 0;
+    margin: 1% 0;
+}
+
+.pro_title {
+    font-size: large;
+    font-weight: lighter;
+    padding: 3px;
+}
+
+.qty {
+    padding: 1% 4%;
+    border: 1px solid darkgray;
+}
+.decrement, .increment {
+    border: none;
+    background-color: white;
+    color: black;
+}
+
+.price, .mrp, .discount {
+    color: rgb(83, 83, 83);
+}
+
+.addWishlist, .removeCard {
+    background-color: white;
+    border: none;
+    margin: 1%;
+    color: darkgray;
+}
+.addWishlist:hover, .removeCard:hover {
+    color: #ff5e00;
+}
+
+
+.apply {
+    color: white;
+    background-color: #ff5e00;
+    font-weight: bold;
+    border: none;
+    height: 36px;
+    width: 300px;
+}
+.couponinput {
+    margin-top: 1%;
+    height: 36px;
+    width: 300px;
+    text-indent: 1%;
+    color: black;
+    border:1px solid darkgray;
+}
+
+
+.cs, .pc {
+    font-weight: bold;
+    font-size: large;
+    color: white;
+    background-color: #ff5e00;
+    padding: 3px 15px;
+    margin: 2px;
+}
+
+

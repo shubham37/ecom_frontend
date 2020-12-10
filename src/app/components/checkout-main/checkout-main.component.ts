@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ConfigService } from '../../services/config.service';
+
 
 @Component({
   selector: 'app-checkout-main',
@@ -10,43 +12,68 @@ export class CheckoutMainComponent implements OnInit {
   isLoggedIn : boolean = false;
   hasPrev : boolean = true;
   hasFwd : boolean = true;
+  bullets: any;
+  MAX_STEPS = 4;
+  currentStep = 1;
+  path: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private configApi: ConfigService) { }
 
   ngOnInit(): void {
-    let token = localStorage.getItem('token');
-    if (token && token != null && token != undefined) {
-      this.isLoggedIn = true;
-    } else {
-      this.isLoggedIn = false;
-      localStorage.removeItem('token');
-    }
-
-    let path = window.location.pathname.split('/');
-    if (path.length < 3) {
+    this.isLoggedIn = this.configApi.isLoggedIn();
+    this.path = window.location.pathname.split('/');
+    if (this.path.length < 3) {
       this.hasPrev = false;
-    } else if (path[2] == '3') {
+    } else if (this.path[2] == '3') {
       this.hasPrev = true;
       this.hasFwd = false;
     }
   }
   
+  ngAfterViewInit(): void {
+    var address = document.getElementById('address')
+    var shipping = document.getElementById('shipping')
+    var summary = document.getElementById('summary')
+    if (this.path.length < 3) {
+      address.classList.remove('active')
+      address.classList.remove('completed')
+      shipping.classList.remove('active')      
+      shipping.classList.remove('completed')
+      summary.classList.remove('active')      
+      summary.classList.remove('completed')
+      address.classList.add('active');
+    } else if (this.path[2] == '2') {
+      address.classList.remove('active');
+      shipping.classList.remove('active')      
+      shipping.classList.remove('completed')
+      summary.classList.remove('active')      
+      summary.classList.remove('completed')
+      address.classList.add('completed');
+      shipping.classList.add('active')
+    } else {
+      shipping.classList.remove('active')
+      address.classList.add('completed');
+      shipping.classList.add('completed')
+      summary.classList.add('active')
+    }
+  }
+  
   onNavigatePrev() {
-    let path = window.location.pathname.split('/')[2];
-    if (path == '2') {
-      this.router.navigate(['check-out/3']).then(
+    this.path = window.location.pathname.split('/')[2];
+    if (this.path == '2') {
+      this.router.navigate(['check-out']).then(
         () => window.location.reload()
       )
     } else {
-      this.router.navigate(['check-out']).then(
+      this.router.navigate(['check-out/2']).then(
         () => window.location.reload()
       )
     }
   }
 
   onNavigateFwd() {
-    let path = window.location.pathname.split('/');
-    if (path.length < 3) {
+    this.path = window.location.pathname.split('/');
+    if (this.path.length < 3) {
       this.router.navigate(['check-out/2']).then(
         () => window.location.reload()
       )
@@ -56,7 +83,6 @@ export class CheckoutMainComponent implements OnInit {
       )
     }
   }
-
 
 }
 

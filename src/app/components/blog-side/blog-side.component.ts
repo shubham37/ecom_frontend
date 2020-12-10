@@ -25,7 +25,6 @@ export class BlogSideComponent implements OnInit {
   onSearch(searchData) {
     var query = searchData['blog_query'];
 
-    console.log(query);
     window.location.href = '/blogs/search?value=' + query
     // this.router.navigate([''], { queryParams: { value: query } });
   }

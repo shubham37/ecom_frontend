@@ -36,7 +36,6 @@ export class BsFooterComponent implements OnInit {
     this.subscribedMessage = '';
     this.isShowLoader = true;
     var email = subscribeData['email'];
-    console.log(email);
     this.api.SubscribeNewsletter(email).subscribe(
       data => {
         this.isShowLoader = false;

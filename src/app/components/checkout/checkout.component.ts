@@ -8,7 +8,7 @@ import { BuyerService } from '../../services/buyer.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  addreses : Object[];
+  addreses : Object[] = [];
 
   toggle : boolean = false;
 
@@ -19,7 +19,6 @@ export class CheckoutComponent implements OnInit {
     this.buyerApi.fetchAddresses().subscribe(
       data => {
         if (data != null) {
-          debugger
           this.addreses = data;
           console.log(data);
         } else {

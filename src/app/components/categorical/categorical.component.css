@@ -57,6 +57,12 @@ li {
     font-weight: bolder;
 }
 
+.sub_cat {
+    width: 100%;
+    border-bottom: 1px solid rgb(100, 99, 99);
+    border-radius: 2%;
+    padding: 1% 0;
+}
 .sub {
     border: none; 
     background-color: white;

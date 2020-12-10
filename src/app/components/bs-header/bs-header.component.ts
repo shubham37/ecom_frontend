@@ -38,7 +38,6 @@ export class BsHeaderComponent implements OnInit {
     translate.addLangs(['EN','BN','HI','TE','TA','GU']);
     if (localStorage.getItem('locale')) {
       const browserLang = localStorage.getItem('locale');
-      console.log(browserLang);
       translate.use(browserLang.match(/EN|BN|HI|TE|TA|GU/) ? browserLang : 'EN');
     } else {
       localStorage.setItem('locale', 'EN');
@@ -171,7 +170,6 @@ export class BsHeaderComponent implements OnInit {
     var local_otp =localStorage.getItem('otp');
     if (local_otp && local_otp != null && local_otp != undefined) {
       if (local_otp == otp) {
-        console.log(local_otp)
         this.buyerApi.buyerRegistration().subscribe(
           data => {
             this.snackbar.innerText =  "Successfully Registered"

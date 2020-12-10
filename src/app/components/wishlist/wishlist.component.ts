@@ -39,7 +39,6 @@ export class WishlistComponent implements OnInit {
   removeFromWishlist(proId) {
     this.buyerApi.deleteWishlist(proId).subscribe(
       data => {
-        console.log(data);
         window.location.reload(true);
       },
       error => {

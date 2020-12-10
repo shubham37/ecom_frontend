@@ -41,7 +41,6 @@ export class PersonalDetaillsComponent implements OnInit {
         this.infoFormGroup.patchValue({'first_name': data?.first_name, 'last_name': data?.last_name, 'gender': data.gender})
         this.emailFormGroup.patchValue({'email': data.user?.email});
         this.mobileFormGroup.patchValue({'mobile': data.user?.number});
-        console.log(data);
       },
       error => {
         console.log(error);

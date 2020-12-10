@@ -19,7 +19,6 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.route.snapshot.params.id)
     this.productApi.fetchProduct(this.route.snapshot.params.id).subscribe(
       data => {
         this.product = data;

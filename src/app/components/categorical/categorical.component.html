@@ -1,12 +1,11 @@
 <div class='container-fluid' style='padding: 2%'>
     <div class='row'>
         <div class='col-md-2 col-2'>
-            <span class='subcat'>SUB CATEGORIES</span><br />
-            <ul>
-                <li><button class='sub'>-- All --</button></li>
-                <li *ngFor='let sub of sub_categories'><button class='sub'>{{sub.name}}</button></li>
-            </ul>
-
+            <span class='subcat'>SUB CATEGORIES</span><br /><br />
+            <select class='sub_cat'>
+                <option>All</option>
+                <option *ngFor='let sub of sub_categories'> {{sub.name}} </option>
+            </select>
         </div>
         <div class='col-md-9 col-9' style='padding-left:5px; border-left: 1px solid rgb(185, 184, 184);'>
             <div class='row'>

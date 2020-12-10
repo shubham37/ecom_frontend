@@ -49,7 +49,6 @@ import { CartHoverComponent } from './components/cart-hover/cart-hover.component
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { HomeMenuComponent } from './components/home-menu/home-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { TranslateModule, TranslateLoader }  from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CheckoutMainComponent } from './components/checkout-main/checkout-main.component';
@@ -59,6 +58,7 @@ import { BlogSearchComponent } from './components/blog-search/blog-search.compon
 import { ProductTemplateComponent } from './components/product-template/product-template.component';
 import { CategoricalComponent } from './components/categorical/categorical.component';
 import { DiscountedCategoricalComponent } from './components/discounted-categorical/discounted-categorical.component';
+import { LanguageTranslatePipePipe } from './pipes/language-translate-pipe.pipe';
 export const createTransalteLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 };
@@ -105,7 +105,8 @@ export const createTransalteLoader = (http: HttpClient) => {
     BlogSearchComponent,
     ProductTemplateComponent,
     CategoricalComponent,
-    DiscountedCategoricalComponent
+    DiscountedCategoricalComponent,
+    LanguageTranslatePipePipe
   ],
   imports: [
     BrowserModule,

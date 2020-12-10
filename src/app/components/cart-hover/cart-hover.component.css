@@ -2,12 +2,12 @@
     color: gray;
     font-size: medium;
     font-weight: bold;
-    text-decoration: underline;
     padding:2% 0;
+    color: #ff5e00;
 }
 
 .go_cart:hover {
-    color: #ff5e00;
+    text-decoration: underline;
 }
 
 td {
@@ -17,7 +17,7 @@ td {
 .price {
     font-size: small;
     font-weight: bold;
-    color: black;
+    color: #ff5e00;
     padding: 0 2%;
 
 }
@@ -36,4 +36,12 @@ td {
 .increment, .decrement {
     border: none;
     background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.final_price {
+    font-size: medium;
+    font-weight: bold;
+    color: #ff5e00;
 }

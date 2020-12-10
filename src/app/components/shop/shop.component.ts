@@ -133,7 +133,6 @@ export class ShopComponent implements OnInit {
     // formData.append('bank', this.formGroup.value.bank)
     // formData.append('proof', this.formGroup.value.proof)
 
-    console.log(formData);
     var x = document.getElementById("snackbar");
     this.sellerApi.sellerRegistration(this.formGroup.value).subscribe(
       data => {

@@ -19,7 +19,6 @@ export class BlogSearchComponent implements OnInit {
     this.blogApi.GetBlogsBySearchAndTag(this.query).subscribe(
       data => {
         if (data != null && data != undefined) {
-          console.log(data);
           this.blogs=data;
         } else {
           this.blogs = [];

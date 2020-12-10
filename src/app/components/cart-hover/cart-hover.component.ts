@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router'
   styleUrls: ['./cart-hover.component.css']
 })
 export class CartHoverComponent implements OnInit {
-  public products : Object[] = [];
+  products : Object[] = [];
   dataRefresher: any;
   snackbar: any;
 

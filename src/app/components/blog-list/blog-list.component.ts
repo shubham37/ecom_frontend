@@ -18,7 +18,6 @@ export class BlogListComponent implements OnInit {
   ngOnInit(): void {
     this.blogApi.GetBlogs().subscribe(
       data => {
-        console.log(data);
         this.blogs = data;
       },
       error => {

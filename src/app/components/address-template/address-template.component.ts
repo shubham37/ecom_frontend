@@ -33,7 +33,6 @@ export class AddressTemplateComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
 
@@ -75,7 +74,6 @@ export class AddressTemplateComponent implements OnInit {
 
   onAddressSubmit(addressData) {
     this.processing = true;
-    debugger
     this.buyerApi.addAddress(addressData).subscribe(
       data => {
         this.processing = false;
@@ -90,7 +88,6 @@ export class AddressTemplateComponent implements OnInit {
 
   onAddressUpdate() {
     this.snackbar = document.getElementById("snackbar");
-    console.log(this.addressFormGroup)
     this.buyerApi.updateAddress(this.address.id, this.addressFormGroup.value).subscribe(
       data => {
         this.snackbar.innerText = "Address Updated."
