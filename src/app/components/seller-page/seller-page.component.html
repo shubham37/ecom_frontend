@@ -1,0 +1,74 @@
+<div class='row'>
+    <div class='col' style='margin: 0; padding: 0;'>
+        <img src='assets/images/back.jpg' alt='...' style='width: 100%; height: 25em;' />
+    </div>
+</div>
+<br />
+<br />
+
+<div class='row'>
+    <div class='col-12 col-md-12 col-s-12 categories'>
+        <p class='text'>
+            We are specialised seller in
+        </p>
+        <br />
+        <div class='row'>
+            <div class='col-md-2 col-6' *ngFor='let cat of categories'>
+                <img src='assets/images/cart_product.jpg' alt='...' style='width: 100%; height: 75%;' /><br />
+                <button class='cat_block'>
+                    Grocery
+                </button>
+            </div>
+        </div>
+        <p style='text-align: center; margin-top: 5%;'>
+            <button class='products'>View our all Products</button>
+        </p>
+
+    </div>
+</div>
+<br />
+<br />
+
+<div class='container-fluid'>
+    <div class='row'>
+        <div class="container-fluid" style='width:100%;'>
+            <div class='row'>
+                <div class='col' style='width:100%; text-align:center'>
+                    <h6 style='font-weight:bold;'>
+                        Best Seller
+                        <hr style='width:50%; '>
+                    </h6>
+                    <hr style='width:50px; height:2px;  margin-top: -20px; background-color: #ff5e00;' />
+                </div>
+            </div>
+            <br />
+            <div class='row'>
+                <div class='col' style='width:100%; text-align:center'>
+                    <div class="pull-left mt-sm">
+                        <button (click)="scrollLeft()" class='left_arrow'>
+                            <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-left" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div #widgetsContent class="custom-slider-main">
+                        <div class="info-box" *ngFor='let pro of products'>
+                            <app-product-template [product]='pro'></app-product-template>
+                        </div>
+                    </div>
+                    <div class="pull-right mt-sm">
+                    <button (click)="scrollRight()" class='right_arrow'>
+                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-right" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                    </button>
+                    </div>
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+</div>
+
+
+

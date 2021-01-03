@@ -9,7 +9,11 @@
     /* border-top-left-radius: 50%; */
     border-radius: 5%;
 }
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 .ai {
     width: 64px;
     height: 64px;

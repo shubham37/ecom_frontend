@@ -1,3 +1,8 @@
+.row {
+    margin: 0;
+    padding: 0;
+}
+
 .title {
     color: gray;
     font-weight: lighter;

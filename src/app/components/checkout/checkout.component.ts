@@ -34,19 +34,24 @@ export class CheckoutComponent implements OnInit {
 
   showShippingBlock() {
     if (this.toggle) {
+      localStorage.setItem('shipping_address', "");
+      localStorage.setItem('is_shipping_same', "true");  
       this.toggle = false;
     }
     else {
       this.toggle = true;
+      localStorage.setItem('is_shipping_same', "false");  
     }
   }
 
-  placeOrder() {
-    if (localStorage.getItem('isLogin')) {
-      this.router.navigate(['/payment']);
-    } else {
-      this.router.navigate(['/account']);
-    }
+  billingAddress(event) {
+    localStorage.setItem('billing_address', event.target.value);
+    localStorage.setItem('is_shipping_same', "true");
+  }
+
+  shippingAddress(event) {
+    localStorage.setItem('shipping_address', event.target.value);
+    localStorage.setItem('is_shipping_same', "false");
   }
 
 }

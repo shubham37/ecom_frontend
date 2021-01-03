@@ -3,6 +3,10 @@ import { ProductService } from '../../services/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BuyerService } from '../../services/buyer.service'
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-products',
@@ -14,6 +18,12 @@ export class ProductsComponent implements OnInit {
   products : Object[] = [];
   collection = [];
   config: any;
+  foods: Food[] = [
+    {value: '0', viewValue: 'Popularity'},
+    {value: '1', viewValue: 'Price Low To High'},
+    {value: '2', viewValue: 'Price High To Low'},
+    {value: '3', viewValue: 'Newest First'}
+  ];
 
   constructor(private router: Router, private route: ActivatedRoute, private productApi: ProductService, private buyerApi: BuyerService) {
     this.numbers = [
@@ -48,7 +58,7 @@ export class ProductsComponent implements OnInit {
   pageChange(newPage: number) {
     const urlParameters = Object.assign({}, this.route.snapshot.queryParams); 
     urlParameters.page = newPage;
-    this.router.navigate(['/products'], { queryParams: urlParameters }).then(
+    this.router.navigate(['./'], { relativeTo: this.route, queryParams: urlParameters }).then(
       () => console.log('in')
     );
   }

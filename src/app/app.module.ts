@@ -59,6 +59,9 @@ import { ProductTemplateComponent } from './components/product-template/product-
 import { CategoricalComponent } from './components/categorical/categorical.component';
 import { DiscountedCategoricalComponent } from './components/discounted-categorical/discounted-categorical.component';
 import { LanguageTranslatePipePipe } from './pipes/language-translate-pipe.pipe';
+import { SellerPageComponent } from './components/seller-page/seller-page.component';
+import { MultiSearchComponent } from './components/multi-search/multi-search.component';
+import { ShopsComponent } from './components/shops/shops.component';
 export const createTransalteLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 };
@@ -106,7 +109,10 @@ export const createTransalteLoader = (http: HttpClient) => {
     ProductTemplateComponent,
     CategoricalComponent,
     DiscountedCategoricalComponent,
-    LanguageTranslatePipePipe
+    LanguageTranslatePipePipe,
+    SellerPageComponent,
+    ShopsComponent,
+    MultiSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -132,6 +138,8 @@ export const createTransalteLoader = (http: HttpClient) => {
       {path:'products',component: ProductsComponent},
       {path:'product/:id', component:ProductComponent},
       {path:'shop', component:ShopComponent},
+      {path:'favourite_shop', component:ShopsComponent},
+      {path:'discount_category', component:DiscountedCategoricalComponent},
       {path:'shopping-cart',component: CartComponent},
       {path:'wishlist', component:WishlistComponent},
       {path:'compare', component:CompareComponent},
@@ -140,7 +148,8 @@ export const createTransalteLoader = (http: HttpClient) => {
       {path:'cart', component:CartComponent},
       {path:'category/:cat', component:CategoricalComponent},
       {path:'search', component:SearchResultComponent},
-
+      {path:'multi_search', component: MultiSearchComponent},
+      {path:'shop/:shop_identifier', component:SellerPageComponent},
       {
         path:'check-out',
         component: CheckoutMainComponent,
@@ -157,6 +166,7 @@ export const createTransalteLoader = (http: HttpClient) => {
         children: [
           {path: '', component:PersonalDetaillsComponent},
           {path: 'orders', component: OrdersComponent},
+          {path: 'orders/:order_id', component: OrderHistoryComponent},
           {path:'addresses', component:AddressesComponent},
           {path: 'wishlist-user', component: WishlistUserComponent},
           {path:'my_payments', component:PaymentOptionsComponent}

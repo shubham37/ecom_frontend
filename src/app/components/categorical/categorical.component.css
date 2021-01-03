@@ -4,7 +4,11 @@
     font-size: 30px;
     font-family: 'Times New Roman', Times, serif;
 }
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 .items {
     color: gray;
     font-weight: bolder;
@@ -17,14 +21,14 @@
     border: 1px solid grey;
 }
 
-select {
+.drop_block select {
     border: none;
     background-color: white;
     padding: 5px;
     color: rgb(53, 53, 53);
 }
 
-option {
+.drop_block option {
     padding: 1% 2%;
 }
 .drop_block {
@@ -59,13 +63,27 @@ li {
 
 .sub_cat {
     width: 100%;
-    border-bottom: 1px solid rgb(100, 99, 99);
+    -moz-box-shadow: 0px 4px 10px 10px rgba(235, 235, 233, 0.5);
+    -webkit-box-shadow: 0px 4px 10px 10px rgba(235, 235, 233, 0.1);
+    box-shadow: 0px 4px 10px 10px rgba(235, 235, 233, 0.1);
     border-radius: 2%;
-    padding: 1% 0;
+    padding: 10px;
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid darkgray;
 }
 .sub {
     border: none; 
     background-color: white;
     font-size: large;
     font-family: 'Times New Roman', Times, serif;
+}
+
+.sub_cat option {
+    background-color: white;
+    text-indent: 1%;
+}
+
+.pagenation {
+    text-align: center;
 }

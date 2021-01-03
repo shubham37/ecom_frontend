@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
+import  { ConfigService } from '../../services/config.service';
+
 
 @Component({
   selector: 'app-cart-hover',
@@ -10,8 +12,9 @@ export class CartHoverComponent implements OnInit {
   products : Object[] = [];
   dataRefresher: any;
   snackbar: any;
+  subtotal = 0;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router, private configApi: ConfigService) { 
     this.snackbar = document.getElementById('snackbar');
   }
 
@@ -21,11 +24,14 @@ export class CartHoverComponent implements OnInit {
   }
 
   getData() {
+    this.configApi.calculatePrices();
     let cart = JSON.parse(localStorage.getItem('cart'))
+    let prices = JSON.parse(localStorage.getItem('prices'))
     if (cart && cart != null && cart !=undefined) {
       this.products = cart
-    } else {
-      this.products = []
+      if (prices && prices != null && prices !=undefined) {
+        this.subtotal = prices.total
+      }
     }
   }
 
@@ -33,32 +39,26 @@ export class CartHoverComponent implements OnInit {
     this.dataRefresher =
       setInterval(() => {
         this.getData();
-        //Passing the false flag would prevent page reset to 1 and hinder user interaction
       }, 2000);
   }
 
   removeFromCart(proId) {
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart && cart != null && cart !=undefined) {
-      let newCart: any = [];
-      cart.forEach(function(product) {
-        if (product.id != proId) {
-          newCart.push(product);
-        }
-      })
-      localStorage.setItem('cart', JSON.stringify(newCart));
-    }
+    this.configApi.removeFromCart(proId);
     this.snackbar.innerText = "Item removed from Cart."
     this.snackbar.className = "show";
     setTimeout(function(){ this.snackbar.className = this.snackbar.className.replace("show", ""); }, 3000);
   }
 
-  incrementQuantity(proId) {
-    console.log(proId)
+  incrementQuantity(proId, currentQuantity) {
+    this.configApi.incrementQuantity(proId, currentQuantity);
+    this.getData();
   }
 
-  decrementQuantity(proId) {
-    console.log(proId)
+  decrementQuantity(proId, currentQuantity) {
+    if (currentQuantity >1) {
+      this.configApi.decrementQuantity(proId, currentQuantity);
+      this.getData();
+    }
   }
 
 }

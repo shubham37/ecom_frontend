@@ -36,13 +36,44 @@
             <div class='col-md' style="width:100%; height: 100%;">
                 <span class='product'>{{ product.title }}</span>
                 <br />
+                <span *ngFor='let i of counter(product.rating)'>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff5e00" class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                </span>
+                <br />
+                <span> {{ product.review_count }} Reviews | </span>
+                <span (click)='review_show()' style='border: 1px solid darkgray; font-size: smaller; padding: 5px; cursor: pointer;'> Add Your Review </span><br />
+
+                <form [formGroup]="rateFormGroup" (ngSubmit)="onRateSubmit(product.id)" [hidden]='show_rate' style='margin-top: 15px;'>
+                    <div class='row'>
+                        <div class='col-md-6 col-12'>
+                            <input type='text' placeholder='Full Name' class='username' formControlName='name' />
+                        </div>
+                        <div class='col-md-6 col-12'>
+                            <input type="range" min="1" max="5" step='1' value="2" class="slider" name="foo" style='width:100%' formControlName='rating' />
+                        </div>
+                        <div class='col-md-12 col-12'>
+                            <br />
+                            <textarea placeholder='Write Your Comment Here' formControlName='comment'></textarea>
+                        </div>
+                        <div class='col-md-12 col-12'>
+                            <button type='submit' class='btn submit_btn'>Submit</button>
+                        </div>
+                    </div>
+                </form>
+
                 <span class='final_price'>{{ product.mrp | currency:"&#8377;" }}</span>
                 <br />
                 <p>
-                    <span class='actual_price'>{{ product.mrp | currency:"&#8377;" }}</span>
-                    <span class='offer'> 50% Off</span>
+                    <span class='actual_price'>{{ product.final_price | currency:"&#8377;" }}</span>
+                    <span class='offer'> {{ product.discount_str }} Off</span>
                 </p>
-                <hr>
+                <p>
+                    <span><b>Sold By :</b></span>
+                    <span>  {{ product.shop_name }}</span>
+                </p>
+                <hr />
                 
                 <p>
                     <span class='description_title'>PRODUCT DESCRIPTION</span><br />
@@ -50,173 +81,152 @@
                         {{ product.description }}
                     </span>
                 </p>
-                <hr>
-                <p>
-                    <span style='font-size:10px; font-weight: lighter; color: gray;'>Availability : </span> 
-                    <span style='font-size:small; font-weight: lighter; color: black;'> In Stock</span>
-                    <br />
-                    <span style='font-size:10px; font-weight: lighter; color: gray;'> Quantity : </span>
+                <hr />
+
+                <!-- Not In Cart -->
+                <div  *ngIf="cart_quantity == 0">
+                    <p>
+                        <span style='font-size:10px; font-weight: lighter; color: gray;'>Availability : </span> 
+                        <span style='font-size:small; font-weight: lighter; color: black;'> {{ product.is_available }}</span>
+                        <br />
+
+                        <span style='font-size:10px; font-weight: lighter; color: gray;'> Quantity : </span>
+                        <span>
+                            <button class='substract_quantity' (click)='decrementQuantity()'>
+                                <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                                </svg>
+                            </button>
+                            <span class='quantity_text'> {{ local_quantity }} </span>
+                            <button class='add_quantity' (click)='incrementQuantity()'>
+                                <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                            </button>
+                        </span>
+                    </p>
+                    
+                    <h6 style='font-weight: lighter; color: rgba(19, 19, 19, 0.7); margin: 10px 0;'>Select Size</h6>
+                    <p>
+                        <span><button class='size_btn'>S</button></span>
+                        <span><button class='size_btn'>M</button></span>
+                        <span><button class='size_btn'>L</button></span>
+                        <span><button class='size_btn'>XL</button></span>
+                        <span><button class='size_btn'>2XL</button></span>
+                        <span><button class='size_btn'>3XL</button></span>
+                    </p>
                     <span>
-                        <button class='substract_quantity'>
-                            <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-dash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+                        <button class='add_wishlist_btn' (click)='addToWishlist(product.id)'>
+                            <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="black" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
                             </svg>
                         </button>
-                        <span class='quantity_text'>1</span>
-                        <button class='add_quantity'>
-                            <svg width="1.3em" height="1.3em" viewBox="0 0 16 16" class="bi bi-plus" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                        </button>
-                    </span>
-                </p>
-                
-                <h6 style='font-weight: lighter; color: rgba(19, 19, 19, 0.7); margin: 10px 0;'>Select Size</h6>
-                <p>
-                    <span><button class='size_btn'>S</button></span>
-                    <span><button class='size_btn'>M</button></span>
-                    <span><button class='size_btn'>L</button></span>
-                    <span><button class='size_btn'>XL</button></span>
-                    <span><button class='size_btn'>2XL</button></span>
-                    <span><button class='size_btn'>3XL</button></span>
-                </p>
-                <br />
-                <span>
-                    <button class='add_wishlist_btn'>
-                        <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="black" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                        </svg>
-                    </button>
-                    <button class='add_cart_btn'>ADD TO CART</button>
-                </span>
-            </div>
-        </div>
-        <hr />
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content" id='productImage'>
-              </div>
-            </div>
-        </div>
-
-        <!-- Map Block -->
-        <div class='row'>
-            <div class="col-md-3" style='border-right: 1px solid rgba(10,10,10,0.2)'>
-                <p>
-                    <span class='add_title'>Enter your location</span>
-                    <button class='float-right detect'>Detect
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-geo-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
-                          </svg>
-                    </button>
-                </p>
-                <p>
-                    <input type='text' value="" placeholder="Your address" class='address_input' />
-                </p>
-                <div class='other_option'>
-                    <p style='text-indent: 10%; padding-top: 8%;'>
-                        <span class='shop_title'>1. Panwadi Traders</span><br />
-                    </p>
-                    <p class='shop_url' style='text-indent: 10%; padding: 25px 0; background-color: rgba(177, 174, 174, 0.1)'>
-                        <a href='/'>
-                            <span class='span_text'>
-                                Buy from here
-                            </span>
-                            <span class='span_price'>
-                                <b>99.00</b>
-                            </span>
-                        </a>
-                    </p>
+                        <button class='add_cart_btn' (click)='addToCart()'>ADD TO CART</button>
+                    </span>    
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <iframe 
-                width="100%" height="400" id="gmap_canvas"
-                src="https://maps.google.com/maps?q=India&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                </iframe>
-            </div>
-            <div class="col-md-3">
-                <p>
-                    <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-geo-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
-                    </svg>
-                    <span class='disc_text'>
-                        Less than 5% discount
+                <!-- In Cart -->
+                <div *ngIf='cart_quantity > 0'>
+                    <p>
+                        <span style='font-size:10px; font-weight: lighter; color: gray;'> Quantity : </span>
+                        <span class='quantity_text'> {{ cart_quantity }} </span>
+                    </p>
+                    <span>
+                        <a [routerLink]='["/cart"]'>
+                            <button class='add_cart_btn'>GO TO CART</button>
+                        </a>
                     </span>
-                </p>
+                </div>
+                <br />
+                <button class='btn btn-danger' (click)='showAvailable()'>Check For Availability</button>
+                <br />
+                <form [formGroup]="detectGroup" (ngSubmit)="onDetectSubmit(product.id)" [hidden]='show_available' style='margin-top: 15px;'>
+                    <div class='row'>
+                        <div class='col-md-10 col-9'>
+                            <input type='text' placeholder='Pincode' class='username' formControlName='pincode' height="24px" />
+                        </div>
+                        <div class='col-md-2 col-3'>
+                            <button type='submit' class='btn submit_btn'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ff5e00" class="bi bi-joystick" viewBox="0 0 16 16">
+                                    <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2z"/>
+                                    <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <br />
+
+                <!-- For Linked -->
+                <div class='linked'>
+                    <h6 style='font-weight:bolder; color: rgb(110, 109, 109); font-family: Arial;'>Also sold by Sellers:</h6>
+                    <div class='row'>
+                        <div class='col-md-3 col-6'>
+                            <div class='other_retailer'>
+                                <h6 style='font-size: small; text-align: center;'>Jagdamba General Store</h6>
+                                <button class='price_btn'>{{ product.mrp | currency:"&#8377;" }}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <span style='margin-left: 10px; text-decoration: underline; color: gray; font-weight: lighter; cursor: pointer;' data-toggle='modal' data-target='#mapModal'>View more on Map</span>
+                </div>
             </div>
         </div>
         <br />
 
-        <!-- Related Products Section -->
-        <div class='row'>
-            <div class='col related'>
-                <h6 style='font-family: sans-serif; font-weight: lighter;'>EXPLORE PRODUCTS</h6>
-                <br />
-                <div class='row expo'>
-                    <div class='col' style='width:100%; text-align:center'>
-                        <div id="exploreProduct" class="carousel slide" data-ride="carousel" style='padding: 1%;'>
-                            <div class="carousel-inner" style='padding: 1%;'>
-                                <div class="carousel-item" *ngFor='let j of numbers' [class.active]='j<2'>
-                                    <div class='row'>
-                                        <div class='col-6 col-md-3 explore' *ngFor='let i of numbers'>
-                                            <div class='card'>
-                                                <a [routerLink]="['/product/1']">
-                                                    <img src="assets/images/product.png" class="card-img-top" alt="...">
-                                                </a>
-                                                <div class='card-body'>
-                                                    <span class='category_text'>Headphones</span>
-                                                    <br />
-                                                    <span class="product_title">
-                                                        <a [routerLink]="['/product/1']">
-                                                            ONTEC E Headset
-                                                        </a>
-                                                    </span>
-                                                    <br />
-                                                    <span class='float-left price'>$175.00</span>
-                                                    <span class='float-right'>
-                                                        <button class='cart'>
-                                                            <svg width="0.7em" height="0.7em" viewBox="0 0 16 16" class="bi bi-cart3" fill="white" xmlns="http://www.w3.org/2000/svg">
-                                                                <path fill-rule="evenodd" d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm7 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-                                                            </svg>
-                                                        </button>
-                                                    </span>
-
-                                                </div>
-                                            </div>
-                                            <!-- <div class='row' style='margin: 2px 0;'>
-                                                <div class='col' style='width:100%; text-align:left'>
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <a class="carousel-control-prev" href="#exploreProduct" role="button" data-slide="prev">
-                                    <span class="carousel-control" aria-hidden="true">
-                                      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-left-circle-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
-                                          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5.5a.5.5 0 0 0 0-1H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5z"/>
-                                      </svg>
-                                    </span>
-                                    <span class="sr-only">Previous</span>
-                                  </a>
-                                  <a class="carousel-control-next" href="#exploreProduct" role="button" data-slide="next">
-                                    <span class="carousel-control" aria-hidden="true">
-                                      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
-                                          <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
-                                      </svg>
-                                    </span>
-                                    <span class="sr-only">Next</span>
-                                  </a>      
-                            </div>
-                        </div>
+        <div class="tab">
+            <button class="tablinks" (click)="openBlock($event, 'Description')">Description</button>
+            <button class="tablinks" (click)="openBlock($event, 'Details')">Details</button>
+            <button class="tablinks" (click)="openBlock($event, 'Reviews')">Reviews</button>
+        </div>
+          
+        <div id="Description" class="tabcontent">
+            <p *ngIf='product.hasOwnProperty("description")'>{{ product.description }}</p>
+        </div>
+          
+        <div id="Details" class="tabcontent">
+            <p>Details is the capital of France.</p> 
+        </div>
+          
+        <div id="Reviews" class="tabcontent" *ngIf='product.hasOwnProperty("reviews")'>
+            <div class='row' *ngIf="product.reviews.length >0">
+                <div class='col-md-3 col-6' *ngFor='let review of product.reviews'>
+                    <div class='comment'>
+                        <h5>
+                            {{ review.name }}
+                        </h5>
+                        <h6>
+                            {{ review.date_comment }}
+                        </h6>
+                    </div>
+                    <div class='comment'>
+                        <svg *ngFor='let i of counter(review.rating)' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ff5e00" class="bi bi-star-fill" viewBox="0 0 16 16">
+                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                        </svg>
+                        <h6>
+                            {{ review.comment}}
+                        </h6>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id='productImage'>
+                </div>
+            </div>
+        </div>
         <br />
-        <br />
+        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <iframe width="100%" height="400" id="gmap_canvas" 
+                    src="https://maps.google.com/maps?q=India&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

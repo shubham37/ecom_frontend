@@ -10,7 +10,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class BsFooterComponent implements OnInit {
   formGroup: FormGroup;
-  public isShowLoader: boolean = false;
+  isShowLoader: boolean = false;
   public subscribedMessage: String= '';
   snackbar: any;
   submitted = false;
@@ -29,12 +29,12 @@ export class BsFooterComponent implements OnInit {
 
   onSubscribe(subscribeData) {
     this.submitted = true;
+    this.isShowLoader = true;
     if (this.formGroup.invalid) {
       return;
     }
     this.snackbar = document.getElementById("snackbar");
     this.subscribedMessage = '';
-    this.isShowLoader = true;
     var email = subscribeData['email'];
     this.api.SubscribeNewsletter(email).subscribe(
       data => {
@@ -51,6 +51,4 @@ export class BsFooterComponent implements OnInit {
       }
     );
   }
-
-
 }

@@ -68,6 +68,7 @@ export class DefaultComponent implements OnInit {
 
     this.productApi.fetchPopularViewed().subscribe(
       data => {
+        console.log(data)
         this.viewedProducts = data.viewed;
         this.popularProducts = data.popular;
       },

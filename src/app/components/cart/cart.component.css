@@ -1,3 +1,7 @@
+.row {
+    margin: 0;
+    padding: 0;
+}
 .empty_text {
     color: black; 
     font-weight: bold; 
@@ -18,7 +22,6 @@ thead {
 th {
     text-align: center; 
 }
-
 td {
     text-align: center; 
 }
@@ -81,11 +84,11 @@ td {
 
 
 .cs, .pc {
-    font-weight: bold;
-    font-size: large;
+    font-weight: lighter;
+    font-size: smaller;
     color: white;
     background-color: #ff5e00;
-    padding: 3px 15px;
+    padding: 5px 15px;
     margin: 2px;
 }
 

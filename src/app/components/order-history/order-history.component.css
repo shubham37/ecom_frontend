@@ -1,0 +1,40 @@
+.block {
+    border: 1px solid #ff5e00;
+    text-indent: 10px;
+}
+
+.title {
+    background-color: #ff5e00;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: lighter;
+    font-size: larger;
+    padding: 8px 0;
+}
+
+.details {
+    padding: 10px;
+}
+
+th, td {
+    font-size: smaller;
+}
+
+.cs, .pc {
+    font-weight: lighter;
+    font-size: smaller;
+    color: white;
+    background-color: #ff5e00;
+    padding: 5px 15px;
+    margin: 2px;
+}
+
+
+.order_btn {
+    background-color: #ff5e00;
+    font-weight: lighter;
+    font-size: smaller;
+    color: white;
+    border: none;
+    padding: 1% 4%;
+}

@@ -18,17 +18,23 @@
         <hr style='width:50px; height:2px;  margin-top: -20px; margin-left: 0%; background-color: rgb(49, 49, 49);' />
     </span>
 </p>
-<div *ngFor='let i of numbers' class='row' style='margin:3% 0;'>
-    <div class='col-3'>
-        <img src='assets/images/blog.jpg' alt='ry' style='width:70px; height:60px; border: 1px solid rgb(119, 118, 118); border-radius:5%;' />
-    </div>
-    <div class='col-9' style='width:100%; margin-top: -2px; padding-left: -2px;'>
-        <span class='title'>How To Reduce Financial Stress<br /></span>
-        <span class='date'>02 Dec 2015.</span>
+<div *ngIf='blogs.length > 0'>
+    <div *ngFor='let i of blogs' class='row' style='margin:3% 0;'>
+        <div class='col-3'>
+            <a href='/'>
+                <img src='assets/images/blog.jpg' alt='ry' style='width:70px; height:60px; border: 1px solid rgb(119, 118, 118); border-radius:5%;' />
+            </a>
+        </div>
+        <div class='col-9' style='width:100%; height: 60px; overflow: hidden; margin-top: -2px; padding-left: -2px;'>
+            <a href='/'>
+                <span class='title'>How To Reduce Financial Stress<br /></span>
+                <span class='date'>02 Dec 2015.</span>
+            </a>
+        </div>
     </div>
 </div>
 <br>
-<p>
+<!-- <p>
     <span class='text_widget'>
         TEXT WIDGET
         <hr>
@@ -53,4 +59,4 @@
         <button class='tags'>BUSINESS PLANS</button>
         <button class='tags'>RETIREMENT PLANS</button>
     </span>
-</p>
+</p> -->

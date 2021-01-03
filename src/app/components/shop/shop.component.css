@@ -5,7 +5,11 @@
     font-family: serif;
     margin: 2% 0;
 }
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 label {
     font-weight: bold;
     font-size: small;

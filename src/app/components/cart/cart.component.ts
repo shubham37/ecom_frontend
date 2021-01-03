@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import  { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class CartComponent implements OnInit {
   products : Object[] = [];
   numbers: Object[];
+  prices = {};
 
-  constructor() { 
+  constructor(private configApi: ConfigService) { 
     this.numbers  = [1,2,3,4]
    }
 
@@ -19,20 +21,34 @@ export class CartComponent implements OnInit {
 
   getData() {
     let cart = JSON.parse(localStorage.getItem('cart'))
+    let prices = JSON.parse(localStorage.getItem('prices'))
+
     if (cart && cart != null && cart !=undefined) {
       this.products = cart
-    } else {
-      this.products = []
+      if (prices && prices != null && prices !=undefined) {
+        this.prices = prices
+      }
     }
   }
 
-  incrementQuantity(proId) {
-    console.log(proId)
+  removeFromCart(proId) {
+    this.configApi.removeFromCart(proId);
+    this.configApi.calculatePrices();
+    this.getData();
   }
 
-  decrementQuantity(proId) {
-    console.log(proId)
+  incrementQuantity(proId, currentQuantity) {
+    this.configApi.incrementQuantity(proId, currentQuantity);
+    this.configApi.calculatePrices();
+    this.getData();
   }
 
+  decrementQuantity(proId, currentQuantity) {
+    if (currentQuantity >1) {
+      this.configApi.decrementQuantity(proId, currentQuantity);
+      this.configApi.calculatePrices();
+      this.getData();
+    }
+  }
 
 }

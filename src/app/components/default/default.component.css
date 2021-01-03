@@ -178,7 +178,7 @@ a {
 .pay_block, .dth_block, .recharge_block, .loan_block, .insurance_block, .wallet_block {
     border-right: 1px solid rgb(168, 166, 166);
     text-align: center;
-    margin: 2% 0;
+    margin: 10px 0;
     font-family: monospace;
 }
 
@@ -208,10 +208,10 @@ a {
 
 .cat1, .cat3 {
     width: 100%;
-    height: 400px;
+    height: 300px;
     padding:5px 0;
     margin: 0;
-    opacity: 1;
+    opacity: 0.8;
 }
 
 .cat21, .cat22 {
@@ -232,19 +232,23 @@ a {
 
 .cat_title {
     color: white;
-    font-weight: bold;
-    font-size: 30px;
+    font-weight: bolder;
+    font-size: larger;
 }
 
 .cat_sub_title {
     color: white;
     font-weight: lighter;
-    font-size: 24px;
+    font-size: medium;
 }
 .cat1:hover, .cat3:hover, .cat21:hover, .cat22:hover {
     opacity: 1;
 }
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 .popular_cat {
     font-size: 24px;
     font-weight: lighter;
@@ -259,6 +263,10 @@ a {
     scroll-behavior: smooth;
 }
 
+
+.info-box {
+    padding: 1%;
+}
 
 .pull-left {
     float: left;

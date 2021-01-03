@@ -74,6 +74,9 @@ export class CheckoutMainComponent implements OnInit {
   onNavigateFwd() {
     this.path = window.location.pathname.split('/');
     if (this.path.length < 3) {
+      console.log(localStorage.getItem('shipping_address'))
+      console.log(localStorage.getItem('billing_address'))
+      console.log(localStorage.getItem('is_shipping_same'))
       this.router.navigate(['check-out/2']).then(
         () => window.location.reload()
       )

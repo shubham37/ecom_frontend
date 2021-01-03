@@ -2,7 +2,11 @@
     width: 25%;
     height: 50%;
 }
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 a {
     color: black;
     font-weight: lighter;

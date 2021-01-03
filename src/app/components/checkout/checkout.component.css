@@ -3,7 +3,11 @@
     font-weight: bold;
     font-size: medium;
 }  
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 .address {
     color: rgb(77, 76, 76);
     font-weight: lighter;

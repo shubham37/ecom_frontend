@@ -1,45 +1,107 @@
-<div class='container'>
+<div class='container-fluid'>
+    <p class='cart_summary'>
+        <b>Order Summary</b>
+    </p>
+    <table class="table table-responsive-sm table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Item Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pro of products; index as i;">
+                <td>
+                    {{ i + 1 }}
+                </td>
+                <td>
+                    <span>
+                        <img src='http://localhost:8000{{pro.image}}' style='width:50px; height:50px' class='img-responsive' />
+                    </span>
+                    <span class='pro_title'>
+                        {{ pro.title }}
+                    </span>
+                </td>
+                <td>
+                    <span class='qty'>
+                        {{ pro.quantity }}
+                    </span>
+                </td>
+                <td style='text-align:left;'>
+                    <span class='price'>
+                        {{ pro.price | currency:"&#8377;"}}
+                    </span><br />
+                    <span class='mrp'>
+                        <stroke><b>MRP</b> 
+                            {{ pro.mrp | currency:"&#8377;"}}
+                        </stroke>
+                    </span><br />
+                    <span class='discount'>
+                        <b>Discount</b> 
+                        {{ pro.discount | currency:"&#8377;"}} 
+                        off
+                    </span>
+                </td>
+                <td> 
+                    {{ pro.final | currency:"&#8377;"}} 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
     <div class='row'>
-        <div class="offset-md-2 col-md-8">
-            <div class='row' style='margin: 1% 0;'>
-                <div class='col-md' style='padding:2%;'>
-                    <div class='card' style='padding:2%;'>
-                        <h5 style='font-weight:bolder;'>Order Summary</h5>
-                        <div class='row' *ngFor='let i of numbers' style='margin: 2% 0;'>
-                            <div class='col-3 col-md-2' style='height: 80px;'>
-                                <img src='assets/images/cart_product.jpg' alt='...' style='width: 100%; height: 90%;' />
-                            </div>
-                            <div class='col'>
-                                <span style='font-weight:lighter; color: rgb(61, 60, 60);'>White Men's Casual Shorts</span><br />
-                                <span><b>$112</b> <s style='font-weight:lighter; margin-left: 3%; color: rgb(155, 152, 152);'>$124</s></span><br />
-                                <span style='font-weight:lighter; font-size: small;'> Quantity : <b style='font-weight:bold;'>1</b></span><br />
-                            </div>
-                        </div>
-                        <br />
-                        <p style='font-weight: lighter; font-size: small; color: gray; padding: 0 2%;'>
-                            <span class='float-left'>Total MRP (Inclusive of all taxes)</span>
-                            <span class='float-right'>$ 899</span>
-                        </p>
+        <div class='col-md-4 col-12'>
+            <h6><b>Shipping Address</b></h6>
+            <p style='font-size: smaller;'>H. No. - 101, <br />New Friends Colony, <br />Sanjay Nagar, Ghaziabad - 201002</p>
+        </div>
 
-                        <p style='font-weight: lighter; font-size: small;  padding: 0 2%;'>
-                            <span class='float-left' style='color: gray;'>Shipping Charges</span>
-                            <span class='float-right' style='font-weight: bold; font-size: 14px; color:#ff5e00;'>$ 899</span>
-                        </p>
+        <div class='col-md-4 col-12'>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value='1' (change)='choosePayment($event)'>
+                <label class="form-check-label" for="flexRadioDefault1" style="color:rgb(90, 89, 89);">
+                    Online Payments
+                </label>
+            </div>
+            <p style='color:rgb(90, 89, 89); font-size: smaller;'>
+                All transitions are secure and encrypted, and we never save your credit card information. To learn more, Please view our Privacy Policy.
+            </p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value='2' (change)="choosePayment($event)" checked>
+                <label class="form-check-label" for="flexRadioDefault2" style="color:rgb(90, 89, 89);">
+                    Cash On Delivery
+                </label>
+            </div>
+        </div>
 
-                        <p style='font-weight: lighter; font-size: small;  padding: 0 2%;'>
-                            <span class='float-left' style='color: gray;'>Discount</span>
-                            <span class='float-right' style='font-weight: bold; font-size: 14px; color:#ff5e00;'>$ 899</span>
-                        </p>
-                        <hr>
-                        <p style='font-weight: bold; font-size: medium; color: rgb(70, 68, 68); padding: 0 2%;'>
-                            <span class='float-left'>Payable Amount</span>
-                            <span class='float-right'>$ 899</span>
-                        </p>
-                        <p style='text-align: center;'>
-                            <button class='order_place_btn'>PLACE ORDER</button>
-                        </p>
-                    </div>
-                </div>
+        <div class='col-md-4 col-12' *ngIf='prices.hasOwnProperty("total")'>
+            <div class='totals'>
+                <b>Sub Total </b> {{ prices.total | currency:"&#8377;"}}<br />
+                <b>Shipping Charges </b> {{ prices.shipping | currency:"&#8377;"}}<br />
+                <b>Tax </b> {{ prices.tax | currency:"&#8377;"}}<br />
+                <b>Grand Total </b> {{ prices.final | currency:"&#8377;"}}<br />
+            </div>
+        </div>
+    </div>
+    <br /><br />
+    <p style='text-align: center;' *ngIf='!is_online'>
+        <button class='order_place_btn' (click)="placeOrder()">PLACE ORDER</button>
+    </p>
+    <p style='text-align: center;' *ngIf='is_online'>
+        <button class='order_place_btn' data-toggle="modal" data-target="#paymentModal">PAY NOW</button>
+    </p>
+</div>
+
+<div class="modal fade" id="paymentModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel"><b>Payment Options</b></h5>
+            </div>
+            <div class="modal-body">
+                <h6>Card</h6>
             </div>
         </div>
     </div>

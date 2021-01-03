@@ -11,8 +11,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class BlogSearchComponent implements OnInit {
   query: String;
   blogs: Object[];
+  config: any;
 
-  constructor(private blogApi: BlogService, private route: ActivatedRoute) { }
+  constructor(private blogApi: BlogService, private router: Router, private route: ActivatedRoute) { 
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 1,
+      totalItems:0
+    };
+    route.queryParams.subscribe(
+      params => this.config.currentPage= params['page']?params['page']:1 
+    );
+
+  }
 
   ngOnInit(): void {
     this.query = this.route.snapshot.queryParams.value;
@@ -28,6 +39,14 @@ export class BlogSearchComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  pageChange(newPage: number) {
+    const urlParameters = Object.assign({}, this.route.snapshot.queryParams); 
+    urlParameters.page = newPage;
+    this.router.navigate(['./'], { relativeTo: this.route, queryParams: urlParameters }).then(
+      () => console.log('in')
+    );
   }
 
 }

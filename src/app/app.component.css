@@ -6,6 +6,10 @@
     background-size: cover;
 }
 
+.row {
+  margin: 0;
+  padding: 0;
+}
 
 #snackbar {
     visibility: hidden;             

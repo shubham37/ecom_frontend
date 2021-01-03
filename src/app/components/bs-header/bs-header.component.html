@@ -1,31 +1,29 @@
-<div class="row bs_header">
-    <div class="offset-md-1 col-md-10">
-        <div class='row'>
-            <div class='col-1'>
-                <select #langselect class='language' (change) = "changeLang(langselect.value)">
-                    <option *ngFor='let lang of translate.getLangs()' [value]='lang' [selected]="lang === translate.currentLang">{{ lang }}</option>
-                </select>
-            </div>
-            <div *ngIf='isLoggedIn' class='col' style='text-align: right;'>
-                <span style='color:#ff5e00; font-weight: bold; font-size: medium;'>
-                    Welcome
-                </span>
-            </div>
+<div class="container-fluid bs_header">
+    <div class='row'>
+        <div class='col-1'>
+            <select #langselect class='language' (change) = "changeLang(langselect.value)">
+                <option *ngFor='let lang of translate.getLangs()' [value]='lang' [selected]="lang === translate.currentLang">{{ lang }}</option>
+            </select>
+        </div>
+        <div *ngIf='isLoggedIn' class='col' style='text-align: right;'>
+            <span style='color:#ff5e00; font-weight: bold; font-size: medium;'>
+                Welcome
+            </span>
+        </div>
 
-            <div *ngIf='!isLoggedIn' class='col' style='text-align: right;'>
-                <!-- <span class='compare'>
-                    <a [routerLink]="['/compare']">{{ 'HEADER.COMPARE' | translate }}</a>
-                </span> -->
-                <span class='login'>
-                    <button class='btn login_text' data-toggle='modal' data-target='#login'>{{ 'HEADER.LOGIN' | translate }}</button>
-                </span>
-                <span class='seller'>
-                    <a [routerLink]="['/shop']">{{ 'HEADER.SELLER_REGISTRATION' | translate }}</a>
-                </span>
-                <span class='buyer'>
-                    <button class='btn buyer_regis' data-toggle='modal' data-target='#buyerRegistration'>{{ 'HEADER.BUYER_REGISTRATION' | translate }}</button>
-                </span>
-            </div>
+        <div *ngIf='!isLoggedIn' class='col' style='text-align: right;'>
+            <!-- <span class='compare'>
+                <a [routerLink]="['/compare']">{{ 'HEADER.COMPARE' | translate }}</a>
+            </span> -->
+            <span class='login'>
+                <button class='btn login_text' data-toggle='modal' data-target='#login'>{{ 'HEADER.LOGIN' | translate }}</button>
+            </span>
+            <span class='seller'>
+                <a [routerLink]="['/shop']">{{ 'HEADER.SELLER_REGISTRATION' | translate }}</a>
+            </span>
+            <span class='buyer'>
+                <button class='btn buyer_regis' data-toggle='modal' data-target='#buyerRegistration'>{{ 'HEADER.BUYER_REGISTRATION' | translate }}</button>
+            </span>
         </div>
     </div>
 </div>

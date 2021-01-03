@@ -11,8 +11,7 @@ import { BuyerService } from '../../services/buyer.service';
 export class WishlistComponent implements OnInit {
   wishlists : Object[] = [];
 
-  constructor(private buyerApi: BuyerService, private configApi: ConfigService) { 
-  }
+  constructor(private buyerApi: BuyerService, private configApi: ConfigService) { }
 
   ngOnInit(): void {
     this.getData();

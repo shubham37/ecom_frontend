@@ -1,11 +1,11 @@
 <div class='row' *ngIf="wishlists?.length == 0">
-    <div class='col' style=' width:100%; text-align:center;'>
-        <br />
-        <span class='empty_text'>YOU HAVE NO ITEMS IN YOUR WISHLIST.</span>
-        <br />        <br />
-
-        <a href='/'><button class='shop_button'>Continue Shopping</button></a>
-        <br />
+    <div class='col'>
+        <p style='text-align: center; margin-top: 5%;'>
+            <span class='empty_text'>YOU HAVE NO ITEMS IN YOUR WISHLIST.</span>
+        </p>
+        <p style='text-align: center; margin: 1% 0;'>
+            <a href='/'><button class='shop_button'>Continue Shopping</button></a>
+        </p>
         <br />
     </div>
 </div>
@@ -31,12 +31,12 @@
                             <td>In Stock</td>
                             <td>{{ product.mrp | currency:"&#8377;"}}</td>
                             <td>
-                                <span style='width:50%;'>
+                                <span style='width:50%;' data-toggle="tooltip" data-placement="bottom" title="Add To Cart">
                                     <button style='background-color: white; border: none;' (click)='wishlistToCart(product)'>
                                         <img src='assets/images/cart.png' alt='cart' class='ci' />
                                     </button>
                                 </span>
-                                <span style='width:50%; margin-left: 2%;'>
+                                <span style='width:50%; margin-left: 2%;' data-toggle="tooltip" data-placement="bottom" title="Remove">
                                     <button style='background-color: white; border: none;' (click)='removeFromWishlist(product.id)'>
                                         <img src='assets/images/delete.png' alt='delete' class='di' />
                                     </button>

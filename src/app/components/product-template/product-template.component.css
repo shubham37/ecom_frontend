@@ -8,12 +8,12 @@
 }
 
 .card {
-    width: 250px;
-    height: 400px;
+    width: 200px;
+    height: 325px;
     margin: 0 1%;
 }
 .card-img-top {
-    height:270px;
+    height:200px;
     background-color: rgba(224, 223, 223, 0.3);
 }
 
@@ -37,9 +37,9 @@ a {
 
 
 .card:hover {
-    -moz-box-shadow: 0px 10px 18px 15px rgba(189, 188, 186, 0.493);
-    -webkit-box-shadow: 0px 10px 18px 15px rgba(189, 188, 186, 0.493);
-    box-shadow: 0px 10px 18px 15px rgba(189, 188, 186, 0.493);
+    -moz-box-shadow: 0px 7px 14px 12px rgba(189, 188, 186, 0.3);
+    -webkit-box-shadow: 0px 7px 14px 12px rgba(189, 188, 186, 0.3);
+    box-shadow: 0px 7px 14px 12px rgba(189, 188, 186, 0.3);
 }
 
 .product_title {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BlogService } from '../../services/blog.service';
 
 
 @Component({
@@ -9,28 +10,33 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./blog-side.component.css']
 })
 export class BlogSideComponent implements OnInit {
-  numbers : Object[];
   formGroup;
+  blogs: Object[]= [];
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private blogApi: BlogService, private formBuilder: FormBuilder, private router: Router) { 
     this.formGroup = this.formBuilder.group({
       blog_query: '',
     });
-    this.numbers = [1,2];
   }
 
   ngOnInit(): void {
+    this.blogApi.GetBlogs().subscribe(
+      data => {
+        this.blogs = data;
+      },
+      error => {
+        console.log(error.message);
+      }      
+    )
   }
 
   onSearch(searchData) {
     var query = searchData['blog_query'];
 
     window.location.href = '/blogs/search?value=' + query
-    // this.router.navigate([''], { queryParams: { value: query } });
-  }
-
-  onTagClick(event) {
-    console.log(event);
+    // this.router.navigate([''], { queryParams: { value: query } }).then(
+    //   () => window.location.reload()
+    // )
   }
 
 }

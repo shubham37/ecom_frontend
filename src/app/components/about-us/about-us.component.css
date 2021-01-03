@@ -1,4 +1,9 @@
-.head_img {
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .head_img {
     width: 350px;
     height: 375px;
 }

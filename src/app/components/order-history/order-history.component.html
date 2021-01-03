@@ -1,1 +1,94 @@
-<p>order-history works!</p>
+<div class='block' *ngIf='!isStatusShow'>
+    <p class='title'>Order Detail</p>
+    <div class='details'>
+        <table class="table table-bordered table-responsive-md">
+            <thead>
+              <tr>
+                <th scope="col">Order ID</th>
+                <td style='color:rgb(94, 93, 93); font-family: Arial, Helvetica, sans-serif; font-size: larger;'><b>{{ order.orderId }}</b></td>
+                <th scope="col">Order Date</th>
+                <td>{{ order.ordered_date }}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Shipping Method</th>
+                <td>Urgent Del (2 hr, tat)</td>
+                <th scope="row">Shipping Address</th>
+                <td *ngIf='address.hasOwnProperty("id")'>
+                  {{ address.locality }} {{ address.address }}, <br />
+                  Near {{ address.landmark }} {{ address.pincode.city.city_name }}, <br />
+                  {{ address.pincode.city.state.state_name }} - <b>{{ address.pincode.pincode }}</b>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Item Details</th>
+                <td colspan=3>
+                    <table class="table table-bordered ">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">MRP</th>
+                            <th scope="col">Item Total</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf='products.length != 0'>
+                          <tr *ngFor='let product of products; let i=index;'>
+                            <th scope="row">{{ i+1 }}</th>
+                            <td>
+                                <b>{{ product.title }}</b><br />
+                                <img src='http://localhost:8000{{product.image}}' style='width:50px; height:50px' class='img-responsive' />
+                            </td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.mrp | currency:"&#8377;"}}</td>
+                            <td>{{ product.final | currency:"&#8377;"}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Total Items</th>
+                <td colspan=3>{{ quantity }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Other Details</th>
+                <td colspan=3>Jacob</td>
+              </tr>
+              <tr *ngIf='prices.hasOwnProperty("total")'>
+                <th scope="row">Sub Total</th>
+                <td colspan=3>{{ prices.total | currency:"&#8377;"}}</td>
+              </tr>
+              <tr *ngIf='prices.hasOwnProperty("shipping")'>
+                <th scope="row">Shipping Charges</th>
+                <td colspan=3>{{ prices.shipping | currency:"&#8377;"}}</td>
+              </tr>
+              <tr *ngIf='prices.hasOwnProperty("final")'>
+                <th scope="row">Grand Total</th>
+                <td colspan=3>{{ prices.final | currency:"&#8377;"}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <p style='margin-right: 10px; text-align: right'>
+        <a [routerLink]="['']">
+            <button class='btn cs'>Continue To Shop</button>
+        </a>
+        <button class='btn pc' (click)="showStatus()">Track your Order</button>
+    </p>
+</div>
+
+<div class='status_block' *ngIf='isStatusShow'>
+    <p style='font-family: Times;'>ORDER STATUS</p>
+    <div style='border: 1px solid #ff5e00; padding: 10px; border-radius: 5px;'>
+        <p style='font-size: small;'><b>Order ID:</b>  {{ order.orderId }}</p>
+        <p style='font-size: small;'><b>Order Date:</b>  {{ order.ordered_date }}</p>
+        <p style='text-align: center;'>
+            <button class='order_btn' (click)='closeStatus()'>Back To Order</button>
+        </p>
+    </div>
+</div>
+
+<br />

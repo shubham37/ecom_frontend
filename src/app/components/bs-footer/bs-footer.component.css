@@ -4,7 +4,11 @@
     color: black;
 }
 
-
+.row {
+    margin: 0;
+    padding: 0;
+  }
+  
 .title_footer {
     font-size: 30px;
     color: black;
@@ -26,10 +30,15 @@ li {
     text-align: left;
     padding: 5% 3%;
     margin: 0 5% 0px 0px;
-    border: 1px solid grey;
+    border: 1px solid white;
     border-radius: 50%;
     font-weight: bold;
     font-style: italic;
+}
+
+
+.social a {
+    color: #ff5e00;    
 }
 
 .social:hover {
@@ -37,7 +46,7 @@ li {
     -webkit-box-shadow: 0px 3px 8px #ff5e00;
     box-shadow: 0px 3px 8px #ff5e00;
 
-    border: 1px solid #ff5e00;
+    border: 1px solid #ff5e00;    
 }
 
 .email {

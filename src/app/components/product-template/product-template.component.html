@@ -1,9 +1,9 @@
-<div class="card">
+<div class="card" data-toggle="tooltip" data-placement="bottom" title='{{product.shop_name}}'>
     <a [routerLink]="['/product/', product.id]">
-        <img src="http://localhost:8000{{product.thumbnail.image}}" class="card-img-top" alt="...">
+        <img src="http://localhost:8000/media/{{product.image}}" class="card-img-top" alt="...">
     </a>
     <div class='card-body'>
-        <span class='category_text'>{{ product.category.name }}</span>
+        <span class='category_text'>{{ product.category }}</span>
         <span class='float-right add_wishlist_block'>
             <button class='add_wishlist_btn' (click)='addToWishlist(product.id)'>
                 <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-bookmark-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -19,7 +19,7 @@
             </a>
         </span>
         <br>
-        <svg *ngFor='let i of numbers' width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
+        <svg *ngFor='let i of counter(product.rating)' width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-star-fill" fill="#ff5e00" xmlns="http://www.w3.org/2000/svg">
             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
         </svg>            
         <br />

@@ -43,3 +43,7 @@
     padding: 2% 5%;
     border-radius: 45%;
 }
+
+a:hover {
+    text-decoration: none;
+}

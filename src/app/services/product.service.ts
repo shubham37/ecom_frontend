@@ -23,6 +23,11 @@ export class ProductService {
     );
   }
 
+  searchMultiProducts(options) : Observable<any> {
+    return this.httpClient.get(this.url + '/multi_search', {'params': {'values':options}}
+    );
+  }
+
   fetchShippingOptions(product): Observable<any> {
     return this.httpClient.get(this.url + '/shipping_option/'+ product);
   }
@@ -65,6 +70,13 @@ export class ProductService {
 
   fetchSubCategoryByCategory(cat) : Observable<any> {
     return this.httpClient.get(this.url + '/sub_category/byCategory', {'params': {'name': cat}});
+  }
+
+  writeReview(proId: any, details: any) : Observable<any> {
+    return this.httpClient.post<any>(this.url+'/review/', {
+      'product_id': proId,
+      'detail': details
+    }, this.httpOptions)
   }
 
 }

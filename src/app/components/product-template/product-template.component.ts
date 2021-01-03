@@ -21,8 +21,7 @@ export class ProductTemplateComponent implements OnInit {
 
   addToCart(product) {
     if (this.configApi.isLoggedIn()) {
-      this.configApi.addToCart(product)
-      this.snackbar.innerText = "Added Successfully."  
+      this.snackbar.innerText = this.configApi.addToCart(product)
       setTimeout(
         function()
         {
@@ -43,7 +42,7 @@ export class ProductTemplateComponent implements OnInit {
     if (this.configApi.isLoggedIn()) {
       this.buyerApi.addWishlist(id).subscribe(
         data => {
-          this.snackbar.innerText = "Added Successfully."  
+          this.snackbar.innerText = data.detail
           setTimeout(
             function()
             {
@@ -63,6 +62,10 @@ export class ProductTemplateComponent implements OnInit {
         }, 2000);
     }
     this.snackbar.className = "show";
+  }
+
+  counter(i: number) {
+    return new Array(i);
   }
 
 }

@@ -24,22 +24,34 @@ export class OrderService {
   orderPlace(orderDetail) : Observable<any> {
     return this.httpClient.post<any>(this.url + '/order_place/',{
       orderDetail
-    })
+    }, this.httpOptions)
   }
 
   fetchOrders() : Observable<any> {
     return this.httpClient.get(this.url+'/orders', this.httpOptions)
   }
 
-  fetchOrder(id) : Observable<any> {
-    return this.httpClient.get(this.url+'/orders/'+id, this.httpOptions)
+  fetchOrder(orderId: string) : Observable<any> {
+    console.log(this.url+'/orders/'+ orderId)
+    return this.httpClient.get(this.url+'/orders/'+ orderId+ '/order_detail', this.httpOptions)
   }
 
-  writeOrderReview(id, comment, rating) : Observable<any> {
-    return this.httpClient.post<any>(this.url+'/orders/'+id, {
+  writeOrderReview(orderId, comment, rating) : Observable<any> {
+    return this.httpClient.post<any>(this.url+'/orders/add_order_review/', {
+      'orderId': orderId,
       'comment': comment,
       'rating': rating
     }, this.httpOptions)
+  }
+
+  removeOrderDetails(): void {
+    localStorage.removeItem("shipping_address");
+    localStorage.removeItem("is_shipping_same");
+    localStorage.removeItem("billing_address");
+    localStorage.removeItem("shipping_option");
+    localStorage.removeItem("cart");
+    localStorage.removeItem("is_cod");
+    localStorage.removeItem("is_online");
   }
 
 }

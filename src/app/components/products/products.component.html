@@ -5,18 +5,9 @@
                 <!-- Given Sorting and Filter Option -->
                 <div class='row con'>
                     <div class='col-md-3' style='width:100%;'>
-                        <select class='categories'>
-                            <option selected>Categories</option>
-                            <option>Laptop</option>
-                            <option>Mobile</option>
-                        </select>
-                        <br />
-                        <select class='sub_categories'>
-                            <option selected>Sub Categories</option>
-                            <option>Laptop</option>
-                            <option>Mobile</option>
-                        </select>
-                        <br />
+                        <p class='filter_title'>
+                            Filters
+                        </p>
                         <select class='brands'>
                             <option selected>Brands</option>
                             <option>Laptop</option>
@@ -32,10 +23,11 @@
                     </div>
                     <div class='col' style='width:100%;'>
                         <div class='options'>
-                            <span><button class='popularity_filter'>Popularity</button></span>
-                            <span><button class='rating_filter'>Price - High to Low</button></span>
-                            <span><button class='price_filter'>Price - Low to High</button></span>
-                            <span><button class='price_filter'>Newest First</button></span>
+                            <select class='sort'>
+                                <option *ngFor="let food of foods" [value]="food.value">
+                                    {{food.viewValue}}
+                                </option>
+                            </select>
                         </div>
                         <br />
 
@@ -48,7 +40,7 @@
                         <br />
 
                         <!-- Pagination  -->
-                        <div>
+                        <div class='pagination'>
                             <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
                         </div>
                     </div>

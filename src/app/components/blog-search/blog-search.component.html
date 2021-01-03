@@ -6,13 +6,18 @@
 </div>
 <div *ngIf='blogs.length'>
     <div class='row'>
-        <div class='col-md-6 col-12' *ngFor='let blog of blogs'>
+        <div class='col-md-6 col-12' *ngFor='let blog of blogs | paginate: config'>
             <div class='blog_image'>
                 <img src='assets/images/blog.jpg' alt='blog' style='width:100%; height:250px;' />
                 <div class="details_block">
                     <h1>{{ blog.title }}</h1>
                 </div>
             </div>
-        </div>    
+        </div>
+    </div>
+
+    <br />
+    <div class='pagenation'>
+        <pagination-controls (pageChange)="pageChange($event)" class="my-pagination"></pagination-controls>
     </div>
 </div>
