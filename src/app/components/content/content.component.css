@@ -1,0 +1,9 @@
+.block {
+    padding: 10px;
+}
+
+@media screen and (max-width: 425px) {
+    .block {
+        padding: 0px;
+    }
+}

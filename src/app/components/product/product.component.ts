@@ -21,6 +21,7 @@ export class ProductComponent implements OnInit {
   cart_quantity = 0;
   show_available: boolean = true;
   snackbar: any;
+  isInWishlist: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router,
     private route: ActivatedRoute, private productApi: ProductService,
@@ -45,7 +46,17 @@ export class ProductComponent implements OnInit {
       data => {
         this.product = data;
         this.cart_quantity = this.configApi.alreadyInCart(data.id);
-        console.log(this.cart_quantity);
+        console.log(data);
+        if (this.configApi.isLoggedIn()) {
+          this.buyerApi.isInYourWishlist(data.id).subscribe(
+            data=> {
+              this.isInWishlist = data.exist;
+            }, error => {
+              this.isInWishlist = false;
+            }
+          )
+        }
+
       },
       error => {
         console.log(error.message);
@@ -73,7 +84,7 @@ export class ProductComponent implements OnInit {
       imageBlock.removeChild(imageBlock.childNodes[0]);
     }
     var img = document.createElement('img'); 
-    img.src =  'http://localhost:8000/media/' + image;
+    img.src =  'http://localhost:8000' + image;
     img.style.height = '100%';
     img.style.width = '100%';
     imageBlock.appendChild(img);

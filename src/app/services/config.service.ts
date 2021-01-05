@@ -24,6 +24,14 @@ interface PriceDetails {
 export class ConfigService {
   private _baseConfig: any = {
     "baseUrl": "http://localhost:8000",
+    "sorting_options": [
+      {value: '0', viewValue: 'Popularity'},
+      {value: '1', viewValue: 'Newest First'},
+      {value: '2', viewValue: 'Price Low to High'},
+      {value: '3', viewValue: 'Price High to Low'},
+      {value: '4', viewValue: 'Alphabet A to Z'},
+      {value: '5', viewValue: 'Alphabet Z to A'}
+    ]
   }
 
   private _languages = [
@@ -72,10 +80,10 @@ export class ConfigService {
       title: product.title,
       image: product.image,
       mrp: product.mrp,
-      discount: '15 %',
-      price: product.mrp,
+      discount: product.discount_str || '',
+      price: product.final_price,
       quantity: local_qty,
-      final: product.mrp * local_qty
+      final: product.final_price * local_qty
     }
     cart.push(this.product);
 
@@ -98,7 +106,7 @@ export class ConfigService {
     for (var product in cart) {
       if (cart[product].id === productId) {
          cart[product].quantity = currentQuantity + 1;
-         cart[product].final = cart[product].mrp * (currentQuantity + 1);
+         cart[product].final = cart[product].final_price * (currentQuantity + 1);
          break;
       }
     }
@@ -110,7 +118,7 @@ export class ConfigService {
     for (var product in cart) {
       if (cart[product].id === productId) {
          cart[product].quantity = currentQuantity - 1;
-         cart[product].final = cart[product].mrp * (currentQuantity - 1);
+         cart[product].final = cart[product].final_price * (currentQuantity - 1);
          break;
       }
     }

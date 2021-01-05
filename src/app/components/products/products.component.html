@@ -23,10 +23,8 @@
                     </div>
                     <div class='col' style='width:100%;'>
                         <div class='options'>
-                            <select class='sort'>
-                                <option *ngFor="let food of foods" [value]="food.value">
-                                    {{food.viewValue}}
-                                </option>
+                            <select class='sort' (change)="onChange($event.target.value)">
+                                <option *ngFor='let opt of sorting_options' [value]="opt.value">{{ opt.viewValue}}</option>
                             </select>
                         </div>
                         <br />

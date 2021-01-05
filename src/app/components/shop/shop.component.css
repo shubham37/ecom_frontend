@@ -47,7 +47,7 @@ label {
     color: white;
     font-weight: bold;
     font-size: small;
-    padding: 1.5% 25px;
+    padding: 8px 25px;
     border: none;
 }
 
@@ -75,4 +75,16 @@ legend {
 
 .bank_detail {
     width: 160px;
+}
+
+
+.backButton {
+    border: none;
+    padding: 8px 25px;
+    font-size: larger;
+    font-weight: bolder;
+    font-family: Times;
+    color: rgb(88, 87, 87);
+    background-color: white;
+    margin-top: 5px;
 }

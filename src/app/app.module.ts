@@ -146,10 +146,10 @@ export const createTransalteLoader = (http: HttpClient) => {
       {path:'contact', component:ContactComponent},
       {path:'about_us', component:AboutUsComponent},
       {path:'cart', component:CartComponent},
-      {path:'category/:cat', component:CategoricalComponent},
+      {path:'categorical', component:CategoricalComponent},
       {path:'search', component:SearchResultComponent},
       {path:'multi_search', component: MultiSearchComponent},
-      {path:'shop/:shop_identifier', component:SellerPageComponent},
+      {path:'shop/:identifier', component:SellerPageComponent},
       {
         path:'check-out',
         component: CheckoutMainComponent,

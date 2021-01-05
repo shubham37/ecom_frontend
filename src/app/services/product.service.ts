@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, ObservableLike, throwError } from 'rxjs';
 import { ConfigService } from './config.service';
 
 @Injectable({
@@ -64,8 +64,8 @@ export class ProductService {
     return this.httpClient.get(this.url + '/category/byName', {'params': {'name': cat}})
   }
 
-  fetchProductsByCategory(cat) : Observable<any> {
-    return this.httpClient.get(this.url + '/products/byCategory', {'params': {'name': cat}});
+  fetchProductsByCategory(params: any) : Observable<any> {
+    return this.httpClient.get(this.url + '/products/byCategory', {'params': params});
   }
 
   fetchSubCategoryByCategory(cat) : Observable<any> {

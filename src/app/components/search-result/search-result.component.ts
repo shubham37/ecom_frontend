@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { ConfigService } from '../../services/config.service';
 import { ProductService } from '../../services/product.service';
 
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-search-result',
@@ -16,25 +11,21 @@ interface Food {
 })
 export class SearchResultComponent implements OnInit {
 
-  foods: Food[] = [
-    {value: '0', viewValue: 'Popularity'},
-    {value: '1', viewValue: 'Price Low to High'},
-    {value: '2', viewValue: 'Price High to Low'},
-    {value: '3', viewValue: 'Newest First'}
-  ];
   public products: Object[] = [];
   public query : string = '';
   config: any;
+  sorting_options = [];
   
-  constructor(private route: ActivatedRoute, private router: Router, private cookieService: CookieService, private productApi: ProductService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private configApi: ConfigService, private productApi: ProductService) { 
     this.query = this.route.snapshot.queryParams.value;
     this.productApi.SearchQuery(this.query).subscribe(
       data => {
-        if (data!=null && data.length === 1) {
-          this.router.navigate(['/product/'+ data[0].id])
-        } else if (data!=null && data.length >= 1) {
-          this.products = data
-        }
+        this.products = data
+        // if (data!=null && data.length === 1) {
+        //   this.router.navigate(['/product/'+ data[0].id])
+        // } else if (data!=null && data.length >= 1) {
+        //   this.products = data
+        // }
       },
       error => {
         console.log(error);
@@ -49,6 +40,8 @@ export class SearchResultComponent implements OnInit {
     route.queryParams.subscribe(
       params => this.config.currentPage= params['page']?params['page']:1 
     );
+    this.sorting_options = this.configApi.get('sorting_options')
+
   }
 
   ngOnInit(): void {
@@ -61,5 +54,24 @@ export class SearchResultComponent implements OnInit {
       () => console.log('in')
     );
   }
+
+  onChange(sort_option: string) {
+    if (this.products.length > 0) {
+      if (sort_option === '0') {
+        this.products.sort((a: any, b: any) => (a.rating > b.rating) ? 1 : -1)
+      } else if (sort_option === '1') {
+        this.products.sort((a: any, b: any) => (a.date_added < b.date_added) ? 1 : -1)
+      } else if (sort_option === '2') {
+        this.products.sort((a: any, b: any) => (a.mrp > b.mrp) ? 1 : -1)
+      } else if (sort_option === '3') {
+        this.products.sort((a: any, b: any) => (a.mrp < b.mrp) ? 1 : -1)
+      } else if (sort_option === '4') {
+        this.products.sort((a: any, b: any) => (a.title > b.title) ? 1 : -1)
+      } else {
+        this.products.sort((a: any, b: any) => (a.title < b.title) ? 1 : -1)
+      }
+    }
+  }
+
 
 }

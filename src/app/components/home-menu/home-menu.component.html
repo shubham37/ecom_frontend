@@ -5,7 +5,7 @@
     <div class='col-md-8 col-7'>
         <div class='row'>
             <div class='col-md-6' *ngFor='let sub of subCategories'>
-                <a [routerLink]="['/products']" [queryParams]="{subcategory: sub.id, category: sub.cat.id}">{{ sub.name }}</a><br />
+                <a [routerLink]="['/products']" [queryParams]="{sub_category: sub.name, category: sub.cat.name}">{{ sub.name }}</a><br />
             </div>
         </div>
     </div>

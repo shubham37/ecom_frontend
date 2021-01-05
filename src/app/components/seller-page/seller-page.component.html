@@ -14,14 +14,16 @@
         <br />
         <div class='row'>
             <div class='col-md-2 col-6' *ngFor='let cat of categories'>
-                <img src='assets/images/cart_product.jpg' alt='...' style='width: 100%; height: 75%;' /><br />
-                <button class='cat_block'>
-                    Grocery
-                </button>
+                <a [routerLink]="['/categorical']" [queryParams]="{category: 'grocery', seller:store.identifier}">
+                    <img src='assets/images/cart_product.jpg' alt='...' style='width: 100%; height: 75%;' /><br />
+                    <button class='cat_block'>
+                        Grocery
+                    </button>
+                </a>
             </div>
         </div>
         <p style='text-align: center; margin-top: 5%;'>
-            <button class='products'>View our all Products</button>
+            <button type='button' class='products' data-toggle="modal" data-target="#productsModal">View our all Products</button>
         </p>
 
     </div>
@@ -51,9 +53,9 @@
                             </svg>
                         </button>
                     </div>
-                    <div #widgetsContent class="custom-slider-main">
-                        <div class="info-box" *ngFor='let pro of products'>
-                            <app-product-template [product]='pro'></app-product-template>
+                    <div #widgetsContent class="custom-slider-main" *ngIf='store.hasOwnProperty("products")'>
+                        <div class="info-box" *ngFor='let product of store.products'>
+                            <app-product-template [product]='product'></app-product-template>
                         </div>
                     </div>
                     <div class="pull-right mt-sm">
@@ -71,4 +73,25 @@
 </div>
 
 
-
+<!-- Modal -->
+<div class="modal fade" id="productsModal" data-backdrop="static" tabindex="-1" aria-labelledby="productsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" *ngIf='store.hasOwnProperty("products")'>
+            <div class="modal-header">
+                <span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="shop_title" id="exampleModalLabel">{{ store.shop_name }}</h5>
+                </span>
+            </div>
+            <div class="modal-body">
+                <div class='row'>
+                    <div class='col-md-3 col-6' *ngFor='let product of store.products'>
+                        <app-product-template [product]='product'></app-product-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

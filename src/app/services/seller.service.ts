@@ -20,10 +20,16 @@ export class SellerService {
   }
 
   // Call on submit Seller Registration Form
-  sellerRegistration(formData) : Observable<any> {
-    return this.httpClient.post<any>(this.url + '/register/',{
-      formData
-    })
+  sellerRegistration(data: any) : Observable<any> {
+    return this.httpClient.post<any>(this.url + '/register/',data)
+  }
+
+  sellersByPincode(pincode: any) : Observable<any> {
+    return this.httpClient.post<any>(this.url + '/by_category/', {'pincode':pincode}, this.httpOptions)
+  }
+
+  sellerStore(identifier: any) : Observable<any> {
+    return this.httpClient.post<any>(this.url + '/store/', {'identifier': identifier}, this.httpOptions)
   }
 
 }

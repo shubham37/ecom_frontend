@@ -80,13 +80,13 @@
                                         <label for='zipcode'>
                                             <span>Zip Code</span>
                                         </label><br />
-                                        <input type='text' id='inputField' placeholder='ZipCode' formControlName="zip_code" />
+                                        <input type='text' id='inputField' placeholder='ZipCode' formControlName="zip_code" (change)='onZipChange($event.target.value)' />
                                     </div>
                                     <div class='col' style='width:100%;'>
                                         <label for='city'>
                                             <span>City</span>
                                         </label><br />
-                                        <input type='text' id='inputField' placeholder='City' formControlName="city" />
+                                        <input type='text' id='inputField' placeholder='City' formControlName="city" disabled />
                                     </div>
                                 </div>
     
@@ -99,12 +99,10 @@
                                         <input type='text' id='inputField' placeholder='Shop Address' formControlName="address" />
                                     </div>
                                     <div class='col' style='width:100%;'>
-                                        <label for='country'>
-                                            <span>Country</span>
+                                        <label for='city'>
+                                            <span>State</span>
                                         </label><br />
-                                        <select id='inputField' formControlName="country">
-                                            <option value='1'>India</option>
-                                        </select>
+                                        <input type='text' id='inputField' placeholder='State' formControlName="state" disabled />
                                     </div>
                                 </div>
                                 <br />
@@ -143,13 +141,13 @@
                                         <label for='pancard'>
                                             <span>Pan Card</span>
                                         </label><br />
-                                        <input type='file' id='inputField' name="pancard" class='form-control' (change)='onPanChange($event)' />
+                                        <input type='file' id='inputField' (change)='onPanChange($event)' />
                                     </div>
                                     <div class='col-6 col-md-6' style='width:100%;'>
                                         <label for='adharcard'>
                                             <span>Adhar Card</span>
                                         </label><br />
-                                        <input type='file' id='inputField' name="adharcard" (change)='onAdharChange($event)' />
+                                        <input type='file' id='inputField' (change)='onAdharChange($event)' />
                                     </div>
                                 </div>
 
@@ -159,13 +157,13 @@
                                         <label for='logo'>
                                             <span>Logo</span>
                                         </label><br />
-                                        <input type='file' id='inputField' name="logo" (change)='onLogoChange($event)' />
+                                        <input type='file' id='inputField' (change)='onLogoChange($event)' />
                                     </div>
                                     <div class='col-6 col-md-6' style='width:100%;'>
                                         <label for='board'>
                                             <span>Shop Board Picture</span>
                                         </label><br />
-                                        <input type='file' id='inputField' name="board" (change)='onBoardChange($event)' />
+                                        <input type='file' id='inputField' (change)='onBoardChange($event)' />
                                     </div>
                                 </div>
     
@@ -218,13 +216,14 @@
 
                                         <div class='row'>
                                             <div class='col-md-7 col-12 col-s-5'>
-                                                <input type='text' id='inputField' placeholder='Pincode Seprated by Comma. eg. 102011,123243,423545' />
+                                                <input type='text' id='inputField' placeholder='Pincode Seprated by Comma. eg. 102011,123243,423545' formControlName='pincodes' />
                                             </div>
                                             <div class='col-md-1 col-12 col-s-5'>
                                                 <p style='color:gray; text-align: center;'>or</p>
                                             </div>
                                             <div class='col-md-4 col-12 col-s-5'>
-                                                <input type='file' id='inputField' name="service_pincode" class='form-control' />
+                                                <input type='file' id='inputField' placeholder='upload file of servicable pincodes' (change)='onPincodeFileChange($event)' />
+                                                <span style="font-size: small; color: red;font-weight: lighter;">.xlsx supported only</span>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +231,8 @@
 
 
                                 <p style='text-align: center; margin-top:3%;'>
-                                    <button class='setup' (click)='onBusinessSubmit()'>Start With Business</button>
+                                    <button class='setup' (click)='onBusinessSubmit()'>Start With Business</button><br />
+                                    <button class='backButton' (click)="showInfoBlock()"> Back </button>
                                 </p>
     
                             </div>
@@ -317,12 +317,13 @@
                                         <label>
                                             Bank Proof Upload (cancelled cheque or Bank statement or Passbook with clear Account holder name, Account number and IFSC code)
                                         </label>
-                                        <input type='file' id='inputField' placeholder='Upload Bank Document' name='proof' (change)='onProofChange($event)' />
+                                        <input type='file' id='inputField' placeholder='Upload Bank Document' (change)='onProofChange($event)' />
                                     </div>
                                 </div>
                                 
                                 <p style='text-align: center; margin-top:3%;'>
-                                    <button class='store' type='submit' (click)='onBankSubmit()' *ngIf='!isPorceessing'>Open Store</button>
+                                    <button class='store' type='submit' (click)='onBankSubmit()' *ngIf='!isPorceessing'>Open Store</button><br />
+                                    <button class='backButton' (click)="onInfoSubmit()"> Back </button><br />
                                     <span class='spinner-borderd text-danger' role='status' *ngIf='isPorceessing'></span>
                                 </p>    
                             </div>

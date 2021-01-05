@@ -79,10 +79,10 @@ export class DefaultComponent implements OnInit {
 
   }
 
-  chooseCategory(catName) {
-    console.log(catName);
-    this.router.navigate(["/category/", catName])
-  }
+  // chooseCategory(catName) {
+  //   console.log(catName);
+  //   this.router.navigate(["/categorical?", { category: catName}}])
+  // }
 
   scrollLeft(){
     this.widgetsContent.nativeElement.scrollLeft -= 300;

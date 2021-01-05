@@ -32,7 +32,7 @@ export class OrderHistoryComponent implements OnInit {
         data.order_detail.products.map((product) => {
           this.quantity = this.quantity + product.quantity;
         })
-        if (data.order_detail.is_shipping_same) {
+        if (data.order_detail.is_billing_same) {
           this.address = data.order_detail.billing_address
         } else {
           this.address = data.order_detail.shipping_address

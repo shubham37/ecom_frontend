@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductService } from '../../services/product.service';
+import { SellerService } from '../../services/seller.service';
+import { Router, ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-seller-page',
@@ -8,21 +10,20 @@ import { ProductService } from '../../services/product.service';
 })
 export class SellerPageComponent implements OnInit {
   categories = [1,2,3,1,2,3]
-  products: Object[] = [];
+  store: Object={};
 
-  constructor(private productApi: ProductService) { }
+  constructor(private productApi: ProductService, private sellerApi: SellerService, private router: Router, private route: ActivatedRoute) { }
 
   @ViewChild('widgetsContent') widgetsContent: ElementRef;
   ngOnInit(): void {
-    this.productApi.fetchPopularViewed().subscribe(
+    this.sellerApi.sellerStore(this.route.snapshot.params.identifier).subscribe(
       data => {
-        this.products = data.viewed;
+        this.store = data;
       },
       error => {
         console.log(error);
       }
     )
-
   }
 
   scrollLeft(){

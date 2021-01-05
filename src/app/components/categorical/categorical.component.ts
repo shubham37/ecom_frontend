@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { ProductService } from '../../services/product.service'
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-categorical',
@@ -12,20 +13,24 @@ export class CategoricalComponent implements OnInit {
   products: Object[] = [];
   sub_categories: Object[] = [];
   config: any;
+  sorting_options = []
 
-  constructor(private productApi: ProductService, private router: Router, private route: ActivatedRoute) { 
+  constructor(private productApi: ProductService, private  configApi: ConfigService, private router: Router, private route: ActivatedRoute) { 
     this.config = {
       currentPage: 1,
-      itemsPerPage: 1,
-      totalItems:0
+      itemsPerPage: 2,
+      totalItems: 0
     };
     route.queryParams.subscribe(
       params => this.config.currentPage= params['page']?params['page']:1 
     );
+
+    this.sorting_options = this.configApi.get('sorting_options')
   }
 
   ngOnInit(): void {
-    this.productApi.fetchCategoryByName(this.route.snapshot.params.cat).subscribe(
+    let cat = this.route.snapshot.queryParams.category
+    this.productApi.fetchCategoryByName(cat).subscribe(
       data => {
         this.category = data;
         console.log(data)
@@ -34,19 +39,27 @@ export class CategoricalComponent implements OnInit {
       }
     )
 
-    this.productApi.fetchProductsByCategory(this.route.snapshot.params.cat).subscribe(
+    this.getData();
+
+    this.productApi.fetchSubCategoryByCategory(cat).subscribe(
       data => {
-        this.products = data;
+        this.sub_categories = data;
         console.log(data)
       }, error => {
         console.log(error)
       }
     )
+  }
 
-    this.productApi.fetchSubCategoryByCategory(this.route.snapshot.params.cat).subscribe(
+  getData(): void {
+    this.productApi.fetchProductsByCategory(this.route.snapshot.queryParams).subscribe(
       data => {
-        this.sub_categories = data;
         console.log(data)
+        if (data != null) {
+          this.products = data;
+        } else {
+          this.products = []
+        }
       }, error => {
         console.log(error)
       }
@@ -61,5 +74,34 @@ export class CategoricalComponent implements OnInit {
     );
   }
 
+  onChange(sort_option: string) {
+    if (this.products.length > 0) {
+      if (sort_option === '0') {
+        this.products.sort((a: any, b: any) => (a.rating > b.rating) ? 1 : -1)
+      } else if (sort_option === '1') {
+        this.products.sort((a: any, b: any) => (a.date_added < b.date_added) ? 1 : -1)
+      } else if (sort_option === '2') {
+        this.products.sort((a: any, b: any) => (a.mrp > b.mrp) ? 1 : -1)
+      } else if (sort_option === '3') {
+        this.products.sort((a: any, b: any) => (a.mrp < b.mrp) ? 1 : -1)
+      } else if (sort_option === '4') {
+        this.products.sort((a: any, b: any) => (a.title > b.title) ? 1 : -1)
+      } else {
+        this.products.sort((a: any, b: any) => (a.title < b.title) ? 1 : -1)
+      }
+    }
+  }
+
+  onChooseSubCategory(sub_category: string): void {
+    const urlParameters = Object.assign({}, this.route.snapshot.queryParams); 
+    if (sub_category != 'all') {
+      urlParameters.sub_category = sub_category;
+    } else {
+      delete urlParameters.sub_category
+    }
+    this.router.navigate(['./'], { relativeTo: this.route, queryParams: urlParameters }).then(
+      () => this.getData()
+    );
+  }
 
 }

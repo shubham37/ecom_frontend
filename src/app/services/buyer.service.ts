@@ -117,4 +117,8 @@ export class BuyerService {
     return this.httpClient.delete<any>(this.url+'/buyer_wishlist/'+ proId, this.httpOptions)
   }
 
+  isInYourWishlist(proId): Observable<any> {
+    return this.httpClient.get<any>(this.url+'/buyer_wishlist/'+ proId+ '/isYour', this.httpOptions)
+  }
+
 }
