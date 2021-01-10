@@ -35,7 +35,6 @@ export class BlogColumnComponent implements OnInit {
     this.blogApi.GetBlog(this.route.snapshot.params.blogid).subscribe(
       data => {
         this.blog = data;
-        console.log(this.blog)
       },
       error => {
         console.log(error);

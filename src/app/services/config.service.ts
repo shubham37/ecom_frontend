@@ -9,6 +9,12 @@ interface Product {
   price: Number;
   quantity: Number;
   final: Number;
+  shipping: Number;
+  seller: string;
+  shop_name: string;
+  seller_address: string;
+  shipping_charge: Number;
+  shipping_method: string;
 }
 
 interface PriceDetails {
@@ -75,6 +81,7 @@ export class ConfigService {
     if (qty > 0) {
       local_qty = qty
     }
+
     this.product = {
       id: Number(product.id),
       title: product.title,
@@ -83,7 +90,13 @@ export class ConfigService {
       discount: product.discount_str || '',
       price: product.final_price,
       quantity: local_qty,
-      final: product.final_price * local_qty
+      final: product.final_price * local_qty,
+      shipping: Number(product.shipping),
+      seller: product.seller,
+      shop_name: product.shop_name,
+      seller_address: product.seller_address,
+      shipping_charge: 0,
+      shipping_method: '3'
     }
     cart.push(this.product);
 
@@ -106,7 +119,7 @@ export class ConfigService {
     for (var product in cart) {
       if (cart[product].id === productId) {
          cart[product].quantity = currentQuantity + 1;
-         cart[product].final = cart[product].final_price * (currentQuantity + 1);
+         cart[product].final = cart[product].price * (currentQuantity + 1);
          break;
       }
     }
@@ -118,7 +131,7 @@ export class ConfigService {
     for (var product in cart) {
       if (cart[product].id === productId) {
          cart[product].quantity = currentQuantity - 1;
-         cart[product].final = cart[product].final_price * (currentQuantity - 1);
+         cart[product].final = cart[product].price * (currentQuantity - 1);
          break;
       }
     }
@@ -128,15 +141,17 @@ export class ConfigService {
   calculatePrices(): void {
     let cart = JSON.parse(localStorage.getItem('cart'))
     let total: any= 0;
+    let shipping: any=0;
     for (var product in cart) {
         total = total + cart[product].final
+        shipping = shipping + cart[product].shipping_charge
     }
     let prices = {
       'total': total,
       'tax': total * 0.18,
-      'shipping': 0,
+      'shipping': shipping,
       'coupon': 0,
-      'final': total + (total * 0.18)
+      'final': total + (total * 0.18) + shipping
     }
     localStorage.setItem('prices', JSON.stringify(prices));
   }

@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { SellerService } from '../../services/seller.service';
 import { ApiService } from '../../services/api.service'
 
+declare const L: any;
 
 @Component({
   selector: 'app-shop',
@@ -20,8 +21,9 @@ export class ShopComponent implements OnInit {
   board: File = null;
   pincode_file: File = null;
   proof: File = null;
-
   isPorceessing : boolean = false;
+
+  // public final_pincodes: any= [];
 
   formGroup : FormGroup;
 
@@ -45,7 +47,7 @@ export class ShopComponent implements OnInit {
       role: new FormControl(1, [Validators.required]),
       minimum_order: new FormControl(0, [Validators.required]),
       category: new FormControl(1, [Validators.required]),
-      pincodes: new FormControl('', [Validators.required]),
+      pincodes: new FormControl([], [Validators.required]),
  
       ifsc: new FormControl('', [Validators.required]),
       bank_city: new FormControl('', [Validators.required]),
@@ -57,6 +59,23 @@ export class ShopComponent implements OnInit {
     this.isInfoShow = true;
     this.isBusinessShow = false;
     this.isBankShow  = false;
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coords = position.coords;
+      let mymap = L.map('mapid').setView([coords.latitude, coords.longitude], 13);
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2h1YmhhbTM3IiwiYSI6ImNramx0OHBxaTByYmUyc3MydG1lZTZqZGUifQ.rc9s5YFOQOMzq4dE2PfPDw', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+      }).addTo(mymap);
+      var marker = L.marker([coords.latitude, coords.longitude]).addTo(mymap);
+      marker.bindPopup("You Are here.").openPopup()
+      // console.warn(position.coords.latitude)
+      // console.warn(position.coords.longitude)
+    })
   }
 
   showInfoBlock() {
@@ -102,10 +121,36 @@ export class ShopComponent implements OnInit {
     }
 
   }
+  
+  isValidCSVFile(file: any) {  
+    if (file.name.endsWith(".csv") || file.name.endsWith(".xlsx")){
+      return true;
+    }
+    return false;
+  } 
+
+
+  onFileLoad(fileLoadedEvent) {
+    const textFromFileLoaded = fileLoadedEvent.target.result;
+    let pin = fileLoadedEvent.target.result.replaceAll('\r\n', ',').replace('pincode,','')
+    localStorage.setItem('pincodes', pin)
+  }
+
+  onFileError() {
+    alert('Please Check FIle Content.')
+  }
 
   onPincodeFileChange(event: any) {
     if (event.target.files.length > 0) {
-      this.pincode_file = event.target.files[0];
+      this.pincode_file = event.target.files[0];          
+      if (this.isValidCSVFile(this.pincode_file)) {
+        const fileReader = new FileReader();
+        fileReader.onload = this.onFileLoad;
+        fileReader.onerror = this.onFileError;
+        fileReader.readAsText(this.pincode_file, "UTF-8");
+      } else {
+        alert("Please import valid .csv file.");  
+      }
     }
   }
 
@@ -128,31 +173,18 @@ export class ShopComponent implements OnInit {
       this.proof = event.target.files[0];
     }
   }
-
-  prepare_pincodes(pincodes: string): string {
-    let final =''
-    pincodes.split(',').forEach(function(item) {
-      final = final.concat(',',item.trim())
-    })
-    return final
-  }
   
   onBankSubmit() {
     this.isPorceessing = true;
     var x = document.getElementById("snackbar");
 
     if (this.formGroup.valid ) {
-  
+
       if (this.pancard != null && this.adharcard != null && 
         this.logo != null && this.board != null && this.proof != null ) {
-          
           if (this.formGroup.value.password === this.formGroup.value.cnf_password) {
-            let pincodes=''
-            if (this.formGroup.value.pincodes) {
-              pincodes = this.prepare_pincodes(this.formGroup.value.pincodes)
-              console.log(pincodes);
-            }
-
+            let final_pincodes =  localStorage.getItem('pin')
+            localStorage.removeItem('pin');
             const uploadData = new FormData();
 
             uploadData.append('pancard', this.pancard, this.pancard.name)
@@ -165,7 +197,7 @@ export class ShopComponent implements OnInit {
               uploadData.append('pincode_file', '')
             }
             uploadData.append('proof', this.proof, this.proof.name)
-        
+
             uploadData.append('email', this.formGroup.value.userid)
             uploadData.append('phone', this.formGroup.value.phone)
             uploadData.append('password', this.formGroup.value.password)        
@@ -178,7 +210,11 @@ export class ShopComponent implements OnInit {
             uploadData.append('role', this.formGroup.value.role)
             uploadData.append('minimum_order', this.formGroup.value.minimum_order)
             uploadData.append('category', this.formGroup.value.category)
-            uploadData.append('pincodes', pincodes)
+            uploadData.append('pincodes', this.formGroup.value.pincodes)
+            if (final_pincodes && final_pincodes != null && final_pincodes != undefined) {
+              uploadData.append('pincodes_file', final_pincodes)
+            }
+            uploadData.append('pincodes_file', '')
             uploadData.append('ifsc', this.formGroup.value.ifsc)
             uploadData.append('bank_city', this.formGroup.value.bank_city)
             uploadData.append('branch', this.formGroup.value.branch)
@@ -221,7 +257,6 @@ export class ShopComponent implements OnInit {
       }
     } 
     else {
-      console.log(this.formGroup.errors)
       this.isPorceessing = false;
       x.innerText = "Please Check Detail"
       x.className = "show";

@@ -34,7 +34,6 @@ export class DefaultComponent implements OnInit {
   @ViewChild('widgetsContent') widgetsContent: ElementRef;
   ngOnInit(): void {
     this.cookieService.set('wishlist', 'prod1');
-    console.log(this.cookieService.get('wishlist'));
 
     this.productApi.fetchTopCategories().subscribe(
       data => {
@@ -59,7 +58,6 @@ export class DefaultComponent implements OnInit {
     this.blogApi.GetLatestBlog().subscribe(
       data => {
         this.blogs = data
-        console.log(data)
       },
       error => {
         console.log(error);
@@ -68,7 +66,6 @@ export class DefaultComponent implements OnInit {
 
     this.productApi.fetchPopularViewed().subscribe(
       data => {
-        console.log(data)
         this.viewedProducts = data.viewed;
         this.popularProducts = data.popular;
       },
@@ -78,11 +75,6 @@ export class DefaultComponent implements OnInit {
     )
 
   }
-
-  // chooseCategory(catName) {
-  //   console.log(catName);
-  //   this.router.navigate(["/categorical?", { category: catName}}])
-  // }
 
   scrollLeft(){
     this.widgetsContent.nativeElement.scrollLeft -= 300;

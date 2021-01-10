@@ -32,7 +32,6 @@ export class OrderService {
   }
 
   fetchOrder(orderId: string) : Observable<any> {
-    console.log(this.url+'/orders/'+ orderId)
     return this.httpClient.get(this.url+'/orders/'+ orderId+ '/order_detail', this.httpOptions)
   }
 
@@ -52,6 +51,10 @@ export class OrderService {
     localStorage.removeItem("cart");
     localStorage.removeItem("is_cod");
     localStorage.removeItem("is_online");
+  }
+
+  generatePaymentData(amount) : Observable<any> {
+    return this.httpClient.get(this.url+'/payment', this.httpOptions)
   }
 
 }

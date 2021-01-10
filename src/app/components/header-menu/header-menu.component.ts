@@ -11,7 +11,6 @@ export class HeaderMenuComponent implements OnInit {
   public categories: Object[];
 
   constructor(private productApi: ProductService) { 
-    console.log("inside manu");
     if (localStorage.getItem("shop_registered")) {
       this.isShop = true;
     } else {
@@ -22,7 +21,6 @@ export class HeaderMenuComponent implements OnInit {
   ngOnInit(): void {
     this.productApi.fetchCategories().subscribe(
       data => {
-        console.log(data);
         this.categories = data.categories;
       },
       error => {

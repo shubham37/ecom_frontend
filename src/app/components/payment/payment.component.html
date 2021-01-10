@@ -1,1 +1,52 @@
-<p>payment works!</p>
+<table class='table table-responsive-md'>
+    <tr>
+        <th scope="col">Method</th>
+        <th scope="col">Details</th>
+    </tr>
+    <tr>
+      <th scope="row">Cards</th>
+      <td>
+        <div>
+            <button class="cardinput">
+                Shubham Pratap Singh<br />
+                xxxx xxxx xxxx 1213
+            </button>
+            <br />
+            <input type="text" id="cvv" placeholder='CVV' #cvvin />
+            <button class='pay' (click)='payByCard("card")'> Pay </button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">Net Banking</th>
+      <td>
+        <select id="bank-code">
+            <option value="0">Select Bank</option>
+            <option value="3333">TEST Bank</option>
+            <option value="3003">Axis Bank</option>
+            <option value="3028">IndusInd Bank</option>
+            <option value="3057">Vijaya Bank</option>
+        </select>
+        <button class='pay'> Pay </button>
+    </td>
+    </tr>
+    <tr>
+      <th scope="row">Wallet</th>
+      <td>
+        <select id="wallet-code">
+            <option value="0">Select Wallet</option>
+            <option value="4001">FreeCharge</option>
+            <option value="4002">MobiKwik</option>
+            <option value="4003">Ola Money</option>
+        </select>
+        <button class='pay'> Pay </button>
+    </td>
+    </tr>
+    <tr>
+      <th scope="row">UPI</th>
+      <td>
+        <input type="text" id="upi-vpa" placeholder='Enter Your UPI VPA' />
+        <button class='pay'> Pay </button>
+    </td>
+    </tr>
+  </table>

@@ -23,7 +23,6 @@ export class OrdersComponent implements OnInit {
   ngOnInit(): void {
     this.orderApi.fetchOrders().subscribe(
       data => {
-        console.log(data);
         this.orders = data;
       },
       error => {

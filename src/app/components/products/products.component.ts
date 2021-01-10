@@ -43,7 +43,6 @@ export class ProductsComponent implements OnInit {
     this.productApi.fetchProductsByCategory(this.route.snapshot.queryParams).subscribe(
       data => {
         this.products = data;
-        console.log(data)
       }, error => {
         console.log(error)
       }

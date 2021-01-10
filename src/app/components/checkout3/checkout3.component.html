@@ -10,6 +10,7 @@
                 <th scope="col">Quantity</th>
                 <th scope="col">Price</th>
                 <th scope="col">Item Total</th>
+                <th scope="col">Shipping</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +49,17 @@
                 <td> 
                     {{ pro.final | currency:"&#8377;"}} 
                 </td>
+                <td>
+                    <p *ngIf='pro.shipping_method == 2'>
+                        Shipping By Seller
+                    </p>
+                    <p *ngIf='pro.shipping_method == 1'>
+                        Deliver By Hauch
+                    </p>
+                    <p *ngIf='pro.shipping_method == 3'>
+                        Pick from Store
+                    </p>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -55,7 +67,13 @@
     <div class='row'>
         <div class='col-md-4 col-12'>
             <h6><b>Shipping Address</b></h6>
-            <p style='font-size: smaller;'>H. No. - 101, <br />New Friends Colony, <br />Sanjay Nagar, Ghaziabad - 201002</p>
+            <div style='font-size: smaller;' *ngIf='caddress.hasOwnProperty("id")'>
+                <span *ngIf='caddress.add_type == 1'>HOME</span> 
+                <span *ngIf='caddress.add_type == 2'>WORK</span>,
+                <span>
+                    {{ caddress.locality }} {{ caddress.caddress }} Near {{ caddress.landmark }} {{ caddress.pincode.city.city_name }}, {{ caddress.pincode.city.state.state_name }} - {{ caddress.pincode.pincode }}
+                </span>
+            </div>
         </div>
 
         <div class='col-md-4 col-12'>
@@ -95,14 +113,16 @@
 </div>
 
 <div class="modal fade" id="paymentModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel"><b>Payment Options</b></h5>
+                <h5 class="modal-title" id="staticBackdropLabel"><b>Choose Payment Options</b></h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">Cancel</button>
             </div>
             <div class="modal-body">
-                <h6>Card</h6>
+                <app-payment></app-payment>
             </div>
         </div>
     </div>
 </div>
+

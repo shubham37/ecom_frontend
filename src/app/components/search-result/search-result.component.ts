@@ -11,8 +11,11 @@ import { ProductService } from '../../services/product.service';
 })
 export class SearchResultComponent implements OnInit {
 
-  public products: Object[] = [];
   public query : string = '';
+  all_products: Object[] = [];
+  products: Object[] = [];
+  filters: any=[];
+  applied_filters: any=[];
   config: any;
   sorting_options = [];
   
@@ -20,7 +23,9 @@ export class SearchResultComponent implements OnInit {
     this.query = this.route.snapshot.queryParams.value;
     this.productApi.SearchQuery(this.query).subscribe(
       data => {
-        this.products = data
+        this.all_products = data.products;
+        this.products = data.products
+        this.filters = data.filters
         // if (data!=null && data.length === 1) {
         //   this.router.navigate(['/product/'+ data[0].id])
         // } else if (data!=null && data.length >= 1) {
@@ -73,5 +78,11 @@ export class SearchResultComponent implements OnInit {
     }
   }
 
+  onFilterChoose(key: any, value: any) {
+    let filters = this.productApi.preparingFilters(key, value, this.applied_filters)
+    let pros = this.productApi.applyFilter(this.all_products, filters)
+    this.products = Object.assign([], pros);
+    this.applied_filters = Object.assign([], filters);
+  }
 
 }

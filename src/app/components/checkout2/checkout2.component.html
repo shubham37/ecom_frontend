@@ -1,37 +1,80 @@
 <div class='container'>
-    <div class='row'>
-        <div class="offset-md-1 col-md-10">            
-            <div class='row' style='margin: 1% 0;'>
-                <div class='col-md' style='padding:2% 1%;'>
-                    <h6 style='font-weight:bolder; margin-bottom: 3%;'>Choose Delivery Options :</h6>
-                    <div class='row' style='margin:2% 0; border-bottom: 1px solid silver;' *ngFor='let i of numbers'>
-                        <div class='col-12 col-md-8'>
-                            <p>
-                                <span class='title'>Shipping from Hauch</span> <br />
-                                <span class='address'>Delivery to: Home, H. No. 101, Street 13, Raj Nagar, Ghaziabad - 201002</span>
-                            </p>
-                            <ul>
-                                <li>
-                                    <h6><b>Apple</b></h6>
-                                    <p>
-                                        <span class='actual_price'><s>$ 234.89</s></span>
-                                        <span class='final_price'><b>$ 234.89</b></span>
-                                        <span class='quantity'>Quantity : 1</span>
-                                    </p>
-                                </li>
-                            </ul>                                
-                        </div>
-                        <div class='col-12 col-md-4'>
-                            <p>
-                                <span class='title'>Shipping method</span> <br />
-                                <input type='radio' name='ship_method' value='0' /> <span class='hauch_option'>Hauch Service</span> <span class='ship_add'>- at $10.0</span><br />
-                                <input type='radio' name='ship_method' value='1' /> <span class='std_option'>Standard shipping</span> <span class='ship_add'>- at $10.0</span><br />
-                                <input type='radio' name='ship_method' value='2' /> <span class='pick_option'>Pick at Store</span><br />
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <div class='row' style='margin: 1% 0;'>
+        <div class='col-md' style='padding:2% 1%;'>
+            <h6 style='font-weight:bolder; margin-bottom: 3%;'>Choose Shipping Options :</h6>
+            <div *ngIf='caddress.hasOwnProperty("id")'>
+                <b>Delivery To: </b>
+                <span class='address' *ngIf='caddress.add_type == 1'>HOME</span> 
+                <span class='address' *ngIf='caddress.add_type == 2'>WORK</span>,
+                <span class='address'>
+                    {{ caddress.locality }} {{ caddress.caddress }} Near {{ caddress.landmark }} {{ caddress.pincode.city.city_name }}, {{ caddress.pincode.city.state.state_name }} - {{ caddress.pincode.pincode }}
+                </span>
             </div>
+
+            <table class="table table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Seller</th>
+                        <th scope="col">Shipping Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pro of products; index as i;">
+                        <td>{{ i + 1 }}</td>
+                        <td>
+                            <span class='pro_title'>
+                                {{ pro.title }}
+                            </span><br />
+                            <span>
+                                {{ pro.final | currency:"&#8377;"}}
+                            </span><br />
+                            <span class='qty'>
+                                Quantity {{ pro.quantity }}
+                            </span>
+                        </td>
+                        <td>
+                            <span>
+                                {{ pro.shop_name }}
+                            </span><br />
+                            <span>
+                                <b>Address: </b>
+                                {{ pro.seller_address }}
+                            </span>
+                        </td>
+                        <td style='text-align:left;'>
+                            <p *ngIf='pro.shipping != 2'>
+                                <span>
+                                    <input type='radio' name='ship' value='1' (change)='chooseShippingOption($event, pro)' [checked]='pro.shipping_method == 1' />
+                                </span>
+                                <span>
+                                    Shipping By Seller
+                                </span>
+                            </p>
+
+                            <p>
+                                <span>
+                                    <input type='radio' name='ship' value='2' (change)='chooseShippingOption($event, pro)' [checked]='pro.shipping_method == 2' />
+                                </span>
+                                <span>
+                                    Deliver By Hauch
+                                </span>
+                            </p>
+
+                            <p>
+                                <span>
+                                    <input type='radio' name='ship' value='3' (change)='chooseShippingOption($event, pro)' [checked]='pro.shipping_method == 3' />
+                                </span>
+                                <span>
+                                    Pick from Store
+                                </span>
+                            </p>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

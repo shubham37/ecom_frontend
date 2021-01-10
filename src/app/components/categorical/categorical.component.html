@@ -1,12 +1,23 @@
 <div class='container-fluid' style='padding: 2%'>
     <div class='row'>
         <div class='col-md-2 col-2'>
-            <span class='subcat'>SUB CATEGORIES</span><br /><br />
-            <select class='sub_cat' (change)="onChooseSubCategory($event.target.value)">
-                <option value='all'>All</option>
-                <option *ngFor='let sub of sub_categories' [value]="sub.name">{{ sub.name }}</option>
-            </select>
-
+            <!-- <span class='subcat'>SUB CATEGORIES</span><br /><br /> -->
+            <div>
+                <select class='foods form-control' (change)="onChooseSubCategory($event.target.value)">
+                    <option value='sub_category'>Sub Categories</option>
+                    <option *ngFor='let sub of sub_categories' [value]="sub.name">{{ sub.name }}</option>
+                </select>
+            </div>
+            <br />
+            <div *ngIf='filters.length > 0'>
+                <div *ngFor='let filter of filters'>
+                    <select class='foods form-control' (change)='onFilterChoose(filter.feature, $event.target.value)'>
+                        <option [value]='filter.feature'>{{ filter.feature}}</option>
+                        <option *ngFor='let opt of filter.values' [value]="opt">{{ opt}}</option>
+                    </select>
+                    <br />
+                </div>
+            </div>
         </div>
         <div class='col-md-9 col-9' style='padding-left:5px; border-left: 1px solid rgb(185, 184, 184);'>
             <div class='row'>
@@ -29,6 +40,18 @@
                 <img src='http://localhost:8000{{ category?.banner }}' alt='...' class='cat_banner' />
             </p>
             <br />
+            <div *ngIf='applied_filters.length > 0' class='container-fluid'>
+                <div>
+                    <span class='filt_title'>Applied Filters</span>
+                    <button class='filters' *ngFor='let f of applied_filters' (click)='onFilterChoose(f.key, f.key)'>
+                        {{ f.key }} | {{ f.value }} 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-x-square-fill" viewBox="0 0 16 16">
+                            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
+                        </svg>
+                    </button>
+                </div>
+                <hr />
+            </div>
             <div *ngIf='products.length != 0'>
                 <div class='row'>
                     <div class='col-md-3 col-6 col-s-4' *ngFor='let product of products | paginate: config'>
@@ -45,8 +68,6 @@
                     No Data Exist
                 </p>
             </div>
-
-
         </div>
     </div>
 

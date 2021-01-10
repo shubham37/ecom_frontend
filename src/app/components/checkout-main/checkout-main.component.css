@@ -92,7 +92,7 @@
 .progressbar li.completed:before {
     background: #ff5e00;
     border: 1px solid #ff5e00;
-    content: "✔";  
+    content: "✔";
     color: white;
     font-size: large;
 }
@@ -104,12 +104,13 @@
 
 
 .progressbar li.active {
-    color: #313131;
+    color: #ff5e00;
+    font-weight: bold;
 }
 
 .progressbar li.active:before {
-    border: 1px solid #313131;
-    color: #313131;
+    border: 1px solid #ff5e00;
+    color: #ff5e00;
     font-size: large;
 }
 

@@ -25,11 +25,15 @@ export class SellerService {
   }
 
   sellersByPincode(pincode: any) : Observable<any> {
-    return this.httpClient.post<any>(this.url + '/by_category/', {'pincode':pincode}, this.httpOptions)
+    return this.httpClient.post<any>(this.url + '/by_pincode/', {'pincode':pincode}, this.httpOptions)
   }
 
   sellerStore(identifier: any) : Observable<any> {
     return this.httpClient.post<any>(this.url + '/store/', {'identifier': identifier}, this.httpOptions)
+  }
+
+  isDelivered(delivery_pincode: any, seller: any) : Observable<any> {
+    return this.httpClient.post<any>(this.url + '/is_possible/', {'delivery_pincode': delivery_pincode, 'seller': seller}, this.httpOptions)
   }
 
 }

@@ -10,7 +10,10 @@ import { ConfigService } from '../../services/config.service';
 })
 export class CategoricalComponent implements OnInit {
   category: any= null;
+  all_products: Object[] = [];
   products: Object[] = [];
+  filters: any=[];
+  applied_filters: any=[];
   sub_categories: Object[] = [];
   config: any;
   sorting_options = []
@@ -33,7 +36,6 @@ export class CategoricalComponent implements OnInit {
     this.productApi.fetchCategoryByName(cat).subscribe(
       data => {
         this.category = data;
-        console.log(data)
       }, error => {
         console.log(error)
       }
@@ -44,7 +46,6 @@ export class CategoricalComponent implements OnInit {
     this.productApi.fetchSubCategoryByCategory(cat).subscribe(
       data => {
         this.sub_categories = data;
-        console.log(data)
       }, error => {
         console.log(error)
       }
@@ -54,11 +55,14 @@ export class CategoricalComponent implements OnInit {
   getData(): void {
     this.productApi.fetchProductsByCategory(this.route.snapshot.queryParams).subscribe(
       data => {
-        console.log(data)
         if (data != null) {
-          this.products = data;
+          this.products = data.products;
+          this.all_products = data.products;
+          this.filters = data.filters;
         } else {
+          this.all_products = []
           this.products = []
+          this.filters = []
         }
       }, error => {
         console.log(error)
@@ -102,6 +106,13 @@ export class CategoricalComponent implements OnInit {
     this.router.navigate(['./'], { relativeTo: this.route, queryParams: urlParameters }).then(
       () => this.getData()
     );
+  }
+
+  onFilterChoose(key: any, value: any) {
+    let filters = this.productApi.preparingFilters(key, value, this.applied_filters)
+    let pros = this.productApi.applyFilter(this.all_products, filters)
+    this.products = Object.assign([], pros);
+    this.applied_filters = Object.assign([], filters);
   }
 
 }

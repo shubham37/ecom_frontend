@@ -6,6 +6,8 @@ import { ConfigService } from '../../services/config.service';
 import { BuyerService } from '../../services/buyer.service';
 
 
+declare const L: any;
+
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -46,7 +48,6 @@ export class ProductComponent implements OnInit {
       data => {
         this.product = data;
         this.cart_quantity = this.configApi.alreadyInCart(data.id);
-        console.log(data);
         if (this.configApi.isLoggedIn()) {
           this.buyerApi.isInYourWishlist(data.id).subscribe(
             data=> {
@@ -62,6 +63,8 @@ export class ProductComponent implements OnInit {
         console.log(error.message);
       }
     )
+
+    debugger
   }
 
   openBlock(event, blockName: string) {
@@ -100,10 +103,8 @@ export class ProductComponent implements OnInit {
 
   onRateSubmit(proId): void {
     if (this.rateFormGroup.valid) {
-      console.log(this.rateFormGroup.value)
       this.productApi.writeReview(proId, this.rateFormGroup.value).subscribe(
         data => {
-          console.log(data);
           this.rateFormGroup.reset();
           this.show_rate = true;
           window.location.reload(true);
@@ -142,6 +143,45 @@ export class ProductComponent implements OnInit {
     return new Array(i);
   }
 
+  deg2rad(deg) {
+    return deg * (Math.PI/180)
+  }
+
+
+  getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    let R = 6371; // Radius of the earth in km
+    let dLat = this.deg2rad(lat2-lat1);  // this.deg2rad below
+    let dLon = this.deg2rad(lon2-lon1); 
+    let a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    let c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    let d = R * c; // Distance in km
+    return d;
+  }
+  
+
+  showOnMap() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coords = position.coords;
+      let mymap = L.map('mapid').setView([coords.latitude, coords.longitude], 13);
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic2h1YmhhbTM3IiwiYSI6ImNramx0OHBxaTByYmUyc3MydG1lZTZqZGUifQ.rc9s5YFOQOMzq4dE2PfPDw', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+      }).addTo(mymap);
+      var marker = L.marker([coords.latitude, coords.longitude]).addTo(mymap);
+      var shop = L.marker([28.7035237,77.4587127]).addTo(mymap);
+      marker.bindPopup("You Are here.").openPopup()
+      shop.bindPopup("Shop Here.").openPopup()      
+      // console.warn(this.getDistanceFromLatLonInKm(coords.latitude, coords.longitude, 28.7035237,77.4587127))
+    })
+  }
 
   addToWishlist(proId): void {
     if (this.configApi.isLoggedIn()) {

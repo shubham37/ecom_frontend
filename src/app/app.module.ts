@@ -62,6 +62,7 @@ import { LanguageTranslatePipePipe } from './pipes/language-translate-pipe.pipe'
 import { SellerPageComponent } from './components/seller-page/seller-page.component';
 import { MultiSearchComponent } from './components/multi-search/multi-search.component';
 import { ShopsComponent } from './components/shops/shops.component';
+import { ShopTemplateComponent } from './components/shop-template/shop-template.component';
 export const createTransalteLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 };
@@ -112,7 +113,8 @@ export const createTransalteLoader = (http: HttpClient) => {
     LanguageTranslatePipePipe,
     SellerPageComponent,
     ShopsComponent,
-    MultiSearchComponent
+    MultiSearchComponent,
+    ShopTemplateComponent
   ],
   imports: [
     BrowserModule,

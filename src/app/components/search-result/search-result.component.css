@@ -56,3 +56,21 @@
 @media screen and (max-width: 768px) {
     .result_title {font-size:small;}
 }
+
+.filters {
+    display: inline-block;
+    border: none;
+    background-color: red;
+    padding: 5px;
+    color: white;
+    font-size: small;
+    border-radius: 2px;
+}
+
+.filt_title {
+    font-size: medium;
+    font-weight: bold;
+    color: rgb(95, 93, 93);
+    font-family: Arial;
+    margin-right: 10px;
+}

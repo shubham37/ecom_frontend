@@ -41,8 +41,6 @@ export class BsNavbarComponent implements OnInit {
   onSearch(searchData) {
     var query = searchData['query'];
     if (query.includes(',')) {
-      debugger
-      console.log(query.split(","));
       window.location.href = '/multi_search?value=' + query;
     } else {
       window.location.href = '/search?value=' + query;

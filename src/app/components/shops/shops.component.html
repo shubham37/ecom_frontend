@@ -7,35 +7,34 @@
             <form>
                 <br />
                 <div class='row'>
-                    <div class='col-md-12 col-12'>
-                        <input type="text" placeholder='xxxxxxxx' class='search_input' />
-                        <span>
-                            <button type='submit' class='btn search'>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                </svg>
-                            </button>
-
-                        </span>
+                    <div class='col-md-10 col-10'>
+                        <input type="text" placeholder='xxxxxxxx' class='search_input' #pincode />
+                    </div>
+                    <div class='col-md-2 col-2'>
+                        <button type='submit' class='btn search' (click)='findByPincode(pincode.value)'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
             </form>
 
             <br />
-            <a [routerLink]="['/shop','jagdamba-general-store-ghaziabad-up-201992']">Jagdamba</a>
+            <div class='row' *ngIf='show_stores.length >0'>
+                <div class='col-md-12 col-12' *ngFor='let store of show_stores'>
+                    <app-shop-template [store]='store'></app-shop-template>
+                </div>
+            </div>
         </div>
         <div class='col-md-9 col-12' style='border-left: 2px solid #ff5e00; margin: 0; padding: 0;'>
-            <select class="form-select" aria-label="Default select">
-                <option selected>Store Types</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+
+            <select class="form-select" [value]='current_st' (change)='onSTChange($event.target.value)'>
+                <option *ngFor='let st of store_type' [value]='st.value'>{{ st.display }}</option>
             </select>
-            <select class="form-select" aria-label="Default select">
-                <option selected>Delivery Type</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+
+            <select class="form-select" [value]='current_dt' (change)='onDTChange($event.target.value)'>
+                <option *ngFor='let dt of delivery_type' [value]='dt.value'>{{ dt.display }}</option>
             </select>
             <select class="form-select" aria-label="Default select">
                 <option selected>Deals With</option>
@@ -43,16 +42,14 @@
                 <option value="2">Two</option>
                 <option value="3">Three</option>
             </select>
-            <select class="form-select" aria-label="Default select">
-                <option selected>Within 3 KM</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select" [value]='current_d' (change)='onDChange($event.target.value)'>
+                <option *ngFor='let d of distance' [value]='d.value'>{{ d.display }}</option>
             </select>
             <hr style='background-color: #ff5e00; height: 1px; margin: 0; padding: 0;' >
-            <iframe width="100%" height="400" id="gmap_canvas" 
+            <div id='mapid'></div>
+            <!-- <iframe width="100%" height="400" id="gmap_canvas" 
             src="https://maps.google.com/maps?q=India&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-            </iframe>
+            </iframe> -->
         </div>
     </div>
     <br />

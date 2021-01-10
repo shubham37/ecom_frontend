@@ -22,10 +22,8 @@ export class OrderHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderID = this.route.snapshot.params.order_id
-    console.log(this.orderID)
     this.orderApi.fetchOrder(this.orderID).subscribe(
       data => {
-        console.log(data);
         this.order = data
         this.products = data.order_detail.products
         this.prices = data.order_detail.price_detail

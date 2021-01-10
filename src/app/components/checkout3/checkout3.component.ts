@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from '../../services/order.service'
 import { Router, ActivatedRoute } from '@angular/router';
+import { BuyerService } from '../../services/buyer.service'
 
 
 @Component({
@@ -13,13 +14,32 @@ export class Checkout3Component implements OnInit {
   is_online: boolean = false;
   snackbar: any;
   prices= {};
+  caddress = {}
 
-  constructor(private orderApi: OrderService, private router: Router, private route: ActivatedRoute) {
+  constructor(private orderApi: OrderService, private router: Router, private route: ActivatedRoute, private buyerApi: BuyerService) {
   }
 
   ngOnInit(): void {
     this.getData();
     this.snackbar = document.getElementById("snackbar");
+    let same_shipping = JSON.parse(localStorage.getItem('is_shipping_same'))
+    let address = -1
+    if (same_shipping!= null && same_shipping!= undefined) {
+      if (same_shipping) {
+        address = Number(localStorage.getItem('billing_address'))
+      } else {
+        address = Number(localStorage.getItem('shipping_address'))
+      }
+    }
+
+    this.buyerApi.fetchAddress(address).subscribe(
+      data => {
+        console.warn(data)
+        this.caddress = data
+      }, error => {
+        console.error(error)
+      }
+    )
   }
 
   getData() {
@@ -31,9 +51,6 @@ export class Checkout3Component implements OnInit {
         this.prices = prices
       }
     }
-    // "shipping_address": localStorage.getItem("shipping_address"),
-    // "is_shipping_same": localStorage.getItem("is_shipping_same"),
-
   }
 
   placeOrder() {
@@ -69,7 +86,6 @@ export class Checkout3Component implements OnInit {
   }
 
   choosePayment(event) : void {
-    console.log(event.target.value);
     if (event.target.value === '1') {
       this.is_online= true;
       localStorage.setItem('is_cod', "false")

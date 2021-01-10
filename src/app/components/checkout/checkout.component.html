@@ -6,7 +6,7 @@
                 <br />
                 <div class='row' style='padding: 1%; margin:1% 0;' *ngFor='let address of addreses'>
                     <div class='col-2 col-md-1'>
-                        <input type='radio' name='billingAddress' value='{{address.id}}' (change)="billingAddress($event)" />
+                        <input type='radio' name='billingAddress' value='{{address.id}}' (change)="billingAddress($event)" [checked]='address.id == billing' />
                     </div>
                     <div class='col-10 col-md-11 add'>
                         <p style='margin-top:-5px;'>
@@ -37,7 +37,7 @@
                 <br />
                 <div class='row' style='padding: 1%; margin:1% 0;' *ngFor='let address of addreses'>
                     <div class='col-2 col-md-1'>
-                        <input type='radio' name='shippingAddress' value='{{address.id}}' (change)="shippingAddress($event)" />
+                        <input type='radio' name='shippingAddress' value='{{address.id}}' (change)="shippingAddress($event)" [checked]='address.id == shipping' />
                     </div>
                     <div class='col-10 col-md-11 add'>
                         <p style='margin-top:-5px;'>

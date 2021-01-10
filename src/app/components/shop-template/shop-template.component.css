@@ -1,0 +1,27 @@
+.block {
+    padding: 10px;
+    background-color: rgba(219, 216, 216, 0.1);
+}
+
+a {
+    text-decoration: none;
+    color: #ff5e00;
+    font-size: medium;
+}
+
+.address {
+    color: rgb(37, 37, 37);
+    font-size: small;
+    font-weight: lighter;
+}
+
+.minorder {
+    color: rgb(141, 138, 138);
+    font-size: small;
+    font-weight: bold;
+}
+
+.distance {
+    text-align: center;
+    font-size: smaller;
+}

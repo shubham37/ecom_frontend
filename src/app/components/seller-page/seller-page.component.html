@@ -1,11 +1,11 @@
 <div class='row'>
-    <div class='col' style='margin: 0; padding: 0;'>
-        <img src='assets/images/back.jpg' alt='...' style='width: 100%; height: 25em;' />
+    <div class='col' style='margin: 0; padding: 0;' *ngIf='store.hasOwnProperty("board")'>
+        <img src='http://localhost:8000/media/{{store.board}}' alt='...' style='width: 100%; height: 25em;' />
     </div>
 </div>
 <br />
+<p style="text-align: center; font-size: large; color: #ff5e00; font-weight: bolder; font-family: cursive;" *ngIf='store.hasOwnProperty("shop_name")'>{{ store.shop_name }}</p>
 <br />
-
 <div class='row'>
     <div class='col-12 col-md-12 col-s-12 categories'>
         <p class='text'>
@@ -14,7 +14,7 @@
         <br />
         <div class='row'>
             <div class='col-md-2 col-6' *ngFor='let cat of categories'>
-                <a [routerLink]="['/categorical']" [queryParams]="{category: 'grocery', seller:store.identifier}">
+                <a [routerLink]="['/categorical']" [queryParams]="{category: 'Electrical & Electronics', seller:store.identifier}">
                     <img src='assets/images/cart_product.jpg' alt='...' style='width: 100%; height: 75%;' /><br />
                     <button class='cat_block'>
                         Grocery
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <br />
-            <div class='row'>
+            <div class='row' *ngIf='store.hasOwnProperty("products")'>
                 <div class='col' style='width:100%; text-align:center'>
                     <div class="pull-left mt-sm">
                         <button (click)="scrollLeft()" class='left_arrow'>
@@ -53,7 +53,7 @@
                             </svg>
                         </button>
                     </div>
-                    <div #widgetsContent class="custom-slider-main" *ngIf='store.hasOwnProperty("products")'>
+                    <div #widgetsContent class="custom-slider-main">
                         <div class="info-box" *ngFor='let product of store.products'>
                             <app-product-template [product]='product'></app-product-template>
                         </div>
@@ -77,15 +77,17 @@
 <div class="modal fade" id="productsModal" data-backdrop="static" tabindex="-1" aria-labelledby="productsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content" *ngIf='store.hasOwnProperty("products")'>
-            <div class="modal-header">
-                <span>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h5 class="shop_title" id="exampleModalLabel">{{ store.shop_name }}</h5>
-                </span>
-            </div>
             <div class="modal-body">
+                <div class='row'>
+                    <div class='col-md-10 col-10'>
+                        <h5 class="shop_title" id="exampleModalLabel">{{ store.shop_name }}</h5>
+                    </div>
+                    <div class='col-md-2 col-2'>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div><hr />
                 <div class='row'>
                     <div class='col-md-3 col-6' *ngFor='let product of store.products'>
                         <app-product-template [product]='product'></app-product-template>

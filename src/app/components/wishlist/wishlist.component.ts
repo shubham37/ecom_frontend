@@ -21,7 +21,6 @@ export class WishlistComponent implements OnInit {
     this.buyerApi.fetchWishlist().subscribe(
       data => {
         this.wishlists = data.products;
-        console.log(data);
       },
       error => {
         console.log(error);

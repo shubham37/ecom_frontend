@@ -32,6 +32,7 @@
                             <th scope="col">Quantity</th>
                             <th scope="col">MRP</th>
                             <th scope="col">Item Total</th>
+                            <th scope="col">Shipping</th>
                           </tr>
                         </thead>
                         <tbody *ngIf='products.length != 0'>
@@ -44,6 +45,21 @@
                             <td>{{ product.quantity }}</td>
                             <td>{{ product.mrp | currency:"&#8377;"}}</td>
                             <td>{{ product.final | currency:"&#8377;"}}</td>
+                            <td style='text-align:left;'>
+                              <p *ngIf='product.shipping_method == 2'>
+                                  Shipping By Seller<br />
+                                  {{ product.shipping_charge | currency:"&#8377;" }}
+                              </p>
+                              <p *ngIf='product.shipping_method == 1'>
+                                  Deliver By Hauch<br />
+                                  {{ product.shipping_charge | currency:"&#8377;"}}
+                              </p>
+                              <p *ngIf='product.shipping_method == 3'>
+                                  Pick from Store<br />
+                                  {{ product.shipping_charge | currency:"&#8377;"}}
+                              </p>
+                            </td>
+  
                           </tr>
                         </tbody>
                       </table>

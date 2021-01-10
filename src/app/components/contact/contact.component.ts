@@ -38,7 +38,6 @@ export class ContactComponent implements OnInit {
       data => {
         this.isShowLoader = false;
         this.subscribedMessage = "You Query Send successfully."
-        console.log(data)
       },
       error => {
         this.isShowLoader = false;
@@ -47,7 +46,6 @@ export class ContactComponent implements OnInit {
       }
     )
 
-    console.log(name);
     // this.route.navigate(['/search'], { queryParams: { value: 'popular' } });
   }
 

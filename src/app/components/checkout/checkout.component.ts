@@ -11,6 +11,8 @@ export class CheckoutComponent implements OnInit {
   addreses : Object[] = [];
 
   toggle : boolean = false;
+  billing= -1;
+  shipping = -1;
 
   constructor(private router: Router, private buyerApi: BuyerService) {   
   }
@@ -20,7 +22,6 @@ export class CheckoutComponent implements OnInit {
       data => {
         if (data != null) {
           this.addreses = data;
-          console.log(data);
         } else {
           this.addreses = [];
         }
@@ -30,6 +31,18 @@ export class CheckoutComponent implements OnInit {
         console.log(error);
       }
     )
+
+    let same_shipping = JSON.parse(localStorage.getItem('is_shipping_same'))
+    if (same_shipping!= null && same_shipping!= undefined) {
+      if (same_shipping) {
+        this.billing = Number(localStorage.getItem('billing_address'))
+        // this.shipping = Number(localStorage.getItem('billing_address'))
+      } else {
+        this.toggle=true
+        this.billing = Number(localStorage.getItem('billing_address'))
+        this.shipping = Number(localStorage.getItem('shipping_address'))
+      }
+    }
   }
 
   showShippingBlock() {

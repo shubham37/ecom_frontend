@@ -109,9 +109,10 @@
 
                                 <div class="row">
                                     <div class="col">
-                                        <iframe width="100%" height="500" id="gmap_canvas" 
+                                        <div id='mapid' style='height: 500px'></div>
+                                        <!-- <iframe width="100%" height="500" id="gmap_canvas" 
                                         src="https://maps.google.com/maps?q=India&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-                                        </iframe>
+                                        </iframe> -->
                                     </div>
                                 </div>
                                 <p style='text-align: center; margin-top:3%;'>
@@ -223,7 +224,7 @@
                                             </div>
                                             <div class='col-md-4 col-12 col-s-5'>
                                                 <input type='file' id='inputField' placeholder='upload file of servicable pincodes' (change)='onPincodeFileChange($event)' />
-                                                <span style="font-size: small; color: red;font-weight: lighter;">.xlsx supported only</span>
+                                                <span style="font-size: small; color: red;font-weight: lighter;">.csv supported only</span>
                                             </div>
                                         </div>
                                     </div>
